@@ -645,6 +645,11 @@ function chronometer() {
     done
 }
 
+# Print some (useful?) emoticons.
+function shrug() {
+    echo "¯\_(ツ)_/¯"
+}
+
 # Create a new profile for mate-terminal with Monokai colors
 function install_mate_monokai_terminal() {
     PROFILE_SLUG="monokai-dark"
