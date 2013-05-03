@@ -638,6 +638,13 @@ function extract() {
     fi
 }
 
+# Starts a chronometer in the terminal.
+function chronometer() {
+    while true; do
+        date && sleep 1
+    done
+}
+
 # Create a new profile for mate-terminal with Monokai colors
 function install_mate_monokai_terminal() {
     PROFILE_SLUG="monokai-dark"
