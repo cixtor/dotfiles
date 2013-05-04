@@ -114,6 +114,10 @@ export PATH="$PATH:/opt/php/sbin"
 export PATH="$PATH:/opt/nodejs/bin"
 export PATH="$PATH:/opt/coffeescript/bin"
 
+# LLVM Compiler Infrastructure
+# http://llvm.org/releases/download.html
+export PATH="$PATH:/opt/llvm/bin"
+
 # Java and Android Development Environment
 export JAVA_HOME="/opt/javadevkit"
 export PATH="$PATH:/opt/javadevkit/bin"
