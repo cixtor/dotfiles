@@ -569,7 +569,7 @@ function agent() {
     -H 'Accept-Language: en-US,en;q=0.8' \
     -H 'Accept-Encoding: gzip, deflate, sdch, br' \
     -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' \
-    -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.54 Safari/537.36' \
+    -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2725.0 Safari/537.36' \
     -H 'Cache-Control: no-cache' \
     -H 'Connection: keep-alive' \
     --compressed "$@"
