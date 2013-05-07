@@ -586,6 +586,22 @@ function googlebot() {
     --compressed "$@"
 }
 
+# Install screencast recorder to GIF.
+# apt install byzanz xdotool x11-utils libx11-dev
+# https://github.com/syohex/byzanz-window
+function win2gif() {
+    command -v byzanz-record 1> /dev/null
+
+    if [[ "$?" -eq 0 ]]; then
+        byzanz-window "$@"
+    else
+        echo "Missing dependencies"
+        echo "apt install byzanz xdotool x11-utils libx11-dev"
+        echo "https://github.com/syohex/byzanz-window"
+        return 1
+    fi
+}
+
 # Lint CSS files ignoring some rules.
 function csslint() {
     if $(command -v csslint &> /dev/null); then
