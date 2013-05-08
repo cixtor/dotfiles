@@ -399,6 +399,11 @@ function phpunit() {
     fi
 }
 
+# Report unused variables in the source code.
+function phpvoidcode() {
+    phpmd "$@" text unusedcode
+}
+
 # Execute custom PHPCode_Sniffer coding standard.
 function psr2() {
     ruleset=''
