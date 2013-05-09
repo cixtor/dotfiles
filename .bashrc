@@ -315,8 +315,10 @@ function pwmanager() {
     storage="$HOME/passwords.dat"
     echo "Exporting to ${output}"
     openssl enc -aes-256-cbc -d -in "$storage" -out "$output"
-    /usr/bin/vim -- "$output"
-    rm -fv -- "$output"
+    if [[ "$?" -eq 0 ]]; then
+        /usr/bin/vim -- "$output"
+        rm -fv -- "$output"
+    fi
 }
 
 # Monitor and notify abount directory changes.
