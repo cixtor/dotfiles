@@ -298,6 +298,17 @@ function say() { echo "$@" | espeak -s 150 2>/dev/null; }
 # Cut a string at certain length and return
 function substr() { cut -c1-$1; }
 
+# Generate a new set of SSH keys
+# https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+function sshkey() {
+    if [[ "$1" == "" ]]; then
+        echo "Usage: sshkey [email]"
+        return 2
+    fi
+
+    ssh-keygen -t rsa -b 4096 -C "$1"
+}
+
 # Rudimentary password manager
 function pwmanager() {
     output="/tmp/passwords.txt"
