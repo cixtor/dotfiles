@@ -276,6 +276,12 @@ function killcaja() {
     killproc "caja"
 }
 
+# Display version number of shared libraries.
+function soname() {
+    readelf -d "$1" | grep SONAME 2> /dev/null
+    ldd "$1" 2> /dev/null
+}
+
 # Sudo for special host file manager actions.
 # https://github.com/cixtor/hostman
 function hostman() {
