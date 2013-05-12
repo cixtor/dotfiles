@@ -271,6 +271,11 @@ function killproc() {
     fi
 }
 
+# Kill stressed file manager.
+function killcaja() {
+    killproc "caja"
+}
+
 # Sudo for special host file manager actions.
 # https://github.com/cixtor/hostman
 function hostman() {
