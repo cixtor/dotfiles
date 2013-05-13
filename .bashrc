@@ -252,6 +252,25 @@ alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 # Download YouTube video and extract audio
 alias mp3dl="youtube-dl --extract-audio --audio-format mp3 --audio-quality 0"
 
+# Kill stressed running process.
+function killproc() {
+    if [[ "$1" == "" ]]; then
+        echo "Usage: killproc [process]"
+        return 2
+    else
+        PIDS=($(pgrep "$1"))
+        for PID in "${PIDS[@]}"; do
+            echo -n "- Killing ${PID} "
+            skill -kill "$PID"
+            if [[ "$?" -eq 0 ]]; then
+                echo -e "\e[0;92m\u2714\e[0m"
+            else
+                echo -e "\e[0;91m\u2718\e[0m"
+            fi
+        done
+    fi
+}
+
 # Sudo for special host file manager actions.
 # https://github.com/cixtor/hostman
 function hostman() {
