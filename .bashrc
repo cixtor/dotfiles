@@ -250,7 +250,7 @@ alias gitgraph='git log --graph --full-history --all --color --pretty=format:"%x
 alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 
 # Download YouTube video and extract audio
-alias mp3dl="youtube-dl --extract-audio --audio-format mp3"
+alias mp3dl="youtube-dl --extract-audio --audio-format mp3 --audio-quality 0"
 
 # Sudo for special host file manager actions.
 # https://github.com/cixtor/hostman
