@@ -13,6 +13,7 @@
 	"fmt_tab_indent": true,
 	"fmt_tab_width": 4,
 	"fmt_cmd": [],
+	"ipc_timeout": 1,
 	"gslint_enabled": true,
 	"lint_filter": [
 		"gs.flag.parse",
@@ -20,9 +21,10 @@
 	],
 	"comp_lint_enabled": false,
 	"comp_lint_commands": [
-		{"cmd": ["go", "install"]}
+		{"cmd": ["go", "install"]},
+		{"cmd": ["go", "vet"]}
 	],
-	"gslint_timeout": 500,
+	"gslint_timeout": 100,
 	"lint_enabled": true,
 	"linters": [],
 	"autocomplete_snippets": true,
