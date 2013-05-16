@@ -18,9 +18,10 @@ repositories=(
     "SublimeLinter-phpcs|SublimeLinter/SublimeLinter-phpcs"
     "SublimeLinter-jshint|SublimeLinter/SublimeLinter-jshint"
     "SublimeLinter-csslint|SublimeLinter/SublimeLinter-csslint"
+    "SublimeLinter-shellcheck|SublimeLinter/SublimeLinter-shellcheck"
 )
 if [[ -e "${inst_path}" ]]; then
-    cd $inst_path
+    cd "$inst_path"
     for repo in "${repositories[@]}"; do
         local_name=$(echo $repo | awk -F '|' '{print $1}')
         repo_name=$(echo $repo | awk -F '|' '{print $2}')

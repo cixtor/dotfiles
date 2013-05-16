@@ -30,6 +30,12 @@
                 "args": [],
                 "excludes": [],
                 "standard": "~/.psr99.xml"
+            },
+            "shellcheck": {
+                "@disable": false,
+                "args": [],
+                "exclude": "",
+                "excludes": []
             }
         },
         "mark_style": "outline",
@@ -54,13 +60,14 @@
         "show_errors_on_save": false,
         "show_marks_in_minimap": true,
         "syntax_map": {
+            "python django": "python",
+            "pythonimproved": "python",
+            "magicpython": "python",
+            "html 5": "html",
             "html (django)": "html",
             "html (rails)": "html",
-            "html 5": "html",
             "javascript (babel)": "javascript",
-            "magicpython": "python",
-            "php": "html",
-            "python django": "python"
+            "php": "html"
         },
         "warning_color": "DDB700",
         "wrap_find": true
