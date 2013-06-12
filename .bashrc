@@ -531,6 +531,16 @@ function googlebot() {
     --compressed "$@"
 }
 
+# Lint CSS files ignoring some rules.
+function csslint() {
+    if $(command -v csslint &> /dev/null); then
+        $(which csslint) --format=compact --ignore=adjoining-classes,box-sizing,box-model,ids "$@"
+    else
+        echo "npm install -g csslint"
+        return 1
+    fi
+}
+
 # Extract most known archives with one command
 function extract() {
     if [ -f $1 ]; then
