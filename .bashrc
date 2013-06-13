@@ -520,6 +520,17 @@ function agent() {
     --compressed "$@"
 }
 
+# Disguise CURL as the Google web crawler.
+function googlebot() {
+    curl -H 'DNT: 1' \
+    -H 'Upgrade-Insecure-Requests: 1' \
+    -H 'Accept-Encoding: gzip, deflate' \
+    -H 'Accept-Language: en-US,en;q=0.8' \
+    -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' \
+    -H 'User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)' \
+    --compressed "$@"
+}
+
 # Extract most known archives with one command
 function extract() {
     if [ -f $1 ]; then
