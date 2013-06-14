@@ -508,12 +508,15 @@ function wlan0stats() {
 
 # Disguise CURL as a normal web browser
 function agent() {
-    curl -H 'dnt: 1' \
-    -H 'upgrade-insecure-requests: 1' \
-    -H 'accept-encoding: gzip, deflate' \
-    -H 'accept-language: en-US,en;q=0.8' \
-    -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' \
-    -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.36 Safari/537.36' \
+    curl -H 'DNT: 1' \
+    -H 'Pragma: no-cache' \
+    -H 'Upgrade-Insecure-Requests: 1' \
+    -H 'Accept-Language: en-US,en;q=0.8' \
+    -H 'Accept-Encoding: gzip, deflate, sdch, br' \
+    -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' \
+    -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.54 Safari/537.36' \
+    -H 'Cache-Control: no-cache' \
+    -H 'Connection: keep-alive' \
     --compressed "$@"
 }
 
