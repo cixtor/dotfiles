@@ -417,6 +417,15 @@ function id() {
     fi
 }
 
+# Prettify the output of the Git log command.
+function git() {
+    if [[ "$@" == "log" ]]; then
+        $(which git) log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    else
+        $(which git) "$@"
+    fi
+}
+
 # Calculate Mercurial ahead and behind commits
 #
 # b_sw3jdurr   3965:7f2a83ffc61d
