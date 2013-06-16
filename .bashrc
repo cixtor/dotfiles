@@ -278,6 +278,23 @@ function pwmanager() {
     rm -fv -- "$output"
 }
 
+# Monitor and notify abount directory changes.
+function inotifymake() {
+    if $(command -v inotifywait &> /dev/null); then
+        DIRECTORY=$(pwd)
+        while inotifywait -r -e modify --format='%w%f' "$DIRECTORY"; do
+            if [ "$1" != "" ]; then eval "$@"; fi
+            notify-send "Inotify Make" \
+            "Directory $DIRECTORY has changed" \
+            --icon="dialog-information" \
+            --expire-time=2000
+        done
+    else
+        echo "apt-get install inotify-tools"
+        return 1
+    fi
+}
+
 # Switch between multiple development stacks
 function newstack() {
     if [[ "$1" == "" ]]; then
