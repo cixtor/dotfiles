@@ -217,6 +217,9 @@ alias capitalize='strconv -capitalize -text'
 # Convert all the characters in a text string into their lower form
 alias lowercase='strconv -lowercase -text'
 
+# Get the public IP address of the current Internet connection
+alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
+
 # Perform a rotation on a string by the value specified
 function rotate() {
     # Positions to shift the text in the alphabet
