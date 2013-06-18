@@ -385,8 +385,9 @@ function psr2() {
 }
 
 function commit() {
-    if [[ "$1" == "" ]]; then
+    if [[ "$4" == "" ]]; then
         echo "Usage: commit -m <message> -d yyyy-mm-dd"
+        return 2
     else
         message="false"
         comdate="false"
@@ -399,9 +400,15 @@ function commit() {
             comdate="$2"
         fi
 
-        export GIT_AUTHOR_DATE="${comdate} 09:00:00.000000000 -0500"
-        export GIT_COMMITTER_DATE="${comdate} 09:00:00.000000000 -0500"
-        git commit --message="$message" --date="$comdate"
+        if [[ "$message" == "false" || "$comdate" == "false" ]]; then
+            echo "Invalid options"
+            return 1
+        else
+            comdate="${comdate}T09:00:00"
+            export GIT_AUTHOR_DATE="$comdate"
+            export GIT_COMMITTER_DATE="$comdate"
+            git commit --message="$message" --date="$comdate"
+        fi
     fi
 }
 
