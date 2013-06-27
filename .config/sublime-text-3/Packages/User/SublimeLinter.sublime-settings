@@ -12,7 +12,7 @@
                 "args": [],
                 "errors": "",
                 "excludes": [],
-                "ignore": "",
+                "ignore": "adjoining-classes,box-sizing,box-model,ids",
                 "warnings": ""
             },
             "jshint": {
