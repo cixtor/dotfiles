@@ -588,6 +588,29 @@ function redditnick() {
     --compressed --silent | python -m json.tool
 }
 
+# Unshorten a shortened URL.
+function unshorten() {
+    encoded_url=$(strconv -urlenc -text "$1")
+    csrftoken=$(genpasswd -type 1Aa -length 32)
+    response=$(
+        curl -H 'DNT: 1' \
+        -H "Connection: keep-alive" \
+        -H "Origin: http://unshorten.it" \
+        -H "Referer: http://unshorten.it/" \
+        -H "Accept-Encoding: gzip, deflate" \
+        -H "X-Requested-With: XMLHttpRequest" \
+        -H "Cookie: csrftoken=${csrftoken}" \
+        -H "User-Agent: Mozilla/5.0 (KHTML, like Gecko) Safari/537.36" \
+        -H "Content-Type: application/x-www-form-urlencoded; charset=UTF-8" \
+        --url "http://unshorten.it/main/get_long_url" \
+        --data "short-url=${encoded_url}" \
+        --data "csrfmiddlewaretoken=${csrftoken}" \
+        --compressed --silent
+    )
+    result=$(echo "$response" | python -m json.tool)
+    if [[ "$?" -eq 0 ]]; then echo "$result"; else echo "$response"; fi
+}
+
 # Download media files from OpenGraph video tags.
 function ogvideodl() {
     echo "@ $1"
