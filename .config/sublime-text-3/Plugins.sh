@@ -12,6 +12,7 @@ repositories=(
     "Alignment|wbond/sublime_alignment"
     "PlainTasks|aziz/PlainTasks"
     "knockdown|aziz/knockdown"
+    "CaseConversion|jdc0589/CaseConversion"
     "SublimeLinter|SublimeLinter/SublimeLinter3"
     "SublimeLinter-php|SublimeLinter/SublimeLinter-php"
     "SublimeLinter-phpcs|SublimeLinter/SublimeLinter-phpcs"
