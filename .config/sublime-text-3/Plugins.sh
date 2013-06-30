@@ -5,7 +5,7 @@ repositories=(
     "GoSublime|DisposaBoy/GoSublime"
     "CPP11|noct/sublime-cpp11"
     "ClangFormat|rosshemsley/SublimeClangFormat"
-    "ClangComplete|pfultz2/ClangComplete"
+    "Clang-Complete|lvzixun/Clang-Complete"
     "Rust|rust-lang/sublime-rust"
     "DocBlockr|spadgos/sublime-jsdocs"
     "Codec|furikake/sublime-codec"
