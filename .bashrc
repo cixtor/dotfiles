@@ -587,3 +587,45 @@ function redditnick() {
     --data "user=${1}" \
     --compressed --silent | python -m json.tool
 }
+
+# Download media files from OpenGraph video tags.
+function ogvideodl() {
+    echo "@ $1"
+    response=$(
+        curl -H 'dnt: 1' \
+        -H 'Connection: keep-alive' \
+        -H 'Cache-Control: max-age=0' \
+        -H 'Accept-Language: en-US,en;q=0.5' \
+        -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
+        -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:46.0) Gecko/20100101 Firefox/46.0' \
+        --compressed --silent "$1"
+    )
+
+    ogtag=$(echo "$response" | grep '"og:video"')
+
+    if [[ "$ogtag" == "" ]]; then
+        echo "No OpenGraph video tag"
+        return 1
+    else
+        url=$(echo "$ogtag" | sed 's;.*content=";;' | cut -d '"' -f 1)
+        filename=$(echo "$url" | rev | cut -d '/' -f 1 | rev)
+
+        echo "  ${url}"
+        echo "  ${filename}"
+        curl -H 'dnt: 1' \
+        -H 'Connection: keep-alive' \
+        -H 'Cache-Control: max-age=0' \
+        -H 'Accept-Language: en-US,en;q=0.5' \
+        -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
+        -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:46.0) Gecko/20100101 Firefox/46.0' \
+        --compressed --output "$filename" "$url"
+
+        if [[ "$?" -eq 0 ]]; then
+            notify-send "OpenGraph Video Download" "$url" -i "dialog-information"
+            return 0
+        else
+            notify-send "OpenGraph Video Download" "$url" -i "dialog-error"
+            return 1
+        fi
+    fi
+}
