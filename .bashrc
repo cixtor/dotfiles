@@ -510,6 +510,68 @@ function extract() {
     fi
 }
 
+# Create a new profile for mate-terminal with Monokai colors
+function install_mate_monokai_terminal() {
+    PROFILE_SLUG="monokai-dark"
+    PROFILE_NAME="Monokai Dark"
+    PROFILE_BOLD="#f8f8f2"
+    PROFILE_BGROUND="#272822"
+    PROFILE_FGROUND="#f8f8f2"
+    PROFILE_FONT="Menlo for Powerline 8"
+    PROFILE_PALETTE="#272822:#f92672:#a6e22e:#f4bf75"
+    PROFILE_PALETTE+=":#66d9ef:#ae81ff:#a1efe4:#f8f8f2"
+    PROFILE_PALETTE+=":#75715e:#f92672:#a6e22e:#f4bf75"
+    PROFILE_PALETTE+=":#66d9ef:#ae81ff:#a1efe4:#f9f8f5"
+    PROFILE_KEY="/org/mate/terminal/profiles/${PROFILE_SLUG}"
+    PROFILE_LIST="/org/mate/terminal/global/profile-list"
+
+    command -v dconf 1> /dev/null
+
+    if [[ "$?" -ne 0 ]]; then
+        echo "Install gvariant database manager"
+        echo "apt-get install dconf-cli"
+        exit 1
+    fi
+
+    profiles=$(dconf read "$PROFILE_LIST")
+    echo "$profiles" | grep -q "$PROFILE_SLUG"
+    if [[ "$?" -eq 1 ]]; then
+        profiles=$(echo "$profiles" | sed "s;];, '${PROFILE_SLUG}'];")
+        dconf write "$PROFILE_LIST" "${profiles}"
+    fi
+
+    # Set specific values for the selected theme.
+    dconf write "${PROFILE_KEY}/visible-name" "'${PROFILE_NAME}'"
+    dconf write "${PROFILE_KEY}/background-color" "'${PROFILE_BGROUND}'"
+    dconf write "${PROFILE_KEY}/foreground-color" "'${PROFILE_FGROUND}'"
+    dconf write "${PROFILE_KEY}/bold-color" "'${PROFILE_BOLD}'"
+    dconf write "${PROFILE_KEY}/palette" "'${PROFILE_PALETTE}'"
+    dconf write "${PROFILE_KEY}/font" "'${PROFILE_FONT}'"
+    dconf write "${PROFILE_KEY}/use-theme-background" "false"
+    dconf write "${PROFILE_KEY}/bold-color-same-as-fg" "true"
+    dconf write "${PROFILE_KEY}/use-system-font" "false"
+    dconf write "${PROFILE_KEY}/allow-bold" "true"
+
+    # Set default window and buffer size.
+    dconf write "${PROFILE_KEY}/use-custom-default-size" "true"
+    dconf write "${PROFILE_KEY}/default-size-columns" "116"
+    dconf write "${PROFILE_KEY}/default-size-rows" "32"
+
+    # Set window scroll behavior.
+    dconf write "${PROFILE_KEY}/scrollback-lines" "1"
+    dconf write "${PROFILE_KEY}/scrollback-unlimited" "true"
+    dconf write "${PROFILE_KEY}/scrollbar-position" "'right'"
+    dconf write "${PROFILE_KEY}/scroll-on-keystroke" "true"
+    dconf write "${PROFILE_KEY}/scroll-on-output" "false"
+    dconf write "${PROFILE_KEY}/scroll-background" "true"
+
+    dconf write "${PROFILE_KEY}/background-type" "'solid'"
+    dconf write "${PROFILE_KEY}/cursor-blink-mode" "'system'"
+    dconf write "${PROFILE_KEY}/cursor-shape" "'block'"
+    dconf write "${PROFILE_KEY}/default-show-menubar" "false"
+    dconf write "${PROFILE_KEY}/use-theme-colors" "false"
+}
+
 # Check reddit username availability
 function redditnick() {
     curl 'https://www.reddit.com/api/check_username.json' \
