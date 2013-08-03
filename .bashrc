@@ -509,3 +509,19 @@ function extract() {
         echo "'$1' is not a valid file"
     fi
 }
+
+# Check reddit username availability
+function redditnick() {
+    curl 'https://www.reddit.com/api/check_username.json' \
+    -H 'Accept-Language: en-US,en;q=0.8' \
+    -H 'Accept-Encoding: gzip, deflate, br' \
+    -H 'Accept: application/json, text/javascript, */*; q=0.01' \
+    -H 'User-Agent: Mozilla/5.0 (KHTML, like Gecko) Safari/537.36' \
+    -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' \
+    -H 'X-Requested-With: XMLHttpRequest' \
+    -H 'Referer: https://www.reddit.com/' \
+    -H 'Origin: https://www.reddit.com' \
+    -H 'Connection: keep-alive' \
+    --data "user=${1}" \
+    --compressed --silent | python -m json.tool
+}
