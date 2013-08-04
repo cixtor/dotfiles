@@ -477,6 +477,17 @@ function wlan0stats() {
     xdg-open "$output" &> /dev/null
 }
 
+# Disguise CURL as a normal web browser
+function agent() {
+    curl -H 'dnt: 1' \
+    -H 'upgrade-insecure-requests: 1' \
+    -H 'accept-encoding: gzip, deflate' \
+    -H 'accept-language: en-US,en;q=0.8' \
+    -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' \
+    -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.36 Safari/537.36' \
+    --compressed "$@"
+}
+
 # Extract most known archives with one command
 function extract() {
     if [ -f $1 ]; then
