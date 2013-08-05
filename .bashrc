@@ -459,6 +459,24 @@ function hg() {
     fi
 }
 
+# Statistics of the eth0 bandwidth consumption
+function eth0stats() {
+    # apt-get install vnstat vnstati
+    rm -f /tmp/vnstati-*.png 2> /dev/null
+    output="/tmp/vnstati-$(date +%s).png"
+    vnstati -i eth0 -d -o "$output"
+    xdg-open "$output" &> /dev/null
+}
+
+# Statistics of the wlan0 bandwidth consumption
+function wlan0stats() {
+    # apt-get install vnstat vnstati
+    rm -f /tmp/vnstati-*.png 2> /dev/null
+    output="/tmp/vnstati-$(date +%s).png"
+    vnstati -i wlan0 -d -o "$output"
+    xdg-open "$output" &> /dev/null
+}
+
 # Extract most known archives with one command
 function extract() {
     if [ -f $1 ]; then
