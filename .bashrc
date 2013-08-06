@@ -397,6 +397,68 @@ function id() {
     fi
 }
 
+# Calculate Mercurial ahead and behind commits
+#
+# b_sw3jdurr   3965:7f2a83ffc61d
+# b_le3g3mfe   3946:b03737187a81 (inactive) ▏                19
+# b_kan3g0ij   3936:8d3c665602e5 (inactive) ▎                29
+# b_x0lctp54   3891:fbee645a2f0c (inactive) ▊                74
+# b_ebo3bxj4   3460:fedb88847071 (inactive) █████▊           505
+# b_i86f5qln   3182:2b132fa69174 (inactive) ████████▉        783
+# b_0tvihibs   3065:c3bff4489ee1 (inactive) ██████████▍      900
+# b_iuifnik4   3003:2d633479b952 (inactive) ███████████      962
+# b_d0vkqfv0   2972:d205390198c6 (inactive) ███████████▎     993
+# b_llslwq8z   2922:a21134e2940d (inactive) ████████████     1043
+# b_n3gmq5yz   2581:c1a2afe566a4 (inactive) ████████████████ 1384
+function hg() {
+    if [[ "$@" == "branches" ]]; then
+        script="/tmp/hg-branches-$(date +%s).py"
+        code='' # Base64-encoded Python script
+        code+='IyEvdXNyL2Jpbi9lbnYgcHl0aG9uCiMgLSotIGNvZGluZzogdXRmLTggLSotCmltcG9ydCBzdWJw'
+        code+='cm9jZXNzLCByZQoKcHJvYyA9IHN1YnByb2Nlc3MuUG9wZW4oWyJoZyBicmFuY2hlcyAtLWNsb3Nl'
+        code+='ZCAtLWNvbG9yPW5ldmVyIl0sCiAgICBzdGRvdXQ9c3VicHJvY2Vzcy5QSVBFLAogICAgc2hlbGw9'
+        code+='VHJ1ZSkKKG91dHB1dCwgZXJyb3IpID0gcHJvYy5jb21tdW5pY2F0ZSgpCgppZiBlcnJvciA9PSBO'
+        code+='b25lOgogICAgbGluZXMgPSBvdXRwdXQuc3BsaXQoJ1xuJykKICAgIChicmFuY2hlcywgaGVhZHMs'
+        code+='IGNvbW1pdHMpID0gKFtdLCBbXSwgW10pCiAgICBzcGFya3MgPSBbCiAgICAgICAgdSJcdTAwMjAi'
+        code+='LCAjIHNwYWNlCiAgICAgICAgdSJcdTI1OEYiLCAjIOKWjwogICAgICAgIHUiXHUyNThFIiwgIyDi'
+        code+='lo4KICAgICAgICB1Ilx1MjU4RCIsICMg4paNCiAgICAgICAgdSJcdTI1OEMiLCAjIOKWjAogICAg'
+        code+='ICAgIHUiXHUyNThCIiwgIyDilosKICAgICAgICB1Ilx1MjU4QSIsICMg4paKCiAgICAgICAgdSJc'
+        code+='dTI1ODkiLCAjIOKWiQogICAgICAgIHUiXHUyNTg4IiwgIyDilogKICAgIF0KCiAgICBmb3IgbGlu'
+        code+='ZSBpbiBsaW5lczoKICAgICAgICBpZiBsaW5lICE9ICIiOgogICAgICAgICAgICBtYXRjaCA9IHJl'
+        code+='LnNlYXJjaCgnKFxTKylccysoXGQrKTooWzAtOWEtel17MTJ9KScsIGxpbmUpCgogICAgICAgICAg'
+        code+='ICBpZiBtYXRjaCAhPSBOb25lOgogICAgICAgICAgICAgICAgYnJhbmNoZXMuYXBwZW5kKG1hdGNo'
+        code+='Lmdyb3VwKDEpKQogICAgICAgICAgICAgICAgY29tbWl0cy5hcHBlbmQobWF0Y2guZ3JvdXAoMykp'
+        code+='CiAgICAgICAgICAgICAgICBoZWFkcy5hcHBlbmQoaW50KG1hdGNoLmdyb3VwKDIpKSkKCiAgICBj'
+        code+='b3VudGVyID0gMAogICAgYnNwYXJrcyA9IFtdCiAgICBncmVhdGVzdCA9IG1heChoZWFkcykKICAg'
+        code+='IHBlcmNoYXIgPSA4ICMgTWF4aW11bSBzcGFyayBiYXJzIHBlciBjaGFyYWN0ZXIKICAgIG1heGlt'
+        code+='dW0gPSAxNiAjIE1heGltdW0gY2hhcmFjdGVycyBmb3IgMTAwJQogICAgbWF4MTAwcCA9IHBlcmNo'
+        code+='YXIgKiBtYXhpbXVtCiAgICBkaWZmcyA9IFsoZ3JlYXRlc3QgLSBoZWFkKSBmb3IgaGVhZCBpbiBo'
+        code+='ZWFkc10KICAgIG1heF9kaWZmID0gbWF4KGRpZmZzKQogICAgcmVhbF9wMTAwID0gWygoZGlmZiAq'
+        code+='IDEwMCkgLyBtYXhfZGlmZikgZm9yIGRpZmYgaW4gZGlmZnNdOwogICAgZmFrZV9wMTAwID0gWygo'
+        code+='cCAqIG1heDEwMHApIC8gMTAwKSBmb3IgcCBpbiByZWFsX3AxMDBdCgogICAgZm9yIGZha2UgaW4g'
+        code+='ZmFrZV9wMTAwOgogICAgICAgIHVuaXRzID0gKGZha2UgLyAocGVyY2hhciAqIDEuMCkpCiAgICAg'
+        code+='ICAgc3VlbG8gPSBpbnQodW5pdHMpCiAgICAgICAgaWYgKHVuaXRzID09IHN1ZWxvKToKICAgICAg'
+        code+='ICAgICAgYnNwYXJrcy5hcHBlbmQodSJcdTI1ODgiICogc3VlbG8pCiAgICAgICAgZWxzZToKICAg'
+        code+='ICAgICAgICAgcmVzdCA9IGZha2UgLSAoc3VlbG8gKiBwZXJjaGFyKQogICAgICAgICAgICBmaXJz'
+        code+='dCA9ICh1Ilx1MjU4OCIgKiBzdWVsbykKICAgICAgICAgICAgdHJhaWxpbmcgPSBzcGFya3NbcmVz'
+        code+='dF0KICAgICAgICAgICAgYnNwYXJrcy5hcHBlbmQoZmlyc3QgKyB0cmFpbGluZykKCiAgICBmb3Ig'
+        code+='aGVhZCBpbiBoZWFkczoKICAgICAgICBkaWZmID0gKGdyZWF0ZXN0IC0gaGVhZCkKICAgICAgICBp'
+        code+='ZiBjb3VudGVyID09IDA6CiAgICAgICAgICAgIHByaW50IGxpbmVzW2NvdW50ZXJdCiAgICAgICAg'
+        code+='ZWxzZToKICAgICAgICAgICAgd2hpdGViYXIgPSBic3BhcmtzW2NvdW50ZXJdLmxqdXN0KG1heGlt'
+        code+='dW0pCiAgICAgICAgICAgIHByaW50IGxpbmVzW2NvdW50ZXJdLCB3aGl0ZWJhciwgZGlmZgogICAg'
+        code+='ICAgIGNvdW50ZXIgKz0gMQplbHNlOgogICAgcHJpbnQgIkVycm9yOiAiLCBlcnJvcgo='
+        echo "$code" | base64 -d 1> $script
+        if [[ -e "$script" ]]; then
+            /usr/bin/env python -- "$script"
+            rm -f -- "$script" 2> /dev/null
+        else
+            $(which hg) "branches"
+        fi
+    else
+        $(which hg) "$@"
+    fi
+}
+
 # Extract most known archives with one command
 function extract() {
     if [ -f $1 ]; then
