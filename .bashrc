@@ -385,6 +385,18 @@ function commit() {
     fi
 }
 
+# Format user group list
+function id() {
+    if [[ "$@" == "" ]]; then
+        IFS=$','
+        for item in $(/usr/bin/id); do
+            echo "- ${item}"
+        done
+    else
+        /usr/bin/id "$@"
+    fi
+}
+
 # Extract most known archives with one command
 function extract() {
     if [ -f $1 ]; then
