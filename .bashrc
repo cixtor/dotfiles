@@ -364,6 +364,27 @@ function psr2() {
     --colors "$@"
 }
 
+function commit() {
+    if [[ "$1" == "" ]]; then
+        echo "Usage: commit -m <message> -d yyyy-mm-dd"
+    else
+        message="false"
+        comdate="false"
+
+        if [[ "$1" == "-m" ]] && [[ "$3" == "-d" ]]; then
+            message="$2"
+            comdate="$4"
+        elif [[ "$1" == "-d" ]] && [[ "$3" == "-m" ]]; then
+            message="$4"
+            comdate="$2"
+        fi
+
+        export GIT_AUTHOR_DATE="${comdate} 09:00:00.000000000 -0500"
+        export GIT_COMMITTER_DATE="${comdate} 09:00:00.000000000 -0500"
+        git commit --message="$message" --date="$comdate"
+    fi
+}
+
 # Extract most known archives with one command
 function extract() {
     if [ -f $1 ]; then
