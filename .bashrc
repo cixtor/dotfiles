@@ -309,10 +309,8 @@ function vboxdown() {
 # Start Apache web server, MySQL, and MailCatcher
 function startlamp() {
     sudo /opt/devstack/ctlscript.sh start apache
-    if [[ $(echo "$@" | grep -q -- '--mysql') ]]; then
-        /opt/devstack/ctlscript.sh start mysql
-    fi
-    if [[ $(which mailcatcher) ]]; then
+    /opt/devstack/ctlscript.sh start mysql
+    if $(command -v mailcatcher &> /dev/null); then
         mailcatcher --ip 127.0.0.1 --smtp-port 1025 --http-port 1080
     fi
 }
