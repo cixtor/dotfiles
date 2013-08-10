@@ -275,6 +275,31 @@ function pwmanager() {
     rm -fv -- "$output"
 }
 
+# Switch between multiple development stacks
+function newstack() {
+    if [[ "$1" == "" ]]; then
+        echo "Usage: newstack [stack_version]"
+        return 2
+    else
+        target="/opt/devstack"
+        expected="/opt/_devstack_${1}"
+        if [[ -e "$expected" ]]; then
+            if $(file -- "$target" | grep -q "symbolic link"); then
+                rm -f -- "$target" 2> /dev/null
+                ln -s "$expected" "$target"
+                $(which php) --version
+                return 0
+            else
+                echo "Target must be a symlink: ${target}"
+                return 1
+            fi
+        else
+            echo "Stack does not exists: ${expected}"
+            return 1
+        fi
+    fi
+}
+
 # Shutdown VirtualBox network interfaces
 function vboxdown() {
     VBoxManage hostonlyif remove vboxnet1
