@@ -265,6 +265,16 @@ function say() { echo "$@" | espeak -s 150 2>/dev/null; }
 # Cut a string at certain length and return
 function substr() { cut -c1-$1; }
 
+# Rudimentary password manager
+function pwmanager() {
+    output="/tmp/passwords.txt"
+    storage="$HOME/passwords.dat"
+    echo "Exporting to ${output}"
+    openssl enc -aes-256-cbc -d -in "$storage" -out "$output"
+    /usr/bin/vim -- "$output"
+    rm -fv -- "$output"
+}
+
 # Shutdown VirtualBox network interfaces
 function vboxdown() {
     VBoxManage hostonlyif remove vboxnet1
