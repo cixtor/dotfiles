@@ -105,7 +105,6 @@ export PATH="$PATH:/opt/rustlang/bin"
 
 # General-Purpose Programming Language
 export PATH="$PATH:/opt/qtcreator/Tools/QtCreator/bin"
-export PATH="$PATH:/opt/javadevkit/bin"
 export PATH="$PATH:/opt/dlang/bin"
 export PATH="$PATH:/opt/kore/bin"
 export PATH="$PATH:/opt/ruby/bin"
@@ -114,6 +113,11 @@ export PATH="$PATH:/opt/php/bin"
 export PATH="$PATH:/opt/php/sbin"
 export PATH="$PATH:/opt/nodejs/bin"
 export PATH="$PATH:/opt/coffeescript/bin"
+
+# Java and Android Development Environment
+export JAVA_HOME="/opt/javadevkit"
+export PATH="$PATH:/opt/javadevkit/bin"
+export PATH="$PATH:/opt/android-studio/bin"
 
 # Revision Control System (RCS)
 export PATH="$PATH:/opt/gitscm/bin"
