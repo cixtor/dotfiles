@@ -1,0 +1,31 @@
+[extensions]
+color =
+
+[color]
+mode = ansi
+branches.active = none
+branches.closed = black bold
+branches.current = green
+branches.inactive = none
+diff.diffline = bold
+diff.extended = cyan bold
+diff.file_a = red bold
+diff.file_b = green bold
+diff.hunk = magenta
+diff.deleted = red
+diff.inserted = green
+diff.changed = white
+diff.trailingwhitespace = bold red_background
+status.modified = blue bold
+status.added = green bold
+status.removed = red bold
+status.deleted = cyan bold
+status.unknown = magenta bold
+status.ignored = black bold
+status.clean = none
+status.copied = none
+qseries.applied = blue bold underline
+qseries.unapplied = black bold
+qseries.missing = red bold
+resolve.unresolved = red bold
+resolve.resolved = green bold
