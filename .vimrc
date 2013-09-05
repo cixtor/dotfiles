@@ -65,6 +65,11 @@ set showmode
 set splitright
 set splitbelow
 
+" Activate filetype plugins automatically
+" Use :filetype to get more information
+" https://github.com/elentok/plaintasks.vim
+filetype plugin on
+
 " Configure https://github.com/itchyny/lightline.vim
 let g:lightline = {
   \ 'colorscheme': 'powerline',
