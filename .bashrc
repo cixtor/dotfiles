@@ -299,6 +299,34 @@ function phpunit() {
     fi
 }
 
+# Execute custom PHPCode_Sniffer coding standard.
+function psr2() {
+    ruleset=''
+    ruleset+='<?xml version="1.0"?>'
+    ruleset+='<ruleset name="PSR99">'
+    ruleset+='  <description>PSR2 without some unnecessary rules.</description>'
+    ruleset+='  <rule ref="PSR2">'
+    ruleset+='    <exclude name="Generic.Files.LineLength"/>'
+    ruleset+='    <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace" />'
+    ruleset+='    <exclude name="PSR1.Files.SideEffects.FoundWithSymbols" />'
+    ruleset+='  </rule>'
+    ruleset+='  <rule ref="Internal.NoCodeFound">'
+    ruleset+='    <severity>0</severity>'
+    ruleset+='  </rule>'
+    ruleset+='</ruleset>'
+    standard="$HOME/.psr99.xml"
+
+    if [[ ! -e "$standard" ]]; then
+        echo "$ruleset" 1> "$standard"
+    fi
+
+    $(which phpcs) -w -l \
+    --standard="$standard" \
+    --report-width=150 \
+    --report=full \
+    --colors "$@"
+}
+
 # Extract most known archives with one command
 function extract() {
     if [ -f $1 ]; then

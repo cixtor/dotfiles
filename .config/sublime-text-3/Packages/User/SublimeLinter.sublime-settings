@@ -29,7 +29,7 @@
                 "@disable": false,
                 "args": [],
                 "excludes": [],
-                "standard": "PSR2"
+                "standard": "~/.psr99.xml"
             }
         },
         "mark_style": "outline",
