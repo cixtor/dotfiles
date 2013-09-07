@@ -245,7 +245,15 @@ alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 # Download YouTube video and extract audio
 alias mp3dl="youtube-dl --extract-audio --audio-format mp3"
 
-alias hostman='sudo env "PATH=$PATH" hostman $@'
+# Sudo for special host file manager actions.
+# https://github.com/cixtor/hostman
+function hostman() {
+    if $(echo "$@" | grep -qE -- '-add|-disable|-enable|-remove'); then
+        sudo env "PATH=$PATH" /opt/hostman/hostman $@
+    else
+        /opt/hostman/hostman $@
+    fi
+}
 
 # Alias for the text-to-speech engine
 function say() { echo "$@" | espeak -s 150 2>/dev/null; }
