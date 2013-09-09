@@ -61,6 +61,10 @@ set rulerformat=%=%h%m%r%w\ %(%c%V%),%l/%L\ %P
 " Current mode in status line
 set showmode
 
+" Split to the right and to the bottom
+set splitright
+set splitbelow
+
 " Configure https://github.com/itchyny/lightline.vim
 let g:lightline = {
   \ 'colorscheme': 'powerline',
