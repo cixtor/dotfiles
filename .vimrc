@@ -60,3 +60,13 @@ set rulerformat=%=%h%m%r%w\ %(%c%V%),%l/%L\ %P
 
 " Current mode in status line
 set showmode
+
+" Configure https://github.com/itchyny/lightline.vim
+let g:lightline = {
+  \ 'colorscheme': 'powerline',
+  \ 'component': {
+  \   'readonly': '%{&readonly?"":""}',
+  \ },
+  \ 'separator': { 'left': '', 'right': '' },
+  \ 'subseparator': { 'left': '', 'right': '' }
+  \ }
