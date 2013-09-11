@@ -6,6 +6,7 @@ repositories=(
     "CPP11|noct/sublime-cpp11"
     "ClangFormat|rosshemsley/SublimeClangFormat"
     "ClangComplete|pfultz2/ClangComplete"
+    "Rust|rust-lang/sublime-rust"
     "DocBlockr|spadgos/sublime-jsdocs"
     "Codec|furikake/sublime-codec"
     "Alignment|wbond/sublime_alignment"
