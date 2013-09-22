@@ -150,6 +150,7 @@ export PATH="$PATH:/opt/heroku/bin"
 export PATH="$PATH:/opt/ncftp/bin"
 export PATH="$PATH:/opt/lnav"
 export PATH="$PATH:/opt/nwjs"
+export PATH="$PATH:/opt/wkhtmltox/bin" # http://wkhtmltopdf.org/
 
 # Database Engines
 export PATH="$PATH:/opt/redis/bin"
