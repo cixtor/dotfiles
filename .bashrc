@@ -175,6 +175,11 @@ export PATH="$PATH:/opt/hashicorp/serfdom"
 export PATH="$PATH:/opt/hashicorp/terraform"
 export PATH="$PATH:/opt/hashicorp/vagrant/bin"
 
+# Include private additional settings.
+if [[ -e "$HOME/.bash_private" ]]; then
+    source "$HOME/.bash_private"
+fi
+
 # Encodes URL string with their correspondent hex digits
 alias urlenc='strconv -urlenc -text'
 
