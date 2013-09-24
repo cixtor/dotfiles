@@ -254,15 +254,19 @@ function vboxdown() {
 # Start Apache web server, MySQL, and MailCatcher
 function startlamp() {
     sudo /opt/devstack/ctlscript.sh start apache
-    /opt/devstack/ctlscript.sh start mysql
-    mailcatcher --ip 127.0.0.1 --smtp-port 1025 --http-port 1080
+    if [[ $(echo "$@" | grep -q -- '--mysql') ]]; then
+        /opt/devstack/ctlscript.sh start mysql
+    fi
+    if [[ $(which mailcatcher) ]]; then
+        mailcatcher --ip 127.0.0.1 --smtp-port 1025 --http-port 1080
+    fi
 }
 
 # Shutdown Apache web server and MailCatcher
 function stoplamp() {
     sudo /opt/devstack/ctlscript.sh stop apache
     /opt/devstack/ctlscript.sh stop mysql
-    curl -X DELETE 'http://127.0.0.1:1080/'
+    curl -X DELETE 'http://127.0.0.1:1080/' 2> /dev/null
 }
 
 # Execute PHPUnit with smart test suite detection.
