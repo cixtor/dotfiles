@@ -267,14 +267,15 @@ function stoplamp() {
 
 # Execute PHPUnit with smart test suite detection.
 function phpunit() {
+    phpbin=$(which phpunit)
     echo "$@" | grep -q -- '^--filter .*::.*'
     if [[ "$?" -eq 0 ]]; then
         params="$@" # Get original command arguments.
         params=$(echo "$params" | sed 's;--filter ;tests/;g')
         params=$(echo "$params" | sed 's;::;\.php --filter ;')
-        eval "$(which phpunit) $params"
+        eval "$phpbin $params"
     else
-        $(which phpunit) "$@"
+        $phpbin "$@"
     fi
 }
 
