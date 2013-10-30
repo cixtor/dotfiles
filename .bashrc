@@ -98,6 +98,11 @@ export GOROOT="/opt/golang/build"
 export GOPATH="/opt/golang/gopath"
 export PATH="$PATH:$GOROOT/bin"
 
+# Rust - https://www.rust-lang.org/
+export RUST_SRC_PATH="/opt/rustlang/source/src/"
+export PATH="$PATH:/opt/rustlang/packages/bin"
+export PATH="$PATH:/opt/rustlang/bin"
+
 # General-Purpose Programming Language
 export PATH="$PATH:/opt/qtcreator/Tools/QtCreator/bin"
 export PATH="$PATH:/opt/javadevkit/bin"
