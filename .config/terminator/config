@@ -1,0 +1,25 @@
+[global_config]
+  enabled_plugins = InactivityWatch, ActivityWatch, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+[keybindings]
+  split_horiz = <Control><Alt>h
+  split_vert = <Control><Alt>v
+[profiles]
+  [[default]]
+    use_system_font = False
+    scrollback_lines = 1
+    background_image = None
+    foreground_color = "#ffffff"
+    font = Monospace 8
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+    [[[window0]]]
+      type = Window
+      parent = ""
+      profile = None
+      size = 1110, 300
+[plugins]
