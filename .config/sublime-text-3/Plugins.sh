@@ -1,6 +1,14 @@
 #!/bin/bash
 inst_path="$HOME/.config/sublime-text-3/Packages/"
 repositories=(
+    "skuroda/Sublime-AdvancedNewFile AdvancedNewFile"
+    "wbond/sublime_alignment Alignment"
+    "spadgos/sublime-jsdocs DocBlockr"
+    "Medalink/laravel-blade LaravelBlade"
+    "weslly/Nettuts-Fetch NettutsFetch"
+    "aziz/PlainTasks PlainTasks"
+    "aziz/knockdown knockdown"
+    "technosophos/Vala-TMBundle Vala"
 )
 if [ -e "${inst_path}" ]; then
     cd $inst_path
