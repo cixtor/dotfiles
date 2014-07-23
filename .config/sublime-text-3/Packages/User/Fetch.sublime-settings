@@ -1,0 +1,17 @@
+{
+	"files":
+	{
+		"Angular.JS 1.2.13": "http://code.angularjs.org/1.2.13/angular.min.js",
+		"Ember.JS 1.4.0": "http://builds.emberjs.com/tags/v1.4.0/ember.min.js",
+		"Handlebars.JS (master)": "https://raw.github.com/wycats/handlebars.js/master/dist/handlebars.js",
+		"jQuery (master)": "http://code.jquery.com/jquery.min.js"
+	},
+	"packages":
+	{
+		"Bootstrap 3.1.1": "https://github.com/twbs/bootstrap/releases/download/v3.1.1/bootstrap-3.1.1-dist.zip",
+		"Codeigniter": "http://ellislab.com/codeigniter/download",
+		"FontAwesome 4.0.3": "http://fontawesome.io/assets/font-awesome-4.0.3.zip",
+		"HTML5 Boilerplate": "https://github.com/h5bp/html5-boilerplate/zipball/master",
+		"Wordpress": "http://wordpress.org/latest.zip"
+	}
+}
