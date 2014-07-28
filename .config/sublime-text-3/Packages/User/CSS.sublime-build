@@ -1,4 +1,4 @@
 {
-	"shell_cmd": "/opt/yuicompressor/yuicompress -o ${file_name} ${file_name}",
-	"selector": "source.css"
+    "shell_cmd": "/opt/yuicompressor/yuicompress -o ${file_name} ${file_name}",
+    "selector": "source.css"
 }
