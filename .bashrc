@@ -63,3 +63,7 @@ fi
 /usr/bin/mint-fortune
 
 PS1='\[\e]0;\u@\h: \w\a\]\[\033[0;31m\]$(returncode)\[\033[0;37m\]\[\033[0;35m\]${debian_chroot:+($debian_chroot)}\[\033[01;33m\]\u@\h \[\033[01;34m\]\w\[\033[00m\] \$ '
+
+# GoLang - http://golang.org/
+export GOROOT="/home/system/opt/golang"
+export PATH="$PATH:$GOROOT/bin"
