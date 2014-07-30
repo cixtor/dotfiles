@@ -67,3 +67,8 @@ PS1='\[\e]0;\u@\h: \w\a\]\[\033[0;31m\]$(returncode)\[\033[0;37m\]\[\033[0;35m\]
 # GoLang - http://golang.org/
 export GOROOT="/home/system/opt/golang"
 export PATH="$PATH:$GOROOT/bin"
+
+# Revision Control System (RCS)
+export PATH="$PATH:/home/system/opt/gitscm/bin"
+export PATH="$PATH:/home/system/opt/mercurial/bin"
+export PATH="$PATH:/home/system/opt/subversion/bin"
