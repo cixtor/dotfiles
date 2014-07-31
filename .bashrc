@@ -72,3 +72,6 @@ export PATH="$PATH:$GOROOT/bin"
 export PATH="$PATH:/home/system/opt/gitscm/bin"
 export PATH="$PATH:/home/system/opt/mercurial/bin"
 export PATH="$PATH:/home/system/opt/subversion/bin"
+
+# MamuTools - https://github.com/cixtor/mamutools
+export PATH="$PATH:/home/system/opt/mamutools"
