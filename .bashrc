@@ -75,3 +75,6 @@ export PATH="$PATH:/home/system/opt/subversion/bin"
 
 # MamuTools - https://github.com/cixtor/mamutools
 export PATH="$PATH:/home/system/opt/mamutools"
+
+# Java Development Kit (JDK)
+export PATH="$PATH:/home/system/opt/javadevkit/bin"
