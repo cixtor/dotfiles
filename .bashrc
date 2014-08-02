@@ -78,3 +78,8 @@ export PATH="$PATH:/home/system/opt/mamutools"
 
 # Java Development Kit (JDK)
 export PATH="$PATH:/home/system/opt/javadevkit/bin"
+
+# Miscellaneous Apps
+export PATH="$PATH:/home/system/opt/powertop"
+export PATH="$PATH:/home/system/opt/colordiff/bin"
+export PATH="$PATH:/home/system/opt/hacking/nmap/build/bin"
