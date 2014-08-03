@@ -83,3 +83,8 @@ export PATH="$PATH:/home/system/opt/javadevkit/bin"
 export PATH="$PATH:/home/system/opt/powertop"
 export PATH="$PATH:/home/system/opt/colordiff/bin"
 export PATH="$PATH:/home/system/opt/hacking/nmap/build/bin"
+
+# General-Purpose Programming Language
+export PATH="$PATH:/home/system/opt/nodejs/bin"
+export PATH="$PATH:/home/system/opt/lampstack/php/bin"
+export PATH="$PATH:/home/system/opt/lampstack/ruby/bin"
