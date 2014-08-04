@@ -88,3 +88,9 @@ export PATH="$PATH:/home/system/opt/hacking/nmap/build/bin"
 export PATH="$PATH:/home/system/opt/nodejs/bin"
 export PATH="$PATH:/home/system/opt/lampstack/php/bin"
 export PATH="$PATH:/home/system/opt/lampstack/ruby/bin"
+
+# Databases
+export PATH="$PATH:/home/system/opt/redis/bin"
+export PATH="$PATH:/home/system/opt/mongodb/bin"
+export PATH="$PATH:/home/system/opt/lampstack/mysql/bin"
+export PATH="$PATH:/home/system/opt/lampstack/sqlite/bin"
