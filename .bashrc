@@ -94,3 +94,7 @@ export PATH="$PATH:/home/system/opt/redis/bin"
 export PATH="$PATH:/home/system/opt/mongodb/bin"
 export PATH="$PATH:/home/system/opt/lampstack/mysql/bin"
 export PATH="$PATH:/home/system/opt/lampstack/sqlite/bin"
+
+# Web Server and Performance
+export PATH="$PATH:/home/system/opt/lampstack/apache2/bin"
+export PATH="$PATH:/home/system/opt/lampstack/varnish/bin"
