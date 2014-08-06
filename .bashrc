@@ -98,3 +98,8 @@ export PATH="$PATH:/home/system/opt/lampstack/sqlite/bin"
 # Web Server and Performance
 export PATH="$PATH:/home/system/opt/lampstack/apache2/bin"
 export PATH="$PATH:/home/system/opt/lampstack/varnish/bin"
+
+# App Distribution and Deployment
+export PATH="$PATH:/home/system/opt/packer/bin"
+export PATH="$PATH:/home/system/opt/vagrant/bin"
+export PATH="$PATH:/home/system/opt/lampstack/heroku/bin"
