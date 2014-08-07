@@ -4,7 +4,7 @@
 
 # Source global definitions
 if [ -f /etc/bash.bashrc ]; then
-        . /etc/bash.bashrc
+    . /etc/bash.bashrc
 fi
 
 # If not running interactively, don't do anything
@@ -103,3 +103,47 @@ export PATH="$PATH:/home/system/opt/lampstack/varnish/bin"
 export PATH="$PATH:/home/system/opt/packer/bin"
 export PATH="$PATH:/home/system/opt/vagrant/bin"
 export PATH="$PATH:/home/system/opt/lampstack/heroku/bin"
+
+# Encodes URL string with their correspondent hex digits
+alias urlenc='strconv -urlenc -text'
+
+# Decodes URL-encoded string
+alias urldec='strconv -urldec -text'
+
+# Convert all the characters in a text string into their capital form
+alias uppercase='strconv -uppercase -text'
+
+# Decodes data encoded with MIME base64
+alias b64dec='strconv -b64dec -text'
+
+# Encodes data with MIME base64
+alias b64enc='strconv -b64enc -text'
+
+# Calculate the sha1 hash of the string specified
+alias sha1='strconv -sha1 -text'
+
+# Calculate the md5 hash of the string specified
+alias md5='strconv -md5 -text'
+
+# Returns the length of the string specified
+alias length='strconv -length -text'
+
+# Convert a text string into a capitalized version of its words
+alias capitalize='strconv -capitalize -text'
+
+# Convert all the characters in a text string into their lower form
+alias lowercase='strconv -lowercase -text'
+
+# Perform a rotation on a string by the value specified
+function rotate() {
+    # Positions to shift the text in the alphabet
+    if [ "${2}" == "" ]; then pos=13; else pos=$2; fi
+    strconv -rotate -text $1 -num $pos
+}
+
+# Replace a text string with another
+function replace() {
+    # new: Text string that will replace the old one
+    # old: Text string that will be replaced
+    strconv -replace -text $1 -old $2 -new $3
+}
