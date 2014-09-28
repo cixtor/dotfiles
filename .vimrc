@@ -24,6 +24,10 @@ set novisualbell
 set t_vb=
 set tm=500
 
+" GoLang support
+set rtp+=/home/system/opt/golang/misc/vim
+filetype plugin indent on
+
 " Enable syntax highlighting
 syntax on
 colorscheme monokai
