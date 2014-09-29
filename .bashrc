@@ -62,47 +62,53 @@ fi
 # mint-fortune
 /usr/bin/mint-fortune
 
-PS1='\[\e]0;\u@\h: \w\a\]\[\033[0;31m\]$(returncode)\[\033[0;37m\]\[\033[0;35m\]${debian_chroot:+($debian_chroot)}\[\033[01;33m\]\u@\h \[\033[01;34m\]\w\[\033[00m\] \$ '
+PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[1;33m\]\u@\h: \[\033[1;34m\]\w\[\033[00m\] \$ '
 
 # GoLang - http://golang.org/
-export GOROOT="/home/system/opt/golang"
+export GOROOT="/opt/golang/build"
+export GOPATH="/opt/golang/gopath"
 export PATH="$PATH:$GOROOT/bin"
 
 # Revision Control System (RCS)
-export PATH="$PATH:/home/system/opt/gitscm/bin"
-export PATH="$PATH:/home/system/opt/mercurial/bin"
-export PATH="$PATH:/home/system/opt/subversion/bin"
+export PATH="$PATH:/opt/gitscm/bin"
+export PATH="$PATH:/opt/mercurial/bin"
+export PATH="$PATH:/opt/subversion/bin"
 
 # MamuTools - https://github.com/cixtor/mamutools
-export PATH="$PATH:/home/system/opt/mamutools"
+export PATH="$PATH:/opt/mamutools"
+export PATH="$PATH:/opt/standalone"
+export PATH="$PATH:/opt/phpshellgen"
 
 # Java Development Kit (JDK)
-export PATH="$PATH:/home/system/opt/javadevkit/bin"
+export PATH="$PATH:/opt/javadevkit/bin"
 
 # Miscellaneous Apps
-export PATH="$PATH:/home/system/opt/powertop"
-export PATH="$PATH:/home/system/opt/colordiff/bin"
-export PATH="$PATH:/home/system/opt/hacking/nmap/build/bin"
+export PATH="$PATH:/opt/powertop"
+export PATH="$PATH:/opt/colordiff/bin"
+export PATH="$PATH:/opt/nmap/bin"
+export PATH="$PATH:/opt/nodewebkit"
 
 # General-Purpose Programming Language
-export PATH="$PATH:/home/system/opt/nodejs/bin"
-export PATH="$PATH:/home/system/opt/lampstack/php/bin"
-export PATH="$PATH:/home/system/opt/lampstack/ruby/bin"
+export PATH="$PATH:/opt/nodejs/bin"
+export PATH="$PATH:/opt/lampstack/php/bin"
+export PATH="$PATH:/opt/lampstack/ruby/bin"
+export PATH="$PATH:/opt/coffeescript/bin"
 
 # Databases
-export PATH="$PATH:/home/system/opt/redis/bin"
-export PATH="$PATH:/home/system/opt/mongodb/bin"
-export PATH="$PATH:/home/system/opt/lampstack/mysql/bin"
-export PATH="$PATH:/home/system/opt/lampstack/sqlite/bin"
+export PATH="$PATH:/opt/redis/bin"
+export PATH="$PATH:/opt/mongodb/bin"
+export PATH="$PATH:/opt/lampstack/mysql/bin"
+export PATH="$PATH:/opt/lampstack/sqlite/bin"
 
 # Web Server and Performance
-export PATH="$PATH:/home/system/opt/lampstack/apache2/bin"
-export PATH="$PATH:/home/system/opt/lampstack/varnish/bin"
+export PATH="$PATH:/opt/lampstack/apache2/bin"
+export PATH="$PATH:/opt/lampstack/varnish/bin"
+export PATH="$PATH:/opt/prax/bin"
 
 # App Distribution and Deployment
-export PATH="$PATH:/home/system/opt/packer/bin"
-export PATH="$PATH:/home/system/opt/vagrant/bin"
-export PATH="$PATH:/home/system/opt/lampstack/heroku/bin"
+export PATH="$PATH:/opt/packer/bin"
+export PATH="$PATH:/opt/vagrant/bin"
+export PATH="$PATH:/opt/lampstack/heroku/bin"
 
 # Encodes URL string with their correspondent hex digits
 alias urlenc='strconv -urlenc -text'

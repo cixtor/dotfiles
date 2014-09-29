@@ -25,7 +25,7 @@ set t_vb=
 set tm=500
 
 " GoLang support
-set rtp+=/home/system/opt/golang/misc/vim
+set rtp+=/opt/golang/build/misc/vim
 filetype plugin indent on
 
 " Enable syntax highlighting
