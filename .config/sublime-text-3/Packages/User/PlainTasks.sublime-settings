@@ -1,4 +1,6 @@
 {
+    "bar_full": "#",
+    "bar_empty": "~",
     "open_tasks_bullet": "-",
     "done_tasks_bullet": "+",
     "cancelled_tasks_bullet": "x",
@@ -9,18 +11,18 @@
     "archive_name": "Archive:", // make sure it is the unique project name within your todo files
     "indent_after_task": true, // indenting the next line after tasks
     "new_on_top": true, // how to sort archived tasks
-    "color_scheme": "Packages/PlainTasks/tasks.hidden-tmTheme",
+    "color_scheme": "Packages/PlainTasks/tasks-monokai.hidden-tmTheme",
     "font_size": 10,
     "font_face": "Monospace",
-    "draw_indent_guides": false,
+    "draw_indent_guides": true,
     "line_numbers": true,
     "gutter": true,
-    "margin": 2,
+    "margin": 10,
     "tab_size": 2,
     "translate_tabs_to_spaces": true,
     "use_tab_stops": false,
     "match_brackets": false,
-    "fold_buttons": true,
+    "fold_buttons": false,
     "fade_fold_buttons": false,
     "extensions":
     [
