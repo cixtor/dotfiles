@@ -4,7 +4,9 @@
         "Angular.JS 1.2.13": "http://code.angularjs.org/1.2.13/angular.min.js",
         "Ember.JS 1.4.0": "http://builds.emberjs.com/tags/v1.4.0/ember.min.js",
         "Handlebars.JS (master)": "https://raw.github.com/wycats/handlebars.js/master/dist/handlebars.js",
-        "jQuery (master)": "http://code.jquery.com/jquery.min.js"
+        "HighCharts (master)": "http://code.highcharts.com/highcharts.js",
+        "HighCharts Mod.Export": "http://code.highcharts.com/modules/exporting.js",
+        "jQuery (master)": "https://code.jquery.com/jquery.min.js"
     },
     "packages":
     {
