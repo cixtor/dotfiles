@@ -9,6 +9,7 @@ repositories=(
     "aziz/PlainTasks PlainTasks"
     "aziz/knockdown knockdown"
     "technosophos/Vala-TMBundle Vala"
+    "jashkenas/coffee-script-tmbundle CoffeeScript"
 )
 if [ -e "${inst_path}" ]; then
     cd $inst_path
