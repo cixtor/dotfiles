@@ -1,0 +1,28 @@
+'exception-reporting':
+  'userId': '000b0b0b-a000-a0f0-000d-b0bdd0e00d0b'
+'welcome':
+  'showOnStartup': false
+'metrics': false
+'editor':
+  'fontSize': 12
+'core':
+  'themes': [
+    'atom-dark-ui'
+    'monokai'
+  ]
+  'audioBeep': false
+  'disabledPackages': [
+    'git-diff'
+    'bookmarks'
+    'metrics'
+    'update-package-dependencies'
+    'archive-view'
+    'background-tips'
+    'bracket-matcher'
+    'feedback'
+    'link'
+    'open-on-github'
+    'release-notes'
+    'autosave'
+  ]
+'autosave': {}
