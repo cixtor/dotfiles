@@ -176,3 +176,6 @@ function replace() {
     # old: Text string that will be replaced
     strconv -replace -text $1 -old $2 -new $3
 }
+
+# List top ten largest files/directories in current directory
+alias ducks='du -cks * | sort -rn | head -11'
