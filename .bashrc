@@ -179,3 +179,6 @@ function replace() {
 
 # List top ten largest files/directories in current directory
 alias ducks='du -cks * | sort -rn | head -11'
+
+# Identify and search for active network connections
+alias spy='lsof -i -P +c 0 +M'
