@@ -113,25 +113,25 @@ export PATH="$PATH:/opt/nodewebkit"
 
 # General-Purpose Programming Language
 export PATH="$PATH:/opt/nodejs/bin"
-export PATH="$PATH:/opt/lampstack/php/bin"
-export PATH="$PATH:/opt/lampstack/ruby/bin"
+export PATH="$PATH:/opt/php/bin"
+export PATH="$PATH:/opt/ruby/bin"
 export PATH="$PATH:/opt/coffeescript/bin"
 
 # Databases
 export PATH="$PATH:/opt/redis/bin"
 export PATH="$PATH:/opt/mongodb/bin"
-export PATH="$PATH:/opt/lampstack/mysql/bin"
-export PATH="$PATH:/opt/lampstack/sqlite/bin"
+export PATH="$PATH:/opt/mysql/bin"
+export PATH="$PATH:/opt/sqlite/bin"
 
 # Web Server and Performance
-export PATH="$PATH:/opt/lampstack/apache2/bin"
-export PATH="$PATH:/opt/lampstack/varnish/bin"
+export PATH="$PATH:/opt/apache/bin"
+export PATH="$PATH:/opt/varnish/bin"
 export PATH="$PATH:/opt/prax/bin"
 
 # App Distribution and Deployment
 export PATH="$PATH:/opt/packer/bin"
 export PATH="$PATH:/opt/vagrant/bin"
-export PATH="$PATH:/opt/lampstack/heroku/bin"
+export PATH="$PATH:/opt/heroku/bin"
 
 # Encodes URL string with their correspondent hex digits
 alias urlenc='strconv -urlenc -text'
