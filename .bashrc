@@ -92,32 +92,28 @@ export GOROOT="/opt/golang/build"
 export GOPATH="/opt/golang/gopath"
 export PATH="$PATH:$GOROOT/bin"
 
-# Revision Control System (RCS)
-export PATH="$PATH:/opt/gitscm/bin"
-export PATH="$PATH:/opt/mercurial/bin"
-export PATH="$PATH:/opt/subversion/bin"
-
-# MamuTools - https://github.com/cixtor/mamutools
-export PATH="$PATH:/opt/mamutools"
-export PATH="$PATH:/opt/standalone"
-export PATH="$PATH:/opt/phpshellgen"
-
-# Java Development Kit (JDK)
-export PATH="$PATH:/opt/javadevkit/bin"
-
-# Miscellaneous Apps
-export PATH="$PATH:/opt/powertop"
-export PATH="$PATH:/opt/colordiff/bin"
-export PATH="$PATH:/opt/nmap/bin"
-export PATH="$PATH:/opt/nodewebkit"
-
 # General-Purpose Programming Language
+export PATH="$PATH:/opt/javadevkit/bin"
 export PATH="$PATH:/opt/nodejs/bin"
 export PATH="$PATH:/opt/php/bin"
 export PATH="$PATH:/opt/ruby/bin"
 export PATH="$PATH:/opt/coffeescript/bin"
 
-# Databases
+# Revision Control System (RCS)
+export PATH="$PATH:/opt/gitscm/bin"
+export PATH="$PATH:/opt/mercurial/bin"
+export PATH="$PATH:/opt/subversion/bin"
+
+# Miscellaneous Apps
+export PATH="$PATH:/opt/mamutools"
+export PATH="$PATH:/opt/standalone"
+export PATH="$PATH:/opt/phpshellgen"
+export PATH="$PATH:/opt/powertop"
+export PATH="$PATH:/opt/colordiff/bin"
+export PATH="$PATH:/opt/nmap/bin"
+export PATH="$PATH:/opt/nodewebkit"
+
+# Database Engines
 export PATH="$PATH:/opt/redis/bin"
 export PATH="$PATH:/opt/mongodb/bin"
 export PATH="$PATH:/opt/mysql/bin"
