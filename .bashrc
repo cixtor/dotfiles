@@ -62,7 +62,6 @@ fi
 PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[1;33m\]\u@\h: \[\033[1;34m\]\w\[\033[00m\] \$ '
 
 # LS-Colors
-alias ls='ls --color'
 LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01'
 LS_COLORS+=':cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42'
 LS_COLORS+=':st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31'
@@ -83,6 +82,10 @@ LS_COLORS+=':*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=
 LS_COLORS+=':*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36'
 LS_COLORS+=':*.spx=00;36:*.xspf=00;36'
 export LS_COLORS
+
+# Generic aliases
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
 
 # GoLang - http://golang.org/
 export GOROOT="/opt/golang/build"
