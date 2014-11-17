@@ -93,35 +93,48 @@ export GOPATH="/opt/golang/gopath"
 export PATH="$PATH:$GOROOT/bin"
 
 # General-Purpose Programming Language
+export PATH="$PATH:/opt/qtcreator/Tools/QtCreator/bin"
 export PATH="$PATH:/opt/javadevkit/bin"
-export PATH="$PATH:/opt/nodejs/bin"
-export PATH="$PATH:/opt/php/bin"
 export PATH="$PATH:/opt/ruby/bin"
+export PATH="$PATH:/opt/rvm/bin"
+export PATH="$PATH:/opt/php/bin"
+export PATH="$PATH:/opt/php/sbin"
+export PATH="$PATH:/opt/nodejs/bin"
 export PATH="$PATH:/opt/coffeescript/bin"
 
 # Revision Control System (RCS)
 export PATH="$PATH:/opt/gitscm/bin"
 export PATH="$PATH:/opt/mercurial/bin"
 export PATH="$PATH:/opt/subversion/bin"
+export PATH="$PATH:/opt/meld/bin"
 
 # Miscellaneous Apps
+export PATH="$PATH:/opt/commonbin"
 export PATH="$PATH:/opt/mamutools"
 export PATH="$PATH:/opt/standalone"
 export PATH="$PATH:/opt/phpshellgen"
-export PATH="$PATH:/opt/powertop"
+export PATH="$PATH:/opt/treecommand/bin"
 export PATH="$PATH:/opt/colordiff/bin"
+export PATH="$PATH:/opt/powertop"
 export PATH="$PATH:/opt/nmap/bin"
 export PATH="$PATH:/opt/nodewebkit"
+export PATH="$PATH:/opt/xarchiver/bin"
+export PATH="$PATH:/opt/phantomjs/bin"
+export PATH="$PATH:/opt/casperjs/bin"
 
 # Database Engines
 export PATH="$PATH:/opt/redis/bin"
+export PATH="$PATH:/opt/postgresql/bin"
 export PATH="$PATH:/opt/mongodb/bin"
 export PATH="$PATH:/opt/mysql/bin"
 export PATH="$PATH:/opt/sqlite/bin"
 
 # Web Server and Performance
 export PATH="$PATH:/opt/apache/bin"
+export PATH="$PATH:/opt/nginx/sbin"
 export PATH="$PATH:/opt/varnish/bin"
+export PATH="$PATH:/opt/memcached/bin"
+export PATH="$PATH:/opt/sphinx/bin"
 export PATH="$PATH:/opt/prax/bin"
 
 # App Distribution and Deployment
