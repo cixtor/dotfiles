@@ -5,7 +5,6 @@ repositories=(
     "wbond/sublime_alignment Alignment"
     "spadgos/sublime-jsdocs DocBlockr"
     "Medalink/laravel-blade LaravelBlade"
-    "weslly/Nettuts-Fetch NettutsFetch"
     "aziz/PlainTasks PlainTasks"
     "aziz/knockdown knockdown"
     "technosophos/Vala-TMBundle Vala"
