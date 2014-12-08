@@ -1,5 +1,8 @@
 [global_config]
-  enabled_plugins = InactivityWatch, ActivityWatch, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  enabled_plugins = InactivityWatch, ActivityWatch
+  title_transmit_bg_color = "#4c4c4c"
+  title_inactive_fg_color = "#afafaf"
+  title_inactive_bg_color = "#2d2d2d"
 [keybindings]
   split_horiz = <Control><Alt>h
   split_vert = <Control><Alt>v
@@ -9,17 +12,19 @@
     scrollback_lines = 1
     background_image = None
     foreground_color = "#ffffff"
+    scroll_on_output = False
     font = Monospace 8
+    background_color = "#0d0d0d"
     scrollback_infinite = True
 [layouts]
   [[default]]
-    [[[child1]]]
-      type = Terminal
-      parent = window0
-      profile = default
     [[[window0]]]
       type = Window
       parent = ""
       profile = None
-      size = 1110, 300
+      size = 920, 380
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
 [plugins]
