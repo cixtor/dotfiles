@@ -371,6 +371,26 @@
             "contents": "setExpectedException(${1:exceptionName}${2:, '${3:exceptionMessage}'}${4:, ${5:exceptionCode}});"
         },
         {
+            "trigger": "setExpectedExceptionRegExp",
+            "contents": "setExpectedExceptionRegExp(${1:exceptionName}${2:, ${3:exceptionMessageRegExp}}${4:, ${5:exceptionCode}});"
+        },
+        {
+            "trigger": "expectOutputString",
+            "contents": "expectOutputString(${1:expectedString});"
+        },
+        {
+            "trigger": "expectOutputRegex",
+            "contents": "expectOutputRegex(${1:regularExpression});"
+        },
+        {
+            "trigger": "markTestIncomplete",
+            "contents": "markTestIncomplete(${1:message});"
+        },
+        {
+            "trigger": "markTestSkipped",
+            "contents": "markTestSkipped(${1:message});"
+        },
+        {
             "trigger": "getMock",
             "contents": "getMock(${1:originalClassName}${2:, ${3:methods}}${4:, ${5:arguments}}${6:, '${7:mockClassName}'}${8:, ${9:callOriginalConstructor}}${10:, ${11:callOriginalClone}}${12:, ${13:callAutoload}}${14:, ${15:cloneArguments}});"
         }
