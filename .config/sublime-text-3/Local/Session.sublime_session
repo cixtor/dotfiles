@@ -21,9 +21,14 @@
 			[
 			],
 			"build_system": "",
+			"build_system_choices":
+			[
+			],
+			"build_varint": "",
 			"command_palette":
 			{
 				"height": 0.0,
+				"last_filter": "",
 				"selected_items":
 				[
 				],
@@ -121,6 +126,7 @@
 			{
 				"height": 0.0
 			},
+			"pinned_build_system": "",
 			"position": "0,0,0,0,0,362,104,1002,584,1366,768",
 			"project": "",
 			"replace":
@@ -131,6 +137,7 @@
 			"select_file":
 			{
 				"height": 0.0,
+				"last_filter": "",
 				"selected_items":
 				[
 				],
@@ -139,6 +146,7 @@
 			"select_project":
 			{
 				"height": 0.0,
+				"last_filter": "",
 				"selected_items":
 				[
 				],
@@ -147,6 +155,7 @@
 			"select_symbol":
 			{
 				"height": 0.0,
+				"last_filter": "",
 				"selected_items":
 				[
 				],
