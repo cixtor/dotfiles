@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+.clearfix:before, .clearfix:after{display:table;content:' '}
+.clearfix:after{clear:both}
+]]></content>
+	<tabTrigger>css:clearfix</tabTrigger>
+	<scope>source.css</scope>
+</snippet>
