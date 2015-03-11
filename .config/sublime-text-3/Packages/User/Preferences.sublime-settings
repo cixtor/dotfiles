@@ -6,6 +6,7 @@
 	"auto_close_tags": true,
 	"auto_complete": true,
 	"auto_complete_commit_on_tab": false,
+	"auto_complete_cycle": false,
 	"auto_complete_delay": 50,
 	"auto_complete_selector": "source - comment, meta.tag - punctuation.definition.tag.begin",
 	"auto_complete_size_limit": 4194304,
@@ -42,7 +43,7 @@
 	"caret_extra_width": 0,
 	"caret_style": "solid",
 	"close_windows_when_empty": false,
-	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"color_scheme": "Packages/User/Monokai Soda.tmTheme",
 	"copy_with_empty_selection": true,
 	"create_window_at_startup": true,
 	"default_encoding": "UTF-8",
@@ -58,7 +59,7 @@
 	"enable_tab_scrolling": false,
 	"enable_telemetry": false,
 	"ensure_newline_at_eof_on_save": false,
-	"fade_fold_buttons": true,
+	"fade_fold_buttons": false,
 	"fallback_encoding": "Western (Windows 1252)",
 	"file_exclude_patterns":
 	[
@@ -92,7 +93,7 @@
 		".hg",
 		"CVS"
 	],
-	"font_face": "Monospace",
+	"font_face": "Menlo",
 	"font_options":
 	[
 	],
@@ -117,6 +118,7 @@
 		"*.log"
 	],
 	"index_files": false,
+	"index_workers": 0,
 	"line_numbers": true,
 	"line_padding_bottom": 0,
 	"line_padding_top": 0,
@@ -132,6 +134,7 @@
 	"open_files_in_new_window": false,
 	"overlay_scroll_bars": "system",
 	"preview_on_click": true,
+	"remember_full_screen": false,
 	"remember_open_files": false,
 	"rulers":
 	[
@@ -147,6 +150,7 @@
 	"show_tab_close_buttons": true,
 	"smart_indent": true,
 	"spell_check": false,
+	"spelling_selector": "markup.raw, source string.quoted - punctuation - meta.preprocessor.c.include, source comment - source comment.block.preprocessor, -(source, constant, keyword, storage, support, variable, markup.underline.link, meta.tag)",
 	"tab_completion": true,
 	"tab_size": 4,
 	"theme": "Default.sublime-theme",
