@@ -3,6 +3,7 @@ inst_path="$HOME/.config/sublime-text-3/Packages/"
 repositories=(
     "Vala|technosophos/Vala-TMBundle"
     "DocBlockr|spadgos/sublime-jsdocs"
+    "Codec|furikake/sublime-codec"
     "AdvancedNewFile|skuroda/Sublime-AdvancedNewFile"
     "Alignment|wbond/sublime_alignment"
     "PlainTasks|aziz/PlainTasks"
