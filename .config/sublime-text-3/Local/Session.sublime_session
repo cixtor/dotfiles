@@ -122,6 +122,10 @@
 				]
 			},
 			"menu_visible": true,
+			"output.exec":
+			{
+				"height": 0.0
+			},
 			"output.find_results":
 			{
 				"height": 0.0
