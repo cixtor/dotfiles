@@ -196,6 +196,9 @@ alias ducks='du -cks * | sort -rn | head -11'
 # Identify and search for active network connections
 alias spy='lsof -i -P +c 0 +M'
 
+# Identify what ports are open on the computer
+alias tulpan='netstat -tulpan'
+
 # Visualise git log (like gitk, in the terminal)
 alias gitgraph='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 
