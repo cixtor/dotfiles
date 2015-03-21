@@ -125,6 +125,7 @@ export PATH="$PATH:/opt/casperjs/bin"
 export PATH="$PATH:/opt/charlesproxy/bin"
 export PATH="$PATH:/opt/xsser"
 export PATH="$PATH:/opt/geoloc/bin"
+export PATH="$PATH:/opt/nwjs"
 
 # Database Engines
 export PATH="$PATH:/opt/redis/bin"
