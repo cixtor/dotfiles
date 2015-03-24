@@ -95,6 +95,7 @@ export PATH="$PATH:$GOROOT/bin"
 # General-Purpose Programming Language
 export PATH="$PATH:/opt/qtcreator/Tools/QtCreator/bin"
 export PATH="$PATH:/opt/javadevkit/bin"
+export PATH="$PATH:/opt/kore/bin"
 export PATH="$PATH:/opt/ruby/bin"
 export PATH="$PATH:/opt/rvm/bin"
 export PATH="$PATH:/opt/php/bin"
