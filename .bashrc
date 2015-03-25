@@ -59,7 +59,28 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[1;33m\]\u@\h: \[\033[1;34m\]\w\[\033[00m\] \$ '
+export PROMPT_COMMAND=set_prompt_command
+# PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[1;33m\]\u@\h: \[\033[1;34m\]\w\[\033[00m\] \$ '
+function set_prompt_command() {
+    # 0     - Operation success and generic status code.
+    # 1     - Catchall for general errors and failures.
+    # 2     - Misuse of shell builtins, missing command, or permission problem.
+    # 126   - Command invoked cannot execute, permission problem, or command is not an executable.
+    # 127   - Command not found, illegal path, or possible typo.
+    # 128   - Invalid argument to exit, only use range 0-255.
+    # 128+n - Fatal error signal where "n" is the PID.
+    # 130   - Script terminated by Control-C.
+    # 255*  - Exit status out of range.
+    local exitcode="$?"
+    if   [[ "$exitcode" -eq 0   ]]; then PS1=$'${debian_chroot:+($debian_chroot)}\[\e[0;92m\][\u2714] \u@\h\[\e[0m\]: \[\e[0;94m\]\w\[\e[0m\] \$ ';
+    elif [[ "$exitcode" -eq 1   ]]; then PS1=$'${debian_chroot:+($debian_chroot)}\[\e[0;91m\][\u2718] \u@\h\[\e[0m\]: \[\e[0;94m\]\w\[\e[0m\] \$ ';
+    elif [[ "$exitcode" -eq 126 ]]; then PS1=$'${debian_chroot:+($debian_chroot)}\[\e[0;94m\][\u2753] \u@\h\[\e[0m\]: \[\e[0;94m\]\w\[\e[0m\] \$ ';
+    elif [[ "$exitcode" -eq 127 ]]; then PS1=$'${debian_chroot:+($debian_chroot)}\[\e[0;96m\][\u2753] \u@\h\[\e[0m\]: \[\e[0;94m\]\w\[\e[0m\] \$ ';
+    elif [[ "$exitcode" -eq 128 ]]; then PS1=$'${debian_chroot:+($debian_chroot)}\[\e[0;90m\][\u2753] \u@\h\[\e[0m\]: \[\e[0;94m\]\w\[\e[0m\] \$ ';
+    elif [[ "$exitcode" -eq 130 ]]; then PS1=$'${debian_chroot:+($debian_chroot)}\[\e[0;95m\][\u2757] \u@\h\[\e[0m\]: \[\e[0;94m\]\w\[\e[0m\] \$ ';
+    else                                 PS1=$'${debian_chroot:+($debian_chroot)}\[\e[0;93m\][\u2731] \u@\h\[\e[0m\]: \[\e[0;94m\]\w\[\e[0m\] \$ ';
+    fi
+}
 
 # LS-Colors
 LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01'
