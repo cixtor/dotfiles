@@ -59,7 +59,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-export PROMPT_COMMAND=set_prompt_command
+# export PROMPT_COMMAND=set_prompt_command
 # PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[1;33m\]\u@\h: \[\033[1;34m\]\w\[\033[00m\] \$ '
 function set_prompt_command() {
     # 0     - Operation success and generic status code.
@@ -80,6 +80,12 @@ function set_prompt_command() {
     elif [[ "$exitcode" -eq 130 ]]; then PS1=$'${debian_chroot:+($debian_chroot)}\[\e[0;95m\][\u2757] \u@\h\[\e[0m\]: \[\e[0;94m\]\w\[\e[0m\] \$ ';
     else                                 PS1=$'${debian_chroot:+($debian_chroot)}\[\e[0;93m\][\u2731] \u@\h\[\e[0m\]: \[\e[0;94m\]\w\[\e[0m\] \$ ';
     fi
+}
+
+# https://github.com/milkbikis/powerline-shell
+export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+function _update_ps1() {
+    export PS1="$(/opt/powerline-shell/powerline-shell.py $? 2> /dev/null)"
 }
 
 # LS-Colors
