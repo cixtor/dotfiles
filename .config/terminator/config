@@ -13,8 +13,8 @@
     background_image = None
     foreground_color = "#ffffff"
     scroll_on_output = False
-    font = Meslo LG M for Powerline 8
-    background_color = "#0d0d0d"
+    font = Menlo for Powerline 8
+    background_color = "#112933"
     scrollback_infinite = True
 [layouts]
   [[default]]
