@@ -2,6 +2,7 @@
 inst_path="$HOME/.config/sublime-text-3/Packages/"
 repositories=(
     "Vala|technosophos/Vala-TMBundle"
+    "GoSublime|DisposaBoy/GoSublime"
     "DocBlockr|spadgos/sublime-jsdocs"
     "Codec|furikake/sublime-codec"
     "AdvancedNewFile|skuroda/Sublime-AdvancedNewFile"

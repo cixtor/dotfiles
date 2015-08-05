@@ -1,0 +1,93 @@
+{
+	"margo_oom": 1000,
+	"env": {
+		"GOROOT": "/opt/golang/build",
+		"GOPATH": "/opt/golang/gopath",
+		"PATH": "/opt/golang/gopath/bin:$PATH"
+	},
+	"use_gs_gopath": false,
+	"shell": [],
+	"autosave": false,
+	"gscomplete_enabled": true,
+	"fmt_enabled": true,
+	"fmt_tab_indent": true,
+	"fmt_tab_width": 4,
+	"fmt_cmd": [],
+	"gslint_enabled": true,
+	"lint_filter": [
+		"gs.flag.parse",
+		"gs.types"
+	],
+	"comp_lint_enabled": false,
+	"comp_lint_commands": [
+		{"cmd": ["go", "install"]}
+	],
+	"gslint_timeout": 500,
+	"lint_enabled": true,
+	"linters": [],
+	"autocomplete_snippets": true,
+	"autocomplete_tests": false,
+	"autocomplete_builtins": false,
+	"autocomplete_closures": false,
+	"autocomplete_filter_name": "",
+	"autocomplete_suggest_imports": false,
+	"calltips": true,
+	"use_named_imports": false,
+	"autoinst": false,
+	"on_save": [],
+	"snippets": [],
+	"default_snippets": [
+		{
+			"match": {"global": false, "pkgname": ""},
+			"snippets": [
+				{"text": "package ${default_pkgname}", "title": "", "value": "package ${default_pkgname}\n\n$1\n"}
+			]
+		},
+		{
+			"match": {"global": true, "pkgname": "^main$"},
+			"snippets": [
+				{"text": "func main", "title": "func main {...}", "value": "func main() {\n\t$0\n}\n"}
+			]
+		},
+		{
+			"match": {"global": true, "pkgname": "."},
+			"snippets": [
+				{"text": "import", "title": "import (...)", "value": "import (\n\t\"$1\"\n)"},
+				{"text": "func", "title": "func {...}", "value": "func ${1:name}($2)$3 {\n\t$0\n}"},
+				{"text": "var", "title": "var (...)", "value": "var (\n\t$1\n)"},
+				{"text": "const", "title": "const (...)", "value": "const (\n\t$1\n)"},
+				{"text": "init", "title": "func init()", "value": "func init() {\n\t$1\n}"},
+				{
+					"text": "func http handler",
+					"title": "func(rw, req)",
+					"value": "func ${1:name}(rw http.ResponseWriter, req *http.Request) {\n\t$0\n}"
+				}
+			]
+		},
+		{
+			"match": {"global": true, "pkgname": ".", "has_types": true},
+			"snippets": [
+				{
+					"text": "func (*${typename})",
+					"title": "func (...) {...}",
+					"value": "func (${1:${typename_abbr}} ${2:*}${typename}) ${3:name}($4)$5 {\n\t$0\n}"
+				}
+			]
+		},
+		{
+			"match": {"local": true},
+			"snippets": [
+				{"text": "func", "title": "func{...}()", "value": "func($1) {\n\t$0\n}($2)"},
+				{"text": "var", "title": "var [name] [type]", "value": "var ${1:name} ${2:type}"}
+			]
+		}
+	],
+	"9o_show_end": false,
+	"9o_instance": "",
+	"9o_color_scheme": "default",
+	"9o_aliases": {},
+	"build_command": ["^1"],
+	"auto_complete_triggers": [ {"selector": "source.go", "characters": "."} ],
+	"fn_exclude_prefixes": [".", "_"],
+	"gohtml_extensions": [".html.go"]
+}
