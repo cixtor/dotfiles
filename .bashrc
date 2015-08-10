@@ -212,6 +212,9 @@ alias tulpan='netstat -tulpan'
 # Visualise git log (like gitk, in the terminal)
 alias gitgraph='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 
+# Rotate string thirteen positions
+alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
+
 # Alias for the text-to-speech engine
 function say() { echo "$@" | espeak -s 150 2>/dev/null; }
 
