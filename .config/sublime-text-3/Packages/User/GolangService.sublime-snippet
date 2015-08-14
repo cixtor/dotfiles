@@ -1,0 +1,20 @@
+<snippet>
+	<content><![CDATA[
+package main
+
+import (
+	"net/http"
+)
+
+func main() {
+	http.HandleFunc("/", homepage)
+	http.ListenAndServe(":8080", nil)
+}
+
+func homepage(w http.ResponseWriter, req *http.Request) {
+	w.Write([]byte("Hello, World!"))
+}
+]]></content>
+	<tabTrigger>goservice</tabTrigger>
+	<!-- <scope>source.go</scope> -->
+</snippet>
