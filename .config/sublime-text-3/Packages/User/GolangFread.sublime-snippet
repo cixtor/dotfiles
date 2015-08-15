@@ -2,22 +2,24 @@
     <content><![CDATA[
 package main
 
-import "os"
-import "fmt"
-import "bufio"
+import (
+    "bufio"
+    "fmt"
+    "os"
+)
 
 func main() {
-    file, _ := os.Open( os.Args[1] )
+    file, _ := os.Open(os.Args[1])
     scanner := bufio.NewScanner(file)
     defer file.Close()
 
     for scanner.Scan() {
-        fmt.Printf( "%s\n", scanner.Text() )
+        fmt.Printf("%s\n", scanner.Text())
     }
 
     os.Exit(0)
 }
 ]]></content>
     <tabTrigger>gofread</tabTrigger>
-    <!-- <scope>source.python</scope> -->
+    <!-- <scope>source.go</scope> -->
 </snippet>

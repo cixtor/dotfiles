@@ -2,30 +2,32 @@
     <content><![CDATA[
 package main
 
-import "os"
-import "fmt"
-import "net/http"
-import "io/ioutil"
+import (
+    "fmt"
+    "io/ioutil"
+    "net/http"
+    "os"
+)
 
 func main() {
     var location string = "${1:http://cixtor.com/ifconfig/headers}"
 
-    req, err := http.NewRequest( "${2:GET}", location, nil )
-    req.Header.Set( "User-Agent", "Mozilla/5.0 (KHTML, like Gecko)" )
-    req.Header.Add( "Accept", "application/json" )
-    req.Header.Add( "Host", "cixtor.com" )
-    req.Header.Add( "Accept-Language", "en-US,en;q=0.8" )
-    req.Header.Add( "Connection", "keep-alive" )
+    req, err := http.NewRequest("${2:GET}", location, nil)
+    req.Header.Set("User-Agent", "Mozilla/5.0 (KHTML, like Gecko)")
+    req.Header.Add("Accept-Language", "en-US,en;q=0.8")
+    req.Header.Add("Accept", "application/json")
+    req.Header.Add("Connection", "keep-alive")
+    req.Header.Add("Host", "cixtor.com")
 
     if err != nil {
-        fmt.Printf( "Error creating the request: %s\n", err )
+        fmt.Printf("Error creating the request: %s\n", err)
         os.Exit(1)
     }
 
     resp, err := http.DefaultTransport.RoundTrip(req)
 
     if err != nil {
-        fmt.Printf( "Error executing the request: %s\n", err )
+        fmt.Printf("Error executing the request: %s\n", err)
         os.Exit(1)
     }
 
@@ -33,11 +35,11 @@ func main() {
     body, err := ioutil.ReadAll(resp.Body)
 
     if err != nil {
-        fmt.Printf( "Error reading the response: %s\n", err )
+        fmt.Printf("Error reading the response: %s\n", err)
         os.Exit(1)
     }
 
-    fmt.Printf( "%s\n", body )
+    fmt.Printf("%s\n", body)
 }
 ]]></content>
     <tabTrigger>gorequest</tabTrigger>
