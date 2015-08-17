@@ -11,4 +11,13 @@
     "phpcs_php_prefix_path": "/opt/php/bin/php",
     "phpcs_commands_to_php_prefix": ["Sniffer"],
     "phpcs_icon_scope_color": "comment",
+
+    // PHP_CodeSniffer settings
+    "phpcs_sniffer_run": true,
+    "phpcs_command_on_save": true,
+    "phpcs_executable_path": "/opt/standalone/phpcs",
+    "phpcs_additional_args": {
+        "--standard": "PSR2",
+        "--no-colors": ""
+    }
 }
