@@ -26,5 +26,14 @@
     "php_cs_fixer_show_quick_panel": false,
     "php_cs_fixer_executable_path": "",
     "php_cs_fixer_additional_args": {
+    },
+
+    // PHPCBF settings
+    "phpcbf_on_save": false,
+    "phpcbf_show_quick_panel": false,
+    "phpcbf_executable_path": "/opt/standalone/phpcbf",
+    "phpcbf_additional_args": {
+        "--standard": "PSR2",
+        "--no-colors": ""
     }
 }
