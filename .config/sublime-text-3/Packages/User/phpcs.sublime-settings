@@ -35,5 +35,11 @@
     "phpcbf_additional_args": {
         "--standard": "PSR2",
         "--no-colors": ""
-    }
+    },
+
+    // PHP Linter settings
+    "phpcs_linter_run": true,
+    "phpcs_linter_command_on_save": true,
+    "phpcs_php_path": "/opt/php/bin/php",
+    "phpcs_linter_regex": "(?P<message>.*) on line (?P<line>\\d+)"
 }
