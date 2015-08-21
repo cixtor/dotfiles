@@ -41,5 +41,13 @@
     "phpcs_linter_run": true,
     "phpcs_linter_command_on_save": true,
     "phpcs_php_path": "/opt/php/bin/php",
-    "phpcs_linter_regex": "(?P<message>.*) on line (?P<line>\\d+)"
+    "phpcs_linter_regex": "(?P<message>.*) on line (?P<line>\\d+)",
+
+    // PHP Mess Detector settings
+    "phpmd_run": false,
+    "phpmd_command_on_save": true,
+    "phpmd_executable_path": "/opt/standalone/phpmd",
+    "phpmd_additional_args": {
+        "codesize,unusedcode,naming": ""
+    }
 }
