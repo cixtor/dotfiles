@@ -49,5 +49,14 @@
     "phpmd_executable_path": "/opt/standalone/phpmd",
     "phpmd_additional_args": {
         "codesize,unusedcode,naming": ""
+    },
+
+    // PHP Scheck settings
+    "scheck_run": false,
+    "scheck_command_on_save": false,
+    "scheck_executable_path": "",
+    "scheck_additional_args": {
+        "-php_stdlib" : "/path/to/pfff",
+        "-strict" : ""
     }
 }
