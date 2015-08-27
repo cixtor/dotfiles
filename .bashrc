@@ -91,6 +91,7 @@ export LS_COLORS
 # Generic aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias cat='cat --show-nonprinting'
 
 # GoLang - http://golang.org/
 export GOROOT="/opt/golang/build"
