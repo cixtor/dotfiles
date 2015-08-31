@@ -152,7 +152,6 @@ export PATH="$PATH:/opt/apache/bin"
 export PATH="$PATH:/opt/nginx/sbin"
 export PATH="$PATH:/opt/varnish/bin"
 export PATH="$PATH:/opt/memcached/bin"
-export PATH="$PATH:/opt/sphinx/bin"
 export PATH="$PATH:/opt/prax/bin"
 
 # App Distribution and Deployment
