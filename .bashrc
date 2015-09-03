@@ -156,10 +156,15 @@ export PATH="$PATH:/opt/varnish/bin"
 export PATH="$PATH:/opt/memcached/bin"
 export PATH="$PATH:/opt/prax/bin"
 
-# App Distribution and Deployment
-export PATH="$PATH:/opt/packer/bin"
-export PATH="$PATH:/opt/vagrant/bin"
-export PATH="$PATH:/opt/heroku/bin"
+# HashiCorp: app development, delivery, and maintenance
+export PATH="$PATH:/opt/hashicorp/otto"
+export PATH="$PATH:/opt/hashicorp/nomad"
+export PATH="$PATH:/opt/hashicorp/vault"
+export PATH="$PATH:/opt/hashicorp/consul"
+export PATH="$PATH:/opt/hashicorp/packer"
+export PATH="$PATH:/opt/hashicorp/serfdom"
+export PATH="$PATH:/opt/hashicorp/terraform"
+export PATH="$PATH:/opt/hashicorp/vagrant/bin"
 
 # Encodes URL string with their correspondent hex digits
 alias urlenc='strconv -urlenc -text'
