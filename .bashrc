@@ -227,6 +227,9 @@ alias gitgraph='git log --graph --full-history --all --color --pretty=format:"%x
 # Rotate string thirteen positions
 alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 
+# Download YouTube video and extract audio
+alias mp3dl="youtube-dl --extract-audio --audio-format mp3"
+
 # Alias for the text-to-speech engine
 function say() { echo "$@" | espeak -s 150 2>/dev/null; }
 
