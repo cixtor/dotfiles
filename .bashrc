@@ -233,6 +233,9 @@ alias mp3dl="youtube-dl --extract-audio --audio-format mp3"
 # Alias for the text-to-speech engine
 function say() { echo "$@" | espeak -s 150 2>/dev/null; }
 
+# Cut a string at certain length and return
+function substr() { cut -c1-$1; }
+
 # Extract most known archives with one command
 function extract() {
     if [ -f $1 ]; then
