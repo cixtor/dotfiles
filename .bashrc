@@ -236,6 +236,12 @@ function say() { echo "$@" | espeak -s 150 2>/dev/null; }
 # Cut a string at certain length and return
 function substr() { cut -c1-$1; }
 
+# Shutdown VirtualBox network interfaces
+function vboxdown() {
+    VBoxManage hostonlyif remove vboxnet1
+    VBoxManage hostonlyif remove vboxnet0
+}
+
 # Extract most known archives with one command
 function extract() {
     if [ -f $1 ]; then
