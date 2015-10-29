@@ -5,14 +5,16 @@ repositories=(
     "GoSublime|DisposaBoy/GoSublime"
     "DocBlockr|spadgos/sublime-jsdocs"
     "Codec|furikake/sublime-codec"
-    "AdvancedNewFile|skuroda/Sublime-AdvancedNewFile"
     "Alignment|wbond/sublime_alignment"
     "PlainTasks|aziz/PlainTasks"
     "knockdown|aziz/knockdown"
-    "CoffeeScript|jashkenas/coffee-script-tmbundle"
-    "LaravelBlade|Medalink/laravel-blade"
+    "SublimeLinter|SublimeLinter/SublimeLinter3"
+    "SublimeLinter-php|SublimeLinter/SublimeLinter-php"
+    "SublimeLinter-phpcs|SublimeLinter/SublimeLinter-phpcs"
+    "SublimeLinter-jshint|SublimeLinter/SublimeLinter-jshint"
+    "SublimeLinter-csslint|SublimeLinter/SublimeLinter-csslint"
 )
-if [ -e "${inst_path}" ]; then
+if [[ -e "${inst_path}" ]]; then
     cd $inst_path
     for repo in "${repositories[@]}"; do
         local_name=$(echo $repo | awk -F '|' '{print $1}')
