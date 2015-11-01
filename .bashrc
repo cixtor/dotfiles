@@ -453,6 +453,10 @@ function startlamp() {
         sudo /opt/devstack/ctlscript.sh start apache
     fi
 
+    if [[ -e "/opt/devstack/hhvm" ]]; then
+        sudo /opt/devstack/ctlscript.sh start hhvm
+    fi
+
     if [[ -e "/opt/devstack/nginx" ]]; then
         sudo /opt/devstack/ctlscript.sh start nginx
         sudo /opt/devstack/ctlscript.sh start php-fpm
@@ -472,6 +476,7 @@ function stoplamp() {
     sudo /opt/devstack/ctlscript.sh stop apache
     sudo /opt/devstack/ctlscript.sh stop nginx
     sudo /opt/devstack/ctlscript.sh stop php-fpm
+    sudo /opt/devstack/ctlscript.sh stop hhvm
     /opt/devstack/ctlscript.sh stop mysql
     curl -X DELETE 'http://127.0.0.1:1080/' 2> /dev/null
 }
