@@ -243,6 +243,7 @@ function mylocalip() {
     ips=($(ifconfig | grep inet | grep -v inet6 | awk '{print $2}'))
     for name in "${names[@]}"; do
         address=$(echo "${ips[index]}" | sed 's/addr://')
+        if [[ "$address" == "" ]]; then address="none"; fi
         echo "${name}: ${address}"
         index=$(( index + 1 ))
     done
