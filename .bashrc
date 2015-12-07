@@ -231,6 +231,8 @@ alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 # Download YouTube video and extract audio
 alias mp3dl="youtube-dl --extract-audio --audio-format mp3"
 
+alias hostman='sudo env "PATH=$PATH" hostman $@'
+
 # Alias for the text-to-speech engine
 function say() { echo "$@" | espeak -s 150 2>/dev/null; }
 
