@@ -260,6 +260,19 @@ function stoplamp() {
     curl -X DELETE 'http://127.0.0.1:1080/'
 }
 
+# Execute PHPUnit with smart test suite detection.
+function phpunit() {
+    echo "$@" | grep -q -- '^--filter .*::.*'
+    if [[ "$?" -eq 0 ]]; then
+        params="$@" # Get original command arguments.
+        params=$(echo "$params" | sed 's;--filter ;tests/;g')
+        params=$(echo "$params" | sed 's;::;\.php --filter ;')
+        eval "$(which phpunit) $params"
+    else
+        $(which phpunit) "$@"
+    fi
+}
+
 # Extract most known archives with one command
 function extract() {
     if [ -f $1 ]; then
