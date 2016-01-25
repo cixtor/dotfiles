@@ -632,6 +632,46 @@ function hg() {
     fi
 }
 
+function dusort() {
+    script="/tmp/du-sort-$(date +%s).py"
+    code="" # Base64-encoded Python script
+    code+="IyEvdXNyL2Jpbi9lbnYgcHl0aG9uCmZyb20gc3lzIGltcG9ydCBleGl0CmZyb20g"
+    code+="b3MgaW1wb3J0IHBvcGVuCmZyb20gb3MgaW1wb3J0IGdldGN3ZApmcm9tIG9zIGlt"
+    code+="cG9ydCBsaXN0ZGlyCmZyb20gc3VicHJvY2VzcyBpbXBvcnQgY2FsbAoKY291bnQg"
+    code+="PSAwCnRhYmxlID0ge30KZm9sZGVyID0gZ2V0Y3dkKCkKc2l6ZXMgPSBbCiAgICAi"
+    code+="UGV0YWJ5dGVzIiwKICAgICJUZXJhYnl0ZXMiLAogICAgIkdpZ2FieXRlcyIsCiAg"
+    code+="ICAiTWVnYWJ5dGVzIiwKICAgICJLeWxvYnl0ZXMiLAogICAgIkJ5dGVzIiwKXQoK"
+    code+="Zm9yIHJlc291cmNlIGluIGxpc3RkaXIoZm9sZGVyKToKICAgIGNvdW50ICs9IDEK"
+    code+="ICAgIG91dCA9IHBvcGVuKCJkdSAtc2ggIiArIGZvbGRlciArICIvIiArIHJlc291"
+    code+="cmNlKS5yZWFkKCkKICAgIHNpemUsIGZwYXRoID0gb3V0LnN0cmlwKCkuc3BsaXQo"
+    code+="KQogICAgc2l6ZXQgPSBzaXplW2xlbihzaXplKSAtIDFdCiAgICBzaXplcSA9IHNp"
+    code+="emVbMDpsZW4oc2l6ZSktMV0KICAgIGlmIHNpemV0IG5vdCBpbiB0YWJsZToKICAg"
+    code+="ICAgICB0YWJsZVtzaXpldF0gPSBbXQogICAgdGFibGVbc2l6ZXRdLmFwcGVuZCh7"
+    code+="CiAgICAgICAgInNpemUiOiBmbG9hdChzaXplcSksCiAgICAgICAgInR5cGUiOiBz"
+    code+="aXpldCwKICAgICAgICAiZmlsZSI6IGZwYXRoLAogICAgfSkKCmZvciBmaWxlc2l6"
+    code+="ZSBpbiBzaXplczoKICAgIHN0eXBlID0gZmlsZXNpemVbMF0KICAgIGlmIHN0eXBl"
+    code+="IG5vdCBpbiB0YWJsZTogY29udGludWUKICAgIGxzaXplID0gMCAjIExvbmdlc3Qg"
+    code+="c2l6ZQogICAgbGxpbmUgPSAwICMgTG9uZ2VzdCBsaW5lCiAgICBvcmRlcmVkID0g"
+    code+="c29ydGVkKHRhYmxlW3N0eXBlXSwKICAgICAgICBrZXk9bGFtYmRhIHg6IHhbInNp"
+    code+="emUiXSwKICAgICAgICByZXZlcnNlPVRydWUpCiAgICBmb3IgZGF0YSBpbiBvcmRl"
+    code+="cmVkOgogICAgICAgIGxlbmd0aCA9IGxlbihkYXRhWyJmaWxlIl0pCiAgICAgICAg"
+    code+="aWYgbGVuZ3RoID4gbGxpbmU6IGxsaW5lID0gbGVuZ3RoCiAgICBsc2l6ZSA9IGxl"
+    code+="bihzdHIob3JkZXJlZFswXVsic2l6ZSJdKSkKICAgIGxsaW5lICs9IGxzaXplICsg"
+    code+="MiAjIEFkZCBsb25nZXN0IHNpemUgYW5kIHNlcGFyYXRvcgogICAgdGl0bGUgPSAo"
+    code+="Ii0iICogKGxzaXplKzEpKSAjIExlZnQgc2VwYXJhdG9yCiAgICB0aXRsZSArPSAi"
+    code+="XHgyMCIgKyBmaWxlc2l6ZSArICJceDIwIgogICAgdGl0bGUgKz0gIi0iICogKGxs"
+    code+="aW5lIC0gbGVuKHRpdGxlKSkKICAgIHByaW50KHRpdGxlKSAjIFByaW50IHRpdGxl"
+    code+="IHBlciBncm91cAogICAgZm9yIGRhdGEgaW4gb3JkZXJlZDoKICAgICAgICB0YW1h"
+    code+="bm8gPSBzdHIoZGF0YVsic2l6ZSJdKS5yanVzdChsc2l6ZSkKICAgICAgICBwcmlu"
+    code+="dCgiezB9ezF9IHsyfSIuZm9ybWF0KHRhbWFubywKICAgICAgICAgICAgZGF0YVsi"
+    code+="dHlwZSJdLAogICAgICAgICAgICBkYXRhWyJmaWxlIl0pKQoKZXhpdCgwKQo="
+    echo "$code" | base64 -d 1> "$script"
+    if [[ -e "$script" ]]; then
+        /usr/bin/env python -- "$script"
+        rm -f -- "$script" 2> /dev/null
+    fi
+}
+
 # Statistics of the eth0 bandwidth consumption
 function eth0stats() {
     # apt-get install vnstat vnstati
