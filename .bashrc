@@ -202,41 +202,26 @@ if [[ -e "$HOME/.bash_private" ]]; then
     source "$HOME/.bash_private"
 fi
 
-# Encodes URL string with their correspondent hex digits
-alias urlenc='strconv -urlenc -text'
-
-# Decodes URL-encoded string
-alias urldec='strconv -urldec -text'
-
-# Convert all the characters in a text string into their capital form
-alias uppercase='strconv -uppercase -text'
-
-# Decodes data encoded with MIME base64
-alias b64dec='strconv -b64dec -text'
-
-# Encodes data with MIME base64
-alias b64enc='strconv -b64enc -text'
-
-# Calculate the sha1 hash of the string specified
-alias sha1='strconv -sha1 -text'
-
-# Calculate the md5 hash of the string specified
-alias md5='strconv -md5 -text'
-
-# Returns the length of the string specified
-alias length='strconv -length -text'
-
-# Convert a text string into a capitalized version of its words
-alias capitalize='strconv -capitalize -text'
-
-# Convert all the characters in a text string into their lower form
-alias lowercase='strconv -lowercase -text'
-
 # Print generic default date based on Go.
 alias ansic="echo 'Mon Jan _2 15:04:05 2006 - 1136239445'"
 
 # Get the public IP address of the current Internet connection
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
+
+# Aliases for the strconv tool
+# https://github.com/cixtor/strconv
+alias replace="strconv replace"
+alias capitalize="strconv capitalize"
+alias upper="strconv uppercase"
+alias lower="strconv lowercase"
+alias md5="strconv md5"
+alias sha1="strconv sha1"
+alias len="strconv length"
+alias b64enc="strconv b64enc"
+alias b64dec="strconv b64dec"
+alias urldec="strconv urldec"
+alias urlenc="strconv urlenc"
+alias rotate="strconv rotate"
 
 # Get the local IP address of all the network nodes.
 function mylocalip() {
@@ -249,20 +234,6 @@ function mylocalip() {
         echo "${name}: ${address}"
         index=$(( index + 1 ))
     done
-}
-
-# Perform a rotation on a string by the value specified
-function rotate() {
-    # Positions to shift the text in the alphabet
-    position=$([[ "$2" == "" ]] && echo "13" || echo "$2")
-    strconv -rotate -text "$1" -num "$position"
-}
-
-# Replace a text string with another
-function replace() {
-    # new: Text string that will replace the old one
-    # old: Text string that will be replaced
-    strconv -replace -text "$1" -old "$2" -new "$3"
 }
 
 # List top ten largest files/directories in current directory
@@ -888,7 +859,7 @@ function redditnick() {
 
 # Unshorten a shortened URL.
 function unshorten() {
-    encoded_url=$(strconv -urlenc -text "$1")
+    encoded_url=$(echo "$1" | strconv urlenc)
     csrftoken=$(genpasswd -type 1Aa -length 32)
     response=$(
         curl -H 'DNT: 1' \
