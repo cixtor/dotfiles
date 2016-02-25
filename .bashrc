@@ -87,6 +87,7 @@ export LS_COLORS
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias cat='cat --show-nonprinting'
+alias sbl='/opt/sublime_text/sublime_text'
 
 # Set version control system commit editor.
 export EDITOR=vim
