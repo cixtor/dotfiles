@@ -222,7 +222,7 @@ alias b64enc="strconv b64enc"
 alias b64dec="strconv b64dec"
 alias urldec="strconv urldec"
 alias urlenc="strconv urlenc"
-alias rotate="strconv rotate"
+alias rot13="strconv rotate"
 
 # Get the local IP address of all the network nodes.
 function mylocalip() {
@@ -248,9 +248,6 @@ alias tulpan='netstat -tulpan'
 
 # Visualise git log (like gitk, in the terminal)
 alias gitgraph='git log --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
-
-# Rotate string thirteen positions
-alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 
 # Download YouTube video and extract audio
 alias mp3dl="youtube-dl --extract-audio --audio-format mp3 --audio-quality 0"
