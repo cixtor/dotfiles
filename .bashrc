@@ -94,9 +94,14 @@ export GIT_EDITOR=vim
 export HGEDITOR=vim
 
 # GoLang - http://golang.org/
+# https://golang.org/doc/install
+# https://golang.org/pkg/#stdlib
+# https://golang.org/doc/articles/race_detector.html
 export GOROOT="/opt/golang/build"
 export GOPATH="/opt/golang/gopath"
+export GORACE="log_path=stderr exitcode=66"
 export PATH="$PATH:$GOROOT/bin"
+export PATH="$PATH:$GOPATH/bin"
 
 # Rust - https://www.rust-lang.org/
 export RUST_SRC_PATH="/opt/rustlang/source/src/"
