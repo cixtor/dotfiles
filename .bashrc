@@ -235,15 +235,15 @@ alias ansic="echo 'Mon Jan _2 15:04:05 2006 - 1136239445'"
 # Perform a rotation on a string by the value specified
 function rotate() {
     # Positions to shift the text in the alphabet
-    if [ "${2}" == "" ]; then pos=13; else pos=$2; fi
-    strconv -rotate -text $1 -num $pos
+    position=$([[ "$2" == "" ]] && echo "13" || echo "$2")
+    strconv -rotate -text "$1" -num "$position"
 }
 
 # Replace a text string with another
 function replace() {
     # new: Text string that will replace the old one
     # old: Text string that will be replaced
-    strconv -replace -text $1 -old $2 -new $3
+    strconv -replace -text "$1" -old "$2" -new "$3"
 }
 
 # List top ten largest files/directories in current directory
@@ -328,7 +328,7 @@ function alert() {
 function say() { echo "$@" | espeak -s 150 2>/dev/null; }
 
 # Cut a string at certain length and return
-function substr() { cut -c1-$1; }
+function substr() { cut -c1-"$1"; }
 
 # Generate a new set of SSH keys
 # https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
@@ -344,7 +344,7 @@ function sshkey() {
 # Rudimentary password manager
 function pwmanager() {
     output="/tmp/passwords.txt"
-    storage="$HOME/passwords.dat"
+    storage="${HOME}/passwords.dat"
     echo "Exporting to ${output}"
     openssl enc -aes-256-cbc -d -in "$storage" -out "$output"
     if [[ "$?" -eq 0 ]]; then
@@ -393,10 +393,11 @@ function newstack() {
         target="/opt/devstack"
         expected="/opt/_devstack_${1}"
         if [[ -e "$expected" ]]; then
-            if $(file -- "$target" | grep -q "symbolic link"); then
+            file -- "$target" | grep -q "symbolic link"
+            if [[ "$?" -eq 0 ]]; then
                 rm -f -- "$target" 2> /dev/null
                 ln -s "$expected" "$target"
-                $(which php) --version
+                $(command -v php) --version 2> /dev/null
                 return 0
             else
                 echo "Target must be a symlink: ${target}"
@@ -419,7 +420,7 @@ function vboxdown() {
 function startlamp() {
     sudo /opt/devstack/ctlscript.sh start apache
     /opt/devstack/ctlscript.sh start mysql
-    if $(command -v mailcatcher &> /dev/null); then
+    if command -v mailcatcher &> /dev/null; then
         mailcatcher --ip 127.0.0.1 --smtp-port 1025 --http-port 1080
     fi
 }
@@ -567,7 +568,7 @@ function hg() {
         code+='ZWxzZToKICAgICAgICAgICAgd2hpdGViYXIgPSBic3BhcmtzW2NvdW50ZXJdLmxqdXN0KG1heGlt'
         code+='dW0pCiAgICAgICAgICAgIHByaW50IGxpbmVzW2NvdW50ZXJdLCB3aGl0ZWJhciwgZGlmZgogICAg'
         code+='ICAgIGNvdW50ZXIgKz0gMQplbHNlOgogICAgcHJpbnQgIkVycm9yOiAiLCBlcnJvcgo='
-        echo "$code" | base64 -d 1> $script
+        echo "$code" | base64 -d 1> "$script"
         if [[ -e "$script" ]]; then
             /usr/bin/env python -- "$script"
             rm -f -- "$script" 2> /dev/null
@@ -655,8 +656,10 @@ function win2gif() {
 
 # Lint CSS files ignoring some rules.
 function csslint() {
-    if $(command -v csslint &> /dev/null); then
-        $(which csslint) --format=compact --ignore=adjoining-classes,box-sizing,box-model,ids "$@"
+    csslint_bin=$(which csslint 2> /dev/null)
+    if [[ "$?" -eq 0 ]]; then
+        rules="adjoining-classes,box-sizing,box-model,ids"
+        "$csslint_bin" --format=compact --ignore="$rules" "$1"
     else
         echo "npm install -g csslint"
         return 1
