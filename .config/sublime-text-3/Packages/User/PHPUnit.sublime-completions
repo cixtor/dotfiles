@@ -167,8 +167,16 @@
             "contents": "assertNull(${1:actual}${2:, '${3:message}'});"
         },
         {
+            "trigger": "assertNan",
+            "contents": "assertNan(${1:variable}${2:, '${3:message}'});"
+        },
+        {
             "trigger": "assertClassHasAttribute",
             "contents": "assertClassHasAttribute(${1:attributeName}, ${2:className}${3:, '${4:message}'});"
+        },
+        {
+            "trigger": "assertArraySubset",
+            "contents": "assertArraySubset(${1:subset}, ${2:array}${3:, '${4:strict}', '${5:message}'});"
         },
         {
             "trigger": "assertClassNotHasAttribute",
@@ -209,6 +217,10 @@
         {
             "trigger": "assertInstanceOf",
             "contents": "assertInstanceOf(${1:expected}, ${2:actual}${3:, '${4:message}'});"
+        },
+        {
+            "trigger": "assertInfinite",
+            "contents": "assertInfinite(${1:variable}${2:, '${3:message}'});"
         },
         {
             "trigger": "assertAttributeInstanceOf",
