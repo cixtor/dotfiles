@@ -387,6 +387,22 @@
             "contents": "setExpectedExceptionRegExp(${1:exceptionName}${2:, ${3:exceptionMessageRegExp}}${4:, ${5:exceptionCode}});"
         },
         {
+            "trigger": "expectException",
+            "contents": "expectException('${1:Exception}');"
+        },
+        {
+            "trigger": "expectExceptionCode",
+            "contents": "expectExceptionCode(${1:code});"
+        },
+        {
+            "trigger": "expectExceptionMessage",
+            "contents": "expectExceptionMessage('${1:message}');"
+        },
+        {
+            "trigger": "expectExceptionMessageRegExp",
+            "contents": "expectExceptionMessageRegExp('/${1:message}/');"
+        },
+        {
             "trigger": "expectOutputString",
             "contents": "expectOutputString(${1:expectedString});"
         },
