@@ -109,15 +109,15 @@ export PATH="$PATH:/opt/rustlang/packages/bin"
 export PATH="$PATH:/opt/rustlang/bin"
 
 # General-Purpose Programming Language
-export PATH="$PATH:/opt/qtcreator/Tools/QtCreator/bin"
-export PATH="$PATH:/opt/dlang/bin"
-export PATH="$PATH:/opt/kore/bin"
-export PATH="$PATH:/opt/ruby/bin"
-export PATH="$PATH:/opt/rvm/bin"
-export PATH="$PATH:/opt/php/bin"
-export PATH="$PATH:/opt/php/sbin"
-export PATH="$PATH:/opt/nodejs/bin"
-export PATH="$PATH:/opt/coffeescript/bin"
+export PATH="$PATH:/opt/qtcreator/Tools/QtCreator/bin" # https://www.qt.io/ide/
+export PATH="$PATH:/opt/dlang/bin" # https://dlang.org/
+export PATH="$PATH:/opt/kore/bin" # https://kore.io/
+export PATH="$PATH:/opt/ruby/bin" # https://www.ruby-lang.org/en/
+export PATH="$PATH:/opt/rvm/bin" # https://rvm.io/
+export PATH="$PATH:/opt/php/bin" # https://secure.php.net/
+export PATH="$PATH:/opt/php/sbin" # https://secure.php.net/
+export PATH="$PATH:/opt/nodejs/bin" # https://nodejs.org/en/
+export PATH="$PATH:/opt/coffeescript/bin" # http://coffeescript.org/
 
 # LLVM Compiler Infrastructure
 # http://llvm.org/releases/download.html
@@ -129,67 +129,64 @@ export PATH="$PATH:/opt/javadevkit/bin"
 export PATH="$PATH:/opt/android-studio/bin"
 
 # Revision Control System (RCS)
-export PATH="$PATH:/opt/gitscm/bin"
-export PATH="$PATH:/opt/mercurial/bin"
-export PATH="$PATH:/opt/subversion/bin"
-export PATH="$PATH:/opt/meld/bin"
+export PATH="$PATH:/opt/gitscm/bin" # https://git-scm.com/
+export PATH="$PATH:/opt/mercurial/bin" # https://www.mercurial-scm.org/
+export PATH="$PATH:/opt/subversion/bin" # https://subversion.apache.org/
+export PATH="$PATH:/opt/meld/bin" # http://meldmerge.org/
 
 # Miscellaneous Apps
 export PATH="$PATH:/opt/commonbin"
 export PATH="$PATH:/opt/mamutools"
 export PATH="$PATH:/opt/standalone"
-export PATH="$PATH:/opt/neovim/bin"
-export PATH="$PATH:/opt/phpshellgen"
-export PATH="$PATH:/opt/cixtorphpcs"
-export PATH="$PATH:/opt/bind9utils/bin"
-export PATH="$PATH:/opt/treecommand/bin"
-export PATH="$PATH:/opt/colordiff/bin"
-export PATH="$PATH:/opt/powertop"
-export PATH="$PATH:/opt/nmap/bin"
-export PATH="$PATH:/opt/pfff/bin"
-export PATH="$PATH:/opt/siege"
-export PATH="$PATH:/opt/xsser"
-export PATH="$PATH:/opt/phan"
-export PATH="$PATH:/opt/hostman"
-export PATH="$PATH:/opt/apktool"
-export PATH="$PATH:/opt/ttygif/bin"
-export PATH="$PATH:/opt/hexedit/bin"
-export PATH="$PATH:/opt/xarchiver/bin"
-export PATH="$PATH:/opt/phantomjs/bin"
-export PATH="$PATH:/opt/casperjs/bin"
-export PATH="$PATH:/opt/charlesproxy/bin"
-export PATH="$PATH:/opt/geoloc/bin"
-export PATH="$PATH:/opt/heroku/bin"
-export PATH="$PATH:/opt/ncftp/bin"
-export PATH="$PATH:/opt/lnav"
-export PATH="$PATH:/opt/nwjs"
+export PATH="$PATH:/opt/neovim/bin" # https://github.com/neovim/neovim
+export PATH="$PATH:/opt/phpshellgen" # https://github.com/cixtor/phpshellgen
+export PATH="$PATH:/opt/bind9utils/bin" # https://wiki.debian.org/Bind9
+export PATH="$PATH:/opt/treecommand/bin" # http://mama.indstate.edu/users/ice/tree/
+export PATH="$PATH:/opt/colordiff/bin" # https://github.com/daveewart/colordiff
+export PATH="$PATH:/opt/powertop" # https://github.com/fenrus75/powertop
+export PATH="$PATH:/opt/nmap/bin" # https://nmap.org/
+export PATH="$PATH:/opt/pfff/bin" # https://github.com/facebook/pfff
+export PATH="$PATH:/opt/siege" # https://github.com/JoeDog/siege
+export PATH="$PATH:/opt/xsser" # https://xsser.03c8.net/
+export PATH="$PATH:/opt/phan" # https://github.com/etsy/phan
+export PATH="$PATH:/opt/apktool" # https://github.com/iBotPeaches/Apktool
+export PATH="$PATH:/opt/ttygif/bin" # https://github.com/icholy/ttygif
+export PATH="$PATH:/opt/hexedit/bin" # http://www.hexedit.com/
+export PATH="$PATH:/opt/phantomjs/bin" # http://phantomjs.org/
+export PATH="$PATH:/opt/casperjs/bin" # http://casperjs.org/
+export PATH="$PATH:/opt/charlesproxy/bin" # https://www.charlesproxy.com/
+export PATH="$PATH:/opt/geoloc/bin" # https://github.com/loadzero/geoloc
+export PATH="$PATH:/opt/heroku/bin" # https://toolbelt.heroku.com/
+export PATH="$PATH:/opt/ncftp/bin" # http://www.ncftp.com/
+export PATH="$PATH:/opt/lnav" # http://lnav.org/
+export PATH="$PATH:/opt/nwjs" # https://github.com/nwjs/nw.js/
 export PATH="$PATH:/opt/iographica" # http://iographica.com/
 export PATH="$PATH:/opt/yuicompressor" # https://github.com/yui/yuicompressor
 export PATH="$PATH:/opt/wkhtmltox/bin" # http://wkhtmltopdf.org/
 
 # Database Engines
-export PATH="$PATH:/opt/redis/bin"
-export PATH="$PATH:/opt/postgresql/bin"
-export PATH="$PATH:/opt/mongodb/bin"
-export PATH="$PATH:/opt/mysql/bin"
-export PATH="$PATH:/opt/sqlite/bin"
+export PATH="$PATH:/opt/redis/bin" # http://redis.io/
+export PATH="$PATH:/opt/postgresql/bin" # https://www.postgresql.org/
+export PATH="$PATH:/opt/mongodb/bin" # https://www.mongodb.com/
+export PATH="$PATH:/opt/mysql/bin" # https://www.mysql.com/
+export PATH="$PATH:/opt/sqlite/bin" # https://sqlite.org/
 
 # Web Server and Performance
-export PATH="$PATH:/opt/apache/bin"
-export PATH="$PATH:/opt/nginx/sbin"
-export PATH="$PATH:/opt/varnish/bin"
-export PATH="$PATH:/opt/memcached/bin"
-export PATH="$PATH:/opt/prax/bin"
+export PATH="$PATH:/opt/apache/bin" # http://www.apache.org/
+export PATH="$PATH:/opt/nginx/sbin" # https://www.nginx.com/
+export PATH="$PATH:/opt/varnish/bin" # https://varnish-cache.org/
+export PATH="$PATH:/opt/memcached/bin" # https://memcached.org/
+export PATH="$PATH:/opt/prax/bin" # https://github.com/ysbaddaden/prax
 
 # HashiCorp: app development, delivery, and maintenance
-export PATH="$PATH:/opt/hashicorp/otto"
-export PATH="$PATH:/opt/hashicorp/nomad"
-export PATH="$PATH:/opt/hashicorp/vault"
-export PATH="$PATH:/opt/hashicorp/consul"
-export PATH="$PATH:/opt/hashicorp/packer"
-export PATH="$PATH:/opt/hashicorp/serfdom"
-export PATH="$PATH:/opt/hashicorp/terraform"
-export PATH="$PATH:/opt/hashicorp/vagrant/bin"
+export PATH="$PATH:/opt/hashicorp/otto" # https://github.com/hashicorp/otto
+export PATH="$PATH:/opt/hashicorp/nomad" # https://github.com/hashicorp/nomad
+export PATH="$PATH:/opt/hashicorp/vault" # https://github.com/hashicorp/vault
+export PATH="$PATH:/opt/hashicorp/consul" # https://github.com/hashicorp/consul
+export PATH="$PATH:/opt/hashicorp/packer" # https://github.com/mitchellh/packer
+export PATH="$PATH:/opt/hashicorp/serfdom" # https://github.com/hashicorp/serf
+export PATH="$PATH:/opt/hashicorp/terraform" # https://github.com/hashicorp/terraform
+export PATH="$PATH:/opt/hashicorp/vagrant/bin" # https://github.com/mitchellh/vagrant
 
 # Include private additional settings.
 if [[ -e "$HOME/.bash_private" ]]; then
