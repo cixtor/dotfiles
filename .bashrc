@@ -413,18 +413,31 @@ function vboxdown() {
     VBoxManage hostonlyif remove vboxnet0
 }
 
-# Start Apache web server, MySQL, and MailCatcher
+# Start Apache, Nginx, MySQL, and MailCatcher
 function startlamp() {
-    sudo /opt/devstack/ctlscript.sh start apache
-    /opt/devstack/ctlscript.sh start mysql
+    if [[ -e "/opt/devstack/apache2" ]]; then
+        sudo /opt/devstack/ctlscript.sh start apache
+    fi
+
+    if [[ -e "/opt/devstack/nginx" ]]; then
+        sudo /opt/devstack/ctlscript.sh start nginx
+        sudo /opt/devstack/ctlscript.sh start php-fpm
+    fi
+
+    if [[ -e "/opt/devstack/mysql" ]]; then
+        /opt/devstack/ctlscript.sh start mysql
+    fi
+
     if command -v mailcatcher &> /dev/null; then
         mailcatcher --ip 127.0.0.1 --smtp-port 1025 --http-port 1080
     fi
 }
 
-# Shutdown Apache web server and MailCatcher
+# Shutdown Apache, Nginx, MySQL, and MailCatcher
 function stoplamp() {
     sudo /opt/devstack/ctlscript.sh stop apache
+    sudo /opt/devstack/ctlscript.sh stop nginx
+    sudo /opt/devstack/ctlscript.sh stop php-fpm
     /opt/devstack/ctlscript.sh stop mysql
     curl -X DELETE 'http://127.0.0.1:1080/' 2> /dev/null
 }
