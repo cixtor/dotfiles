@@ -447,31 +447,30 @@ function psr2() {
     --colors "$@"
 }
 
-function commit() {
-    if [[ "$4" == "" ]]; then
-        echo "Usage: commit -m <message> -d yyyy-mm-dd"
-        return 2
-    else
-        message="false"
-        comdate="false"
+function git() {
+    echo "$@" | grep -q '^commit.* -d'
 
-        if [[ "$1" == "-m" ]] && [[ "$3" == "-d" ]]; then
-            message="$2"
-            comdate="$4"
-        elif [[ "$1" == "-d" ]] && [[ "$3" == "-m" ]]; then
-            message="$4"
-            comdate="$2"
-        fi
+    if [[ "$?" -eq 0 ]]; then
+        echo "$@" | grep -q '^commit .*-d ....-..-..'
 
-        if [[ "$message" == "false" || "$comdate" == "false" ]]; then
-            echo "Invalid options"
+        if [[ "$?" -eq 1 ]]; then
+            echo "Usage: git commit -d yyyy-mm-dd"
             return 1
-        else
-            comdate="${comdate}T09:00:00"
-            export GIT_AUTHOR_DATE="$comdate"
-            export GIT_COMMITTER_DATE="$comdate"
-            git commit --message="$message" --date="$comdate"
         fi
+
+        options=$(echo "$@" | sed 's; -d .*;;')
+        datetime=$(echo "$@" | sed 's;.*-d ;;')
+        comdate="${datetime}T09:00:00"
+
+        export GIT_AUTHOR_DATE="$comdate"
+        export GIT_COMMITTER_DATE="$comdate"
+
+        echo "[author] ${GIT_AUTHOR_DATE}"
+        echo "[commit] ${GIT_COMMITTER_DATE}"
+
+        $(which git) "$options"
+    else
+        $(which git) "$@"
     fi
 }
 
