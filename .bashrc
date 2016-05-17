@@ -93,6 +93,11 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias cat='cat --show-nonprinting'
 
+# Set version control system commit editor.
+export EDITOR=vim
+export GIT_EDITOR=vim
+export HGEDITOR=vim
+
 # GoLang - http://golang.org/
 export GOROOT="/opt/golang/build"
 export GOPATH="/opt/golang/gopath"
