@@ -349,10 +349,12 @@ function runonchange() {
     if $(command -v inotifywait &> /dev/null); then
         DIRECTORY=$(pwd)
         while inotifywait -r -e modify --format='%w%f' "$DIRECTORY"; do
+            URGENCY="normal"
             if [ "$1" != "" ]; then eval "$@"; fi
+            if [[ "$?" -ne 0 ]]; then URGENCY="critical"; fi
             notify-send "Run On Change" \
             "Directory $DIRECTORY has changed" \
-            --icon="dialog-information" \
+            --urgency="$URGENCY" \
             --expire-time=2000
         done
     else
