@@ -664,6 +664,13 @@ function extract() {
     fi
 }
 
+# Get top one million domains from Alexa.
+function tld1m() {
+    wget "http://s3.amazonaws.com/alexa-static/top-1m.csv.zip" \
+    --user-agent="Mozilla/5.0 (KHTML, like Gecko) Safari/537.36" \
+    --output-document="top-1m.csv-$(date +%s).zip"
+}
+
 # Starts a chronometer in the terminal.
 function chronometer() {
     while true; do
