@@ -248,7 +248,7 @@ alias spy='lsof -i -P +c 0 +M'
 alias tulpan='netstat -tulpan'
 
 # Visualise git log (like gitk, in the terminal)
-alias gitgraph='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+alias gitgraph='git log --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 
 # Rotate string thirteen positions
 alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
@@ -484,15 +484,6 @@ function id() {
         done
     else
         /usr/bin/id "$@"
-    fi
-}
-
-# Prettify the output of the Git log command.
-function git() {
-    if [[ "$@" == "log" ]]; then
-        $(which git) log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    else
-        $(which git) "$@"
     fi
 }
 
