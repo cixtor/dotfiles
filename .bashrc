@@ -579,6 +579,21 @@ function agent() {
     --compressed "$@"
 }
 
+# HTTP request with malformed HTTP method.
+function malformed() {
+    curl -X 'FOOBAR / cixtor.com / HELLO " WORLD' \
+    -H 'DNT: 1' \
+    -H 'Pragma: no-cache' \
+    -H 'Upgrade-Insecure-Requests: 1' \
+    -H 'Accept-Language: en-US,en;q=0.8' \
+    -H 'Accept-Encoding: gzip, deflate, sdch, br' \
+    -H 'Accept: text/html,application/xhtml+xml,application/xml' \
+    -H 'User-Agent: Mozilla"/"5.0 (KHTML, like Gecko) Safari/5"3"7"."3"6' \
+    -H 'Cache-Control: no-cache' \
+    -H 'Connection: keep-alive' \
+    --compressed "$@"
+}
+
 # Disguise CURL as the Google web crawler.
 function googlebot() {
     curl -H 'DNT: 1' \
