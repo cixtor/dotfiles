@@ -326,12 +326,12 @@ function pwmanager() {
 }
 
 # Monitor and notify abount directory changes.
-function inotifymake() {
+function runonchange() {
     if $(command -v inotifywait &> /dev/null); then
         DIRECTORY=$(pwd)
         while inotifywait -r -e modify --format='%w%f' "$DIRECTORY"; do
             if [ "$1" != "" ]; then eval "$@"; fi
-            notify-send "Inotify Make" \
+            notify-send "Run On Change" \
             "Directory $DIRECTORY has changed" \
             --icon="dialog-information" \
             --expire-time=2000
@@ -729,6 +729,7 @@ function install_mate_monokai_terminal() {
 
 # Check reddit username availability
 function redditnick() {
+    response=$(
     curl 'https://www.reddit.com/api/check_username.json' \
     -H 'Accept-Language: en-US,en;q=0.8' \
     -H 'Accept-Encoding: gzip, deflate, br' \
@@ -740,7 +741,15 @@ function redditnick() {
     -H 'Origin: https://www.reddit.com' \
     -H 'Connection: keep-alive' \
     --data "user=${1}" \
-    --compressed --silent | python -m json.tool
+    --compressed --silent
+    )
+    if [[ "$response" == "{}" ]]; then
+        echo "${1} is available"
+        return 0
+    else
+        echo "$response"
+        return 1
+    fi
 }
 
 # Unshorten a shortened URL.
