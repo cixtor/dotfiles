@@ -325,6 +325,17 @@ function pwmanager() {
     fi
 }
 
+# Display information about an SSL certificate.
+function sslclient() {
+    if [[ "$1" == "" ]]; then
+        echo "Usage: sslclient [domain]"
+        return 1
+    else
+        echo -n '' | openssl s_client -connect "${1}:443"
+        return 0
+    fi
+}
+
 # Monitor and notify abount directory changes.
 function runonchange() {
     if $(command -v inotifywait &> /dev/null); then
