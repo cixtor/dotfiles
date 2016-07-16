@@ -1,6 +1,13 @@
 {
-	"binary": "clang-format-3.5",
+	"binary": "/opt/llvm/bin/clang-format",
 	"format_on_save": true,
-	"languages": ["C", "C++", "C++11", "Objective-C", "Objective-C++"],
-	"style": "LLVM",
+	"languages":
+	[
+		"C",
+		"C++",
+		"C++11",
+		"Objective-C",
+		"Objective-C++"
+	],
+	"style": "LLVM"
 }
