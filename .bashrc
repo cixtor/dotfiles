@@ -292,10 +292,12 @@ function soname() {
 # Sudo for special host file manager actions.
 # https://github.com/cixtor/hostman
 function hostman() {
-    if $(echo "$@" | grep -qE -- '-add|-disable|-enable|-remove'); then
-        sudo env "PATH=$PATH" /opt/hostman/hostman $@
+    echo "$@" | grep -qE -- '-add|-disable|-enable|-remove'
+
+    if [[ "$?" -eq 0 ]]; then
+        sudo env "PATH=$PATH" /opt/hostman/hostman "$@"
     else
-        /opt/hostman/hostman $@
+        /opt/hostman/hostman "$@"
     fi
 }
 
