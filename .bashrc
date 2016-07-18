@@ -350,14 +350,15 @@ function sslclient() {
 
 # Monitor and notify abount directory changes.
 function runonchange() {
-    if $(command -v inotifywait &> /dev/null); then
+    command -v inotifywait &> /dev/null
+    if [[ "$?" -eq 0 ]]; then
         DIRECTORY=$(pwd)
         while inotifywait -r -e modify --format='%w%f' "$DIRECTORY"; do
-            URGENCY="normal"
-            if [ "$1" != "" ]; then eval "$@"; fi
-            if [[ "$?" -ne 0 ]]; then URGENCY="critical"; fi
+            if [[ "$1" != "" ]]; then eval "$@"; fi
+            URGENCY=$([[ $? -eq 0 ]] && echo normal || echo critical)
+            SHORT_DIRECTORY="${DIRECTORY//$HOME/\~}"
             notify-send "Run On Change" \
-            "Directory $DIRECTORY has changed" \
+            "Directory ${SHORT_DIRECTORY} has changed" \
             --urgency="$URGENCY" \
             --expire-time=2000
         done
