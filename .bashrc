@@ -103,6 +103,11 @@ export GORACE="log_path=stderr exitcode=66"
 export PATH="$PATH:$GOROOT/bin"
 export PATH="$PATH:$GOPATH/bin"
 
+# Protobuf - Google's data interchange format
+# https://developers.google.com/protocol-buffers/
+# https://github.com/google/protobuf
+export PATH="$PATH:/opt/protobuf/bin"
+
 # Rust - https://www.rust-lang.org/
 export RUST_SRC_PATH="/opt/rustlang/source/src/"
 export PATH="$PATH:/opt/rustlang/packages/bin"
