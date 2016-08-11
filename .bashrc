@@ -223,11 +223,23 @@ alias capitalize='strconv -capitalize -text'
 # Convert all the characters in a text string into their lower form
 alias lowercase='strconv -lowercase -text'
 
+# Print generic default date based on Go.
+alias ansic="echo 'Mon Jan _2 15:04:05 2006 - 1136239445'"
+
 # Get the public IP address of the current Internet connection
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 
-# Print generic default date based on Go.
-alias ansic="echo 'Mon Jan _2 15:04:05 2006 - 1136239445'"
+# Get the local IP address of all the network nodes.
+function mylocalip() {
+    index=0
+    names=($(ifconfig | grep 'Link encap' | awk '{print $1}'))
+    ips=($(ifconfig | grep inet | grep -v inet6 | awk '{print $2}'))
+    for name in "${names[@]}"; do
+        address=$(echo "${ips[index]}" | sed 's/addr://')
+        echo "${name}: ${address}"
+        index=$(( index + 1 ))
+    done
+}
 
 # Perform a rotation on a string by the value specified
 function rotate() {
