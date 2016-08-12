@@ -112,6 +112,7 @@ export PATH="$PATH:/opt/protobuf/bin"
 export RUST_SRC_PATH="/opt/rustlang/source/src/"
 export PATH="$PATH:/opt/rustlang/packages/bin"
 export PATH="$PATH:/opt/rustlang/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 # General-Purpose Programming Language
 export PATH="$PATH:/opt/qtcreator/Tools/QtCreator/bin" # https://www.qt.io/ide/
