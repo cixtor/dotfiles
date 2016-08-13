@@ -280,6 +280,21 @@ alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 # Download YouTube video and extract audio
 alias mp3dl="youtube-dl --extract-audio --audio-format mp3 --audio-quality 0"
 
+# Subresource Integrity
+#
+# https://www.srihash.org/
+# https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
+#
+# Subresource Integrity (SRI) is a security feature that enables browsers to
+# verify that files they fetch (for example, from a CDN) are delivered without
+# unexpected manipulation. It works by allowing you to provide a cryptographic
+# hash that a fetched file must match.
+function srihash() {
+    if [[ -e "$1" ]]; then DATA=$(cat -- "$1"); else DATA=$(curl "$1" -s); fi
+    RESP=$(echo -n "$DATA" | openssl dgst -sha384 -binary | openssl enc -base64 -A)
+    echo "sha384-${RESP}"
+}
+
 # Kill stressed running process.
 function killproc() {
     if [[ "$1" == "" ]]; then
