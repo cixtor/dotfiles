@@ -169,6 +169,7 @@ export PATH="$PATH:/opt/nwjs" # https://github.com/nwjs/nw.js/
 export PATH="$PATH:/opt/iographica" # http://iographica.com/
 export PATH="$PATH:/opt/yuicompressor" # https://github.com/yui/yuicompressor
 export PATH="$PATH:/opt/wkhtmltox/bin" # http://wkhtmltopdf.org/
+export PATH="$PATH:/opt/hugo" # http://gohugo.io/
 
 # Database Engines
 export PATH="$PATH:/opt/redis/bin" # http://redis.io/
