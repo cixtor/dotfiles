@@ -28,6 +28,9 @@ shopt -s checkwinsize
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
 
+# Additional binary location.
+export PATH="$PATH:/usr/local/sbin"
+
 # https://github.com/cixtor/powergoline
 # go get -u github.com/cixtor/powergoline
 export PROMPT_COMMAND="set_prompt_command; $PROMPT_COMMAND"
