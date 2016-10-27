@@ -171,6 +171,7 @@ export PATH="$PATH:/opt/yuicompressor" # https://github.com/yui/yuicompressor
 export PATH="$PATH:/opt/wkhtmltox/bin" # http://wkhtmltopdf.org/
 export PATH="$PATH:/opt/hugo" # http://gohugo.io/
 export PATH="$PATH:/opt/ipfs" # https://ipfs.io/
+export PATH="$PATH:/opt/vegeta/bin" # https://github.com/tsenart/vegeta
 
 # Database Engines
 export PATH="$PATH:/opt/redis/bin" # http://redis.io/
