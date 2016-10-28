@@ -1,0 +1,104 @@
+#!/bin/bash
+#
+# CodeEval
+# http://cixtor.com/
+# https://github.com/cixtor/mamutools
+# http://www.codeeval.com/
+#
+# CodeEval is a platform used by developers to showcase their skills. Developers
+# can participate in app building competitions and win cash/prizes. They can also
+# solve programming challenges as a way to impress employers with their technical
+# skills. Employers can use CodeEval as a way to enhance their brand by launching
+# competitions/programming challenges and as a means to get introduced to the best
+# developers.
+#
+IFS=$'\n'
+
+if [[ "$1" == "" ]] || [[ "$1" =~ help ]]; then
+    echo "CodeEval Solution Checker"
+    echo "https://www.codeeval.com/"
+    echo "Usage:"
+    echo "  $0 [challenge.ext] [--debug]"
+    echo "  $0 solution.cpp --debug"
+    echo "  $0 solution.go"
+    exit 1
+fi
+
+EXEC_COMMAND="null"
+SOLUTION_FILE="$1"
+DEBUG_UNIT_TEST="$2"
+TEMP_INPUT_FILE='temp.input.txt'
+UNIT_TEST_FILE='temp.unittest.php'
+PHPUNIT_BIN="/usr/local/bin/phpunit"
+EXTENSION=$(echo "${SOLUTION_FILE}" | rev | cut -d. -f1 | rev)
+
+case "$EXTENSION" in
+    'cpp' ) EXEC_COMMAND="g++ -o test.bin ${SOLUTION_FILE} && ./test.bin %s && rm test.bin";;
+    'go' ) EXEC_COMMAND="go run ${SOLUTION_FILE} %s";;
+    'sh' ) EXEC_COMMAND="bash ${SOLUTION_FILE} %s";;
+    'rb' ) EXEC_COMMAND="ruby ${SOLUTION_FILE} %s";;
+    'py' ) EXEC_COMMAND="python3 ${SOLUTION_FILE} %s";;
+    'php' ) EXEC_COMMAND="php -f ${SOLUTION_FILE} %s";;
+esac
+
+if [[ "${EXEC_COMMAND}" == "null" ]]; then
+    echo "[x] Not supported EXTENSION file: ${EXTENSION}"
+    exit 1
+fi
+
+if [[ ! -e "input.txt" ]]; then
+    echo "[x] There is no input.txt file"
+    exit 1
+fi
+
+if [[ ! -e "output.txt" ]]; then
+    echo "[x] There is no output.txt file"
+    exit 1
+fi
+
+if [[ "$PHPUNIT_BIN" == "" ]]; then
+    echo "[x] PHPUnit was not found"
+    echo "    https://phpunit.de/"
+    exit 1
+fi
+
+input_values=()
+output_values=()
+
+for line in $(cat input.txt); do
+    input_values+=($line)
+done
+
+for line in $(cat output.txt); do
+    output_values+=($line)
+done
+
+total_cases="${#input_values[@]}"
+
+echo '<?php' > $UNIT_TEST_FILE
+echo 'function validate_solution( $text = "" ) {' >> $UNIT_TEST_FILE
+echo "    \$TEMP_INPUT_FILE = '$TEMP_INPUT_FILE';" >> $UNIT_TEST_FILE
+echo "    \$EXEC_COMMAND = sprintf( '$EXEC_COMMAND', \$TEMP_INPUT_FILE );" >> $UNIT_TEST_FILE
+echo '    $text = base64_decode( $text );' >> $UNIT_TEST_FILE
+echo '    file_put_contents( $TEMP_INPUT_FILE, $text, LOCK_EX );' >> $UNIT_TEST_FILE
+echo "    return exec( \$EXEC_COMMAND );" >> $UNIT_TEST_FILE
+echo '}' >> $UNIT_TEST_FILE
+
+echo 'class CodeEvalTest extends PHPUnit_Framework_TestCase {' >> $UNIT_TEST_FILE
+for (( i=0; i<$total_cases; i++ )); do
+    inputstr=$(echo "${input_values[$i]}" | base64 | tr -d '\n')
+    expected=$(echo "${output_values[$i]}" | sed "s/'/\\\'/g")
+    echo "    public function test_codeeval_case_$i() {" >> $UNIT_TEST_FILE
+    echo "        \$this->assertEquals( '$expected', validate_solution( '$inputstr' ) );" >> $UNIT_TEST_FILE
+    echo '    }' >> $UNIT_TEST_FILE
+done
+echo '}' >> $UNIT_TEST_FILE
+
+if [[ "${DEBUG_UNIT_TEST}" == "--debug" ]]; then
+    cat $UNIT_TEST_FILE && exit 0
+fi
+
+$PHPUNIT_BIN --color $UNIT_TEST_FILE
+rm -fv $UNIT_TEST_FILE
+rm -fv $TEMP_INPUT_FILE
+exit 0
