@@ -41,64 +41,62 @@ case "$EXTENSION" in
     'php' ) EXEC_COMMAND="php -f ${SOLUTION_FILE} %s";;
 esac
 
-if [[ "${EXEC_COMMAND}" == "null" ]]; then
-    echo "[x] Not supported EXTENSION file: ${EXTENSION}"
+if [[ "$EXEC_COMMAND" == "null" ]]; then
+    echo "Language is not supported: ${EXTENSION}"
     exit 1
 fi
 
 if [[ ! -e "input.txt" ]]; then
-    echo "[x] There is no input.txt file"
+    echo "Input file is missing: input.txt"
     exit 1
 fi
 
 if [[ ! -e "output.txt" ]]; then
-    echo "[x] There is no output.txt file"
+    echo "Output file is missing: output.txt"
     exit 1
 fi
 
 if [[ "$PHPUNIT_BIN" == "" ]]; then
-    echo "[x] PHPUnit was not found"
-    echo "    https://phpunit.de/"
+    echo "PHPUnit was not found — https://phpunit.de/"
     exit 1
 fi
 
-input_values=()
-output_values=()
+INPUT_VALUES=()
+OUTPUT_VALUES=()
+while read -r LINE; do INPUT_VALUES+=("$LINE"); done < input.txt
+while read -r LINE; do OUTPUT_VALUES+=("$LINE"); done < output.txt
 
-for line in $(cat input.txt); do
-    input_values+=($line)
+TOTAL_CASES="${#INPUT_VALUES[@]}"
+
+PHP_CODE="" # Holds the PHPUnit test cases.
+PHP_CODE+="<?php\n"
+PHP_CODE+="function s(\$text = '') {\n"
+PHP_CODE+="  \$input = '$TEMP_INPUT_FILE';\n"
+PHP_CODE+="  \$text = base64_decode(\$text);\n"
+PHP_CODE+="  \$command = sprintf('$EXEC_COMMAND', \$input);\n"
+PHP_CODE+="  file_put_contents(\$input, \$text, LOCK_EX);\n"
+PHP_CODE+="  return exec(\$command);\n"
+PHP_CODE+="}\n"
+PHP_CODE+="class CodeEvalTest extends PHPUnit_Framework_TestCase {\n"
+for (( KEY=0; KEY<TOTAL_CASES; KEY++ )); do
+    INPUTSTR=$(echo "${INPUT_VALUES[KEY]}" | base64 | tr -d '\n')
+    EXPECTED=$(echo "${OUTPUT_VALUES[KEY]}" | sed "s/'/\\\'/g")
+    PHP_CODE+="  public function test_codeeval_case_${KEY}() {\n"
+    PHP_CODE+="    \$this->assertEquals('$EXPECTED', s('${INPUTSTR}'));\n"
+    PHP_CODE+="  }\n"
 done
+PHP_CODE+="}"
 
-for line in $(cat output.txt); do
-    output_values+=($line)
-done
+# Write PHP code into the test file.
+echo -e "$PHP_CODE" > "$UNIT_TEST_FILE"
 
-total_cases="${#input_values[@]}"
-
-echo '<?php' > $UNIT_TEST_FILE
-echo 'function validate_solution( $text = "" ) {' >> $UNIT_TEST_FILE
-echo "    \$TEMP_INPUT_FILE = '$TEMP_INPUT_FILE';" >> $UNIT_TEST_FILE
-echo "    \$EXEC_COMMAND = sprintf( '$EXEC_COMMAND', \$TEMP_INPUT_FILE );" >> $UNIT_TEST_FILE
-echo '    $text = base64_decode( $text );' >> $UNIT_TEST_FILE
-echo '    file_put_contents( $TEMP_INPUT_FILE, $text, LOCK_EX );' >> $UNIT_TEST_FILE
-echo "    return exec( \$EXEC_COMMAND );" >> $UNIT_TEST_FILE
-echo '}' >> $UNIT_TEST_FILE
-
-echo 'class CodeEvalTest extends PHPUnit_Framework_TestCase {' >> $UNIT_TEST_FILE
-for (( i=0; i<$total_cases; i++ )); do
-    inputstr=$(echo "${input_values[$i]}" | base64 | tr -d '\n')
-    expected=$(echo "${output_values[$i]}" | sed "s/'/\\\'/g")
-    echo "    public function test_codeeval_case_$i() {" >> $UNIT_TEST_FILE
-    echo "        \$this->assertEquals( '$expected', validate_solution( '$inputstr' ) );" >> $UNIT_TEST_FILE
-    echo '    }' >> $UNIT_TEST_FILE
-done
-echo '}' >> $UNIT_TEST_FILE
-
-if [[ "${DEBUG_UNIT_TEST}" == "--debug" ]]; then
-    cat $UNIT_TEST_FILE && exit 0
+# Print the content of the test file if necessary.
+if [[ "$DEBUG_UNIT_TEST" == "--debug" ]]; then
+    cat "$UNIT_TEST_FILE" && exit 0
 fi
 
-$PHPUNIT_BIN --color $UNIT_TEST_FILE
-rm -fv $UNIT_TEST_FILE
-rm -fv $TEMP_INPUT_FILE
+# Execute the test file using the PHPUnit tool.
+eval "$PHPUNIT_BIN --color $UNIT_TEST_FILE"
+rm -fv -- "$UNIT_TEST_FILE"
+rm -fv -- "$TEMP_INPUT_FILE"
 exit 0
