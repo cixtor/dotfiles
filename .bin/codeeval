@@ -1,9 +1,8 @@
 #!/bin/bash
 #
 # CodeEval
-# http://cixtor.com/
-# https://github.com/cixtor/mamutools
-# http://www.codeeval.com/
+# https://cixtor.com/
+# https://www.codeeval.com/
 #
 # CodeEval is a platform used by developers to showcase their skills. Developers
 # can participate in app building competitions and win cash/prizes. They can also
@@ -31,33 +30,8 @@ TEMP_INPUT_FILE='temp.input.txt'
 UNIT_TEST_FILE='temp.unittest.php'
 PHPUNIT_BIN="/usr/local/bin/phpunit"
 EXTENSION=$(echo "${SOLUTION_FILE}" | rev | cut -d. -f1 | rev)
-
-case "$EXTENSION" in
-    'cpp' ) EXEC_COMMAND="g++ -o test.bin ${SOLUTION_FILE} && ./test.bin %s && rm test.bin";;
-    'go' ) EXEC_COMMAND="go run ${SOLUTION_FILE} %s";;
-    'sh' ) EXEC_COMMAND="bash ${SOLUTION_FILE} %s";;
-    'rb' ) EXEC_COMMAND="ruby ${SOLUTION_FILE} %s";;
-    'py' ) EXEC_COMMAND="python3 ${SOLUTION_FILE} %s";;
-    'php' ) EXEC_COMMAND="php -f ${SOLUTION_FILE} %s";;
-esac
-
 if [[ "$EXEC_COMMAND" == "null" ]]; then
     echo "Language is not supported: ${EXTENSION}"
-    exit 1
-fi
-
-if [[ ! -e "input.txt" ]]; then
-    echo "Input file is missing: input.txt"
-    exit 1
-fi
-
-if [[ ! -e "output.txt" ]]; then
-    echo "Output file is missing: output.txt"
-    exit 1
-fi
-
-if [[ "$PHPUNIT_BIN" == "" ]]; then
-    echo "PHPUnit was not found — https://phpunit.de/"
     exit 1
 fi
 
