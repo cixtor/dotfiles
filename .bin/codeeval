@@ -30,8 +30,19 @@ TEMP_INPUT_FILE='temp.input.txt'
 UNIT_TEST_FILE='temp.unittest.php'
 PHPUNIT_BIN="/usr/local/bin/phpunit"
 EXTENSION=$(echo "${SOLUTION_FILE}" | rev | cut -d. -f1 | rev)
+
 if [[ "$EXEC_COMMAND" == "null" ]]; then
     echo "Language is not supported: ${EXTENSION}"
+    exit 1
+fi
+
+if [[ ! -e "input.txt" ]]; then
+    echo "Input file is missing: input.txt"
+    exit 1
+fi
+
+if [[ ! -e "output.txt" ]]; then
+    echo "Output file is missing: output.txt"
     exit 1
 fi
 
