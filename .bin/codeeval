@@ -31,6 +31,10 @@ UNIT_TEST_FILE='temp.unittest.php'
 PHPUNIT_BIN="/usr/local/bin/phpunit"
 EXTENSION=$(echo "${SOLUTION_FILE}" | rev | cut -d. -f1 | rev)
 
+case "$EXTENSION" in
+    'php' ) EXEC_COMMAND="php -f ${SOLUTION_FILE} %s";;
+esac
+
 if [[ "$EXEC_COMMAND" == "null" ]]; then
     echo "Language is not supported: ${EXTENSION}"
     exit 1
