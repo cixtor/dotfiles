@@ -46,6 +46,11 @@ if [[ ! -e "output.txt" ]]; then
     exit 1
 fi
 
+if [[ "$PHPUNIT_BIN" == "" ]]; then
+    echo "PHPUnit was not found — https://phpunit.de/"
+    exit 1
+fi
+
 INPUT_VALUES=()
 OUTPUT_VALUES=()
 while read -r LINE; do INPUT_VALUES+=("$LINE"); done < input.txt
