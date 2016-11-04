@@ -1,0 +1,4 @@
+#!/bin/bash
+# Display version number of shared libraries.
+readelf -d "$1" | grep SONAME 2> /dev/null
+ldd "$1" 2> /dev/null
