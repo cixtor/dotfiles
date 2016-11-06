@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Generic aliases
+alias ls='ls -G'
+alias cat='cat -v'
+alias grep='grep --color=auto'
+
+# Print generic default date based on Go.
+alias ansic="echo 'Mon Jan _2 15:04:05 2006 - 1136239445'"
+
+# Get the public IP address of the current Internet connection
+alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
+
+# Aliases for the strconv tool
+# https://github.com/cixtor/strconv
+alias replace="strconv replace"
+alias capitalize="strconv capitalize"
+alias upper="strconv uppercase"
+alias lower="strconv lowercase"
+alias md5="strconv md5"
+alias sha1="strconv sha1"
+alias len="strconv length"
+alias b64enc="strconv b64enc"
+alias b64dec="strconv b64dec"
+alias urldec="strconv urldec"
+alias urlenc="strconv urlenc"
+alias rot13="strconv rotate"
+
+# List top ten largest files/directories in current directory
+alias ducks='du -cks * | sort -rn | head -11'
+
+# Identify and search for active network connections
+alias spy='lsof -i -P +c 0 +M'
+
+# Identify what ports are open on the computer
+alias tulpan='netstat -tulpan'
+
+# Visualise git log (like gitk, in the terminal)
+alias gitgraph='git log --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
+
+# Download YouTube video and extract audio
+alias mp3dl="youtube-dl --extract-audio --audio-format mp3 --audio-quality 0"

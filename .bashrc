@@ -1,17 +1,13 @@
+#!/bin/bash
+#
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
 # Source global definitions
 if [ -f /etc/bash.bashrc ]; then
-    . /etc/bash.bashrc
+    source /etc/bash.bashrc
 fi
-
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -21,8 +17,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
 HISTFILESIZE=2000
+HISTSIZE=1000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -32,33 +28,12 @@ shopt -s checkwinsize
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # https://github.com/cixtor/powergoline
+# go get -u github.com/cixtor/powergoline
 export PROMPT_COMMAND="set_prompt_command; $PROMPT_COMMAND"
 # PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[1;33m\]\u@\h: \[\033[1;34m\]\w\[\033[00m\] \$ '
 function set_prompt_command() {
-    export PS1="$($HOME/powergoline $? 2> /dev/null)"
+    export PS1="$(powergoline $? 2> /dev/null)"
 }
 
 # LS-Colors
@@ -83,16 +58,16 @@ LS_COLORS+=':*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00
 LS_COLORS+=':*.spx=00;36:*.xspf=00;36'
 export LS_COLORS
 
-# Generic aliases
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-alias cat='cat --show-nonprinting'
-alias sbl='/opt/sublime_text/sublime_text'
-
 # Set version control system commit editor.
 export EDITOR=vim
-export GIT_EDITOR=vim
 export HGEDITOR=vim
+export GIT_EDITOR=vim
+
+# Disable Homebrew analytics
+export HOMEBREW_NO_ANALYTICS=1
+
+# Remove Homebrew's stupid emoji
+export HOMEBREW_NO_EMOJI=1
 
 # GoLang - http://golang.org/
 # https://golang.org/doc/install
@@ -114,6 +89,11 @@ export RUST_SRC_PATH="/opt/rustlang/source/src/"
 export PATH="$PATH:/opt/rustlang/packages/bin"
 export PATH="$PATH:/opt/rustlang/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
+
+# IPFS is the Distributed Web
+# https://ipfs.io/
+export PATH="$PATH:/opt/ipfs"
+export IPFS_PATH="$HOME/IPFS"
 
 # General-Purpose Programming Language
 export PATH="$PATH:/opt/qtcreator/Tools/QtCreator/bin" # https://www.qt.io/ide/
@@ -151,6 +131,7 @@ export PATH="$PATH:/opt/bind9utils/bin" # https://wiki.debian.org/Bind9
 export PATH="$PATH:/opt/treecommand/bin" # http://mama.indstate.edu/users/ice/tree/
 export PATH="$PATH:/opt/colordiff/bin" # https://github.com/daveewart/colordiff
 export PATH="$PATH:/opt/powertop" # https://github.com/fenrus75/powertop
+export PATH="$PATH:/opt/ngrok/bin" # https://ngrok.com/
 export PATH="$PATH:/opt/nmap/bin" # https://nmap.org/
 export PATH="$PATH:/opt/pfff/bin" # https://github.com/facebook/pfff
 export PATH="$PATH:/opt/siege" # https://github.com/JoeDog/siege
@@ -171,8 +152,9 @@ export PATH="$PATH:/opt/iographica" # http://iographica.com/
 export PATH="$PATH:/opt/yuicompressor" # https://github.com/yui/yuicompressor
 export PATH="$PATH:/opt/wkhtmltox/bin" # http://wkhtmltopdf.org/
 export PATH="$PATH:/opt/hugo" # http://gohugo.io/
-export PATH="$PATH:/opt/ipfs" # https://ipfs.io/
 export PATH="$PATH:/opt/vegeta/bin" # https://github.com/tsenart/vegeta
+export PATH="$PATH:/opt/fierce/bin" # http://git.kali.org/gitweb/?p=packages/fierce.git
+export PATH="$PATH:/opt/metagoofil/bin" # https://github.com/laramies/metagoofil
 
 # Database Engines
 export PATH="$PATH:/opt/redis/bin" # http://redis.io/
@@ -198,743 +180,18 @@ export PATH="$PATH:/opt/hashicorp/serfdom" # https://github.com/hashicorp/serf
 export PATH="$PATH:/opt/hashicorp/terraform" # https://github.com/hashicorp/terraform
 export PATH="$PATH:/opt/hashicorp/vagrant/bin" # https://github.com/mitchellh/vagrant
 
-# Include private additional settings.
-if [[ -e "$HOME/.bash_private" ]]; then
-    source "$HOME/.bash_private"
+# Export the location of the SublimeText command line shortcut.
+export PATH="$PATH:/Applications/Sublime Text.app/Contents/SharedSupport/bin"
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.aliases, instead of adding them here directly. See examples at
+# /usr/share/doc/bash-doc/examples in the bash-doc package.
+if [ -f "$HOME/.aliases" ]; then
+    source "$HOME/.aliases"
 fi
 
-# Print generic default date based on Go.
-alias ansic="echo 'Mon Jan _2 15:04:05 2006 - 1136239445'"
-
-# Get the public IP address of the current Internet connection
-alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
-
-# Aliases for the strconv tool
-# https://github.com/cixtor/strconv
-alias replace="strconv replace"
-alias capitalize="strconv capitalize"
-alias upper="strconv uppercase"
-alias lower="strconv lowercase"
-alias md5="strconv md5"
-alias sha1="strconv sha1"
-alias len="strconv length"
-alias b64enc="strconv b64enc"
-alias b64dec="strconv b64dec"
-alias urldec="strconv urldec"
-alias urlenc="strconv urlenc"
-alias rot13="strconv rotate"
-
-# Get the local IP address of all the network nodes.
-function mylocalip() {
-    index=0
-    names=($(ifconfig | grep 'Link encap' | awk '{print $1}'))
-    ips=($(ifconfig | grep inet | grep -v inet6 | awk '{print $2}'))
-    for name in "${names[@]}"; do
-        address=$(echo "${ips[index]}" | sed 's/addr://')
-        if [[ "$address" == "" ]]; then address="none"; fi
-        echo "${name}: ${address}"
-        index=$(( index + 1 ))
-    done
-}
-
-# List top ten largest files/directories in current directory
-alias ducks='du -cks * | sort -rn | head -11'
-
-# Identify and search for active network connections
-alias spy='lsof -i -P +c 0 +M'
-
-# Identify what ports are open on the computer
-alias tulpan='netstat -tulpan'
-
-# Visualise git log (like gitk, in the terminal)
-alias gitgraph='git log --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
-
-# Download YouTube video and extract audio
-alias mp3dl="youtube-dl --extract-audio --audio-format mp3 --audio-quality 0"
-
-# Subresource Integrity
-#
-# https://www.srihash.org/
-# https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
-#
-# Subresource Integrity (SRI) is a security feature that enables browsers to
-# verify that files they fetch (for example, from a CDN) are delivered without
-# unexpected manipulation. It works by allowing you to provide a cryptographic
-# hash that a fetched file must match.
-function srihash() {
-    if [[ -e "$1" ]]; then DATA=$(cat -- "$1"); else DATA=$(curl "$1" -s); fi
-    RESP=$(echo -n "$DATA" | openssl dgst -sha384 -binary | openssl enc -base64 -A)
-    echo "sha384-${RESP}"
-}
-
-# Kill stressed running process.
-function killproc() {
-    if [[ "$1" == "" ]]; then
-        echo "Usage: killproc [process]"
-        return 2
-    else
-        PIDS=($(pgrep "$1"))
-        for PID in "${PIDS[@]}"; do
-            echo -n "- Killing ${PID} "
-            skill -kill "$PID"
-            if [[ "$?" -eq 0 ]]; then
-                echo -e "\e[0;92m\u2714\e[0m"
-            else
-                echo -e "\e[0;91m\u2718\e[0m"
-            fi
-        done
-    fi
-}
-
-# Kill stressed file manager.
-function killcaja() {
-    killproc "caja"
-}
-
-# Display version number of shared libraries.
-function soname() {
-    readelf -d "$1" | grep SONAME 2> /dev/null
-    ldd "$1" 2> /dev/null
-}
-
-function man() {
-    LESS_TERMCAP_mb=$'\e'"[1;31m" \
-    LESS_TERMCAP_md=$'\e'"[1;31m" \
-    LESS_TERMCAP_me=$'\e'"[0m" \
-    LESS_TERMCAP_se=$'\e'"[0m" \
-    LESS_TERMCAP_so=$'\e'"[1;44;33m" \
-    LESS_TERMCAP_ue=$'\e'"[0m" \
-    LESS_TERMCAP_us=$'\e'"[1;32m" \
-    command man "$@"
-}
-
-# Sudo for special host file manager actions.
-# https://github.com/cixtor/hostman
-function hostman() {
-    echo "$@" | grep -qE -- '-add|-disable|-enable|-remove'
-
-    if [[ "$?" -eq 0 ]]; then
-        sudo env "PATH=$PATH" /opt/hostman/hostman "$@"
-    else
-        /opt/hostman/hostman "$@"
-    fi
-}
-
-function alert() {
-    URGENCY=$([[ $? -eq 0 ]] && echo normal || echo critical)
-    MESSAGE=$(history | tail -n1 | sed 's;^\s*[0-9]\+\s*;;')
-    MESSAGE=$(echo "$MESSAGE" | sed 's/\s*[&;]\+\s*alert//')
-    notify-send --urgency="$URGENCY" "$MESSAGE"
-}
-
-# Alias for the text-to-speech engine
-function say() { echo "$@" | espeak -s 150 2>/dev/null; }
-
-# Cut a string at certain length and return
-function substr() { cut -c1-"$1"; }
-
-# Generate a new set of SSH keys
-# https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
-function sshkey() {
-    if [[ "$1" == "" ]]; then
-        echo "Usage: sshkey [email]"
-        return 2
-    fi
-
-    ssh-keygen -t rsa -b 4096 -C "$1"
-}
-
-# Rudimentary password manager
-function pwmanager() {
-    output="/tmp/passwords.txt"
-    storage="${HOME}/passwords.dat"
-    echo "Exporting to ${output}"
-    openssl enc -aes-256-cbc -d -in "$storage" -out "$output"
-    if [[ "$?" -eq 0 ]]; then
-        /usr/bin/vim -- "$output"
-        rm -fv -- "$output"
-    fi
-}
-
-# Display information about an SSL certificate.
-function sslclient() {
-    if [[ "$1" == "" ]]; then
-        echo "Usage: sslclient [domain]"
-        return 1
-    else
-        echo -n '' | openssl s_client -connect "${1}:443"
-        return 0
-    fi
-}
-
-# Monitor and notify abount directory changes.
-function runonchange() {
-    command -v inotifywait &> /dev/null
-    if [[ "$?" -eq 0 ]]; then
-        DIRECTORY=$(pwd)
-        while inotifywait -r -e modify --format='%w%f' "$DIRECTORY"; do
-            if [[ "$1" != "" ]]; then eval "$@"; fi
-            URGENCY=$([[ $? -eq 0 ]] && echo normal || echo critical)
-            SHORT_DIRECTORY="${DIRECTORY//$HOME/\~}"
-            notify-send "Run On Change" \
-            "Directory ${SHORT_DIRECTORY} has changed" \
-            --urgency="$URGENCY" \
-            --expire-time=2000
-        done
-    else
-        echo "apt-get install inotify-tools"
-        return 1
-    fi
-}
-
-# Switch between multiple development stacks
-function newstack() {
-    if [[ "$1" == "" ]]; then
-        echo "Usage: newstack [stack_version]"
-        return 2
-    else
-        target="/opt/devstack"
-        expected="/opt/_devstack_${1}"
-        if [[ -e "$expected" ]]; then
-            file -- "$target" | grep -q "symbolic link"
-            if [[ "$?" -eq 0 ]]; then
-                rm -f -- "$target" 2> /dev/null
-                ln -s "$expected" "$target"
-                $(command -v php) --version 2> /dev/null
-                return 0
-            else
-                echo "Target must be a symlink: ${target}"
-                return 1
-            fi
-        else
-            echo "Stack does not exists: ${expected}"
-            return 1
-        fi
-    fi
-}
-
-# Shutdown VirtualBox network interfaces
-function vboxdown() {
-    VBoxManage hostonlyif remove vboxnet1
-    VBoxManage hostonlyif remove vboxnet0
-}
-
-# Start Apache, Nginx, MySQL, and MailCatcher
-function startlamp() {
-    if [[ -e "/opt/devstack/apache2" ]]; then
-        sudo /opt/devstack/ctlscript.sh start apache
-    fi
-
-    if [[ -e "/opt/devstack/hhvm" ]]; then
-        sudo /opt/devstack/ctlscript.sh start hhvm
-    fi
-
-    if [[ -e "/opt/devstack/nginx" ]]; then
-        sudo /opt/devstack/ctlscript.sh start nginx
-        sudo /opt/devstack/ctlscript.sh start php-fpm
-    fi
-
-    if [[ -e "/opt/devstack/mysql" ]]; then
-        /opt/devstack/ctlscript.sh start mysql
-    fi
-
-    if command -v mailcatcher &> /dev/null; then
-        mailcatcher --ip 127.0.0.1 --smtp-port 1025 --http-port 1080
-    fi
-}
-
-# Shutdown Apache, Nginx, MySQL, and MailCatcher
-function stoplamp() {
-    sudo /opt/devstack/ctlscript.sh stop apache
-    sudo /opt/devstack/ctlscript.sh stop nginx
-    sudo /opt/devstack/ctlscript.sh stop php-fpm
-    sudo /opt/devstack/ctlscript.sh stop hhvm
-    /opt/devstack/ctlscript.sh stop mysql
-    curl -X DELETE 'http://127.0.0.1:1080/' 2> /dev/null
-}
-
-# Execute PHPUnit with smart test suite detection.
-function phpunit() {
-    phpbin=$(which phpunit)
-    echo "$@" | grep -q -- '^--filter .*::.*'
-    if [[ "$?" -eq 0 ]]; then
-        params="$@" # Get original command arguments.
-        params=$(echo "$params" | sed 's;--filter ;tests/;g')
-        params=$(echo "$params" | sed 's;::;\.php --filter ;')
-        eval "$phpbin $params"
-    else
-        $phpbin "$@"
-    fi
-}
-
-# Report unused variables in the source code.
-function phpvoidcode() {
-    phpmd "$@" text unusedcode
-}
-
-# Execute custom PHPCode_Sniffer coding standard.
-function psr2() {
-    ruleset=''
-    ruleset+='<?xml version="1.0"?>'
-    ruleset+='<ruleset name="PSR99">'
-    ruleset+='  <description>PSR2 without some unnecessary rules.</description>'
-    ruleset+='  <rule ref="PSR2">'
-    ruleset+='    <exclude name="Generic.Files.LineLength"/>'
-    ruleset+='    <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace" />'
-    ruleset+='    <exclude name="PSR1.Files.SideEffects.FoundWithSymbols" />'
-    ruleset+='  </rule>'
-    ruleset+='  <rule ref="Internal.NoCodeFound">'
-    ruleset+='    <severity>0</severity>'
-    ruleset+='  </rule>'
-    ruleset+='</ruleset>'
-    standard="$HOME/.psr99.xml"
-
-    if [[ ! -e "$standard" ]]; then
-        echo "$ruleset" 1> "$standard"
-    fi
-
-    $(which phpcs) -w -l \
-    --standard="$standard" \
-    --report-width=150 \
-    --report=full \
-    --colors "$@"
-}
-
-function git() {
-    ARGS="" # Initialize arguments.
-    BINARY=$(which git 2> /dev/null)
-
-    for PARAM in "$@"; do
-        echo "$PARAM" | grep -qE "\s"
-        if [[ "$?" -eq 0 ]]; then
-            # Escape some arguments.
-            PARAM="'${PARAM}'"
-        fi
-        # Append with space.
-        ARGS+="${PARAM} "
-    done
-
-    # Detect custom -d argument.
-    echo "$ARGS" | grep -q "\s\-d\s"
-
-    if [[ "$?" -eq 0 ]]; then
-        echo "$ARGS" | grep -qE "\s\-d\s[0-9]{4}\-[0-9]{2}\-[0-9]{2}"
-
-        if [[ "$?" -eq 1 ]]; then
-            echo "Usage: git commit [args] -d yyyy-mm-dd"
-            return 1
-        fi
-
-        # Extract the date and time from the custom -d parameter.
-        DATE=$(echo "$ARGS" | sed -r "s;.*\s\-d\s([0-9\-]{10}).*;\1;")
-        # Clean up arguments; remove the custom -d parameter.
-        ARGS=$(echo "$ARGS" | sed -r "s;\s\-d\s[0-9\-]{10};;")
-        # Build the ISO date string.
-        COMDATE="${DATE}T09:00:00"
-
-        export GIT_AUTHOR_DATE="$COMDATE"
-        export GIT_COMMITTER_DATE="$COMDATE"
-
-        echo "[commit] ${GIT_COMMITTER_DATE}"
-        echo "[author] ${GIT_AUTHOR_DATE}"
-        echo "[params] ${ARGS}"
-    fi
-
-    if [[ "$BINARY" != "" ]]; then
-        eval "${BINARY} ${ARGS}"
-        return $?
-    fi
-}
-
-# Format user group list
-function id() {
-    if [[ "$@" == "" ]]; then
-        IFS=$','
-        for item in $(/usr/bin/id); do
-            echo "- ${item}"
-        done
-    else
-        /usr/bin/id "$@"
-    fi
-}
-
-# Calculate Mercurial ahead and behind commits
-#
-# b_sw3jdurr   3965:7f2a83ffc61d
-# b_le3g3mfe   3946:b03737187a81 (inactive) ▏                19
-# b_kan3g0ij   3936:8d3c665602e5 (inactive) ▎                29
-# b_x0lctp54   3891:fbee645a2f0c (inactive) ▊                74
-# b_ebo3bxj4   3460:fedb88847071 (inactive) █████▊           505
-# b_i86f5qln   3182:2b132fa69174 (inactive) ████████▉        783
-# b_0tvihibs   3065:c3bff4489ee1 (inactive) ██████████▍      900
-# b_iuifnik4   3003:2d633479b952 (inactive) ███████████      962
-# b_d0vkqfv0   2972:d205390198c6 (inactive) ███████████▎     993
-# b_llslwq8z   2922:a21134e2940d (inactive) ████████████     1043
-# b_n3gmq5yz   2581:c1a2afe566a4 (inactive) ████████████████ 1384
-function hg() {
-    if [[ "$@" == "branches" ]]; then
-        script="/tmp/hg-branches-$(date +%s).py"
-        code='' # Base64-encoded Python script
-        code+='IyEvdXNyL2Jpbi9lbnYgcHl0aG9uCiMgLSotIGNvZGluZzogdXRmLTggLSotCmltcG9ydCBzdWJw'
-        code+='cm9jZXNzLCByZQoKcHJvYyA9IHN1YnByb2Nlc3MuUG9wZW4oWyJoZyBicmFuY2hlcyAtLWNsb3Nl'
-        code+='ZCAtLWNvbG9yPW5ldmVyIl0sCiAgICBzdGRvdXQ9c3VicHJvY2Vzcy5QSVBFLAogICAgc2hlbGw9'
-        code+='VHJ1ZSkKKG91dHB1dCwgZXJyb3IpID0gcHJvYy5jb21tdW5pY2F0ZSgpCgppZiBlcnJvciA9PSBO'
-        code+='b25lOgogICAgbGluZXMgPSBvdXRwdXQuc3BsaXQoJ1xuJykKICAgIChicmFuY2hlcywgaGVhZHMs'
-        code+='IGNvbW1pdHMpID0gKFtdLCBbXSwgW10pCiAgICBzcGFya3MgPSBbCiAgICAgICAgdSJcdTAwMjAi'
-        code+='LCAjIHNwYWNlCiAgICAgICAgdSJcdTI1OEYiLCAjIOKWjwogICAgICAgIHUiXHUyNThFIiwgIyDi'
-        code+='lo4KICAgICAgICB1Ilx1MjU4RCIsICMg4paNCiAgICAgICAgdSJcdTI1OEMiLCAjIOKWjAogICAg'
-        code+='ICAgIHUiXHUyNThCIiwgIyDilosKICAgICAgICB1Ilx1MjU4QSIsICMg4paKCiAgICAgICAgdSJc'
-        code+='dTI1ODkiLCAjIOKWiQogICAgICAgIHUiXHUyNTg4IiwgIyDilogKICAgIF0KCiAgICBmb3IgbGlu'
-        code+='ZSBpbiBsaW5lczoKICAgICAgICBpZiBsaW5lICE9ICIiOgogICAgICAgICAgICBtYXRjaCA9IHJl'
-        code+='LnNlYXJjaCgnKFxTKylccysoXGQrKTooWzAtOWEtel17MTJ9KScsIGxpbmUpCgogICAgICAgICAg'
-        code+='ICBpZiBtYXRjaCAhPSBOb25lOgogICAgICAgICAgICAgICAgYnJhbmNoZXMuYXBwZW5kKG1hdGNo'
-        code+='Lmdyb3VwKDEpKQogICAgICAgICAgICAgICAgY29tbWl0cy5hcHBlbmQobWF0Y2guZ3JvdXAoMykp'
-        code+='CiAgICAgICAgICAgICAgICBoZWFkcy5hcHBlbmQoaW50KG1hdGNoLmdyb3VwKDIpKSkKCiAgICBj'
-        code+='b3VudGVyID0gMAogICAgYnNwYXJrcyA9IFtdCiAgICBncmVhdGVzdCA9IG1heChoZWFkcykKICAg'
-        code+='IHBlcmNoYXIgPSA4ICMgTWF4aW11bSBzcGFyayBiYXJzIHBlciBjaGFyYWN0ZXIKICAgIG1heGlt'
-        code+='dW0gPSAxNiAjIE1heGltdW0gY2hhcmFjdGVycyBmb3IgMTAwJQogICAgbWF4MTAwcCA9IHBlcmNo'
-        code+='YXIgKiBtYXhpbXVtCiAgICBkaWZmcyA9IFsoZ3JlYXRlc3QgLSBoZWFkKSBmb3IgaGVhZCBpbiBo'
-        code+='ZWFkc10KICAgIG1heF9kaWZmID0gbWF4KGRpZmZzKQogICAgcmVhbF9wMTAwID0gWygoZGlmZiAq'
-        code+='IDEwMCkgLyBtYXhfZGlmZikgZm9yIGRpZmYgaW4gZGlmZnNdOwogICAgZmFrZV9wMTAwID0gWygo'
-        code+='cCAqIG1heDEwMHApIC8gMTAwKSBmb3IgcCBpbiByZWFsX3AxMDBdCgogICAgZm9yIGZha2UgaW4g'
-        code+='ZmFrZV9wMTAwOgogICAgICAgIHVuaXRzID0gKGZha2UgLyAocGVyY2hhciAqIDEuMCkpCiAgICAg'
-        code+='ICAgc3VlbG8gPSBpbnQodW5pdHMpCiAgICAgICAgaWYgKHVuaXRzID09IHN1ZWxvKToKICAgICAg'
-        code+='ICAgICAgYnNwYXJrcy5hcHBlbmQodSJcdTI1ODgiICogc3VlbG8pCiAgICAgICAgZWxzZToKICAg'
-        code+='ICAgICAgICAgcmVzdCA9IGZha2UgLSAoc3VlbG8gKiBwZXJjaGFyKQogICAgICAgICAgICBmaXJz'
-        code+='dCA9ICh1Ilx1MjU4OCIgKiBzdWVsbykKICAgICAgICAgICAgdHJhaWxpbmcgPSBzcGFya3NbcmVz'
-        code+='dF0KICAgICAgICAgICAgYnNwYXJrcy5hcHBlbmQoZmlyc3QgKyB0cmFpbGluZykKCiAgICBmb3Ig'
-        code+='aGVhZCBpbiBoZWFkczoKICAgICAgICBkaWZmID0gKGdyZWF0ZXN0IC0gaGVhZCkKICAgICAgICBp'
-        code+='ZiBjb3VudGVyID09IDA6CiAgICAgICAgICAgIHByaW50IGxpbmVzW2NvdW50ZXJdCiAgICAgICAg'
-        code+='ZWxzZToKICAgICAgICAgICAgd2hpdGViYXIgPSBic3BhcmtzW2NvdW50ZXJdLmxqdXN0KG1heGlt'
-        code+='dW0pCiAgICAgICAgICAgIHByaW50IGxpbmVzW2NvdW50ZXJdLCB3aGl0ZWJhciwgZGlmZgogICAg'
-        code+='ICAgIGNvdW50ZXIgKz0gMQplbHNlOgogICAgcHJpbnQgIkVycm9yOiAiLCBlcnJvcgo='
-        echo "$code" | base64 -d 1> "$script"
-        if [[ -e "$script" ]]; then
-            /usr/bin/env python -- "$script"
-            rm -f -- "$script" 2> /dev/null
-        else
-            $(which hg) "branches"
-        fi
-    else
-        $(which hg) "$@"
-    fi
-}
-
-function dusort() {
-    script="/tmp/du-sort-$(date +%s).py"
-    code="" # Base64-encoded Python script
-    code+="IyEvdXNyL2Jpbi9lbnYgcHl0aG9uCmZyb20gc3lzIGltcG9ydCBleGl0CmZyb20g"
-    code+="b3MgaW1wb3J0IHBvcGVuCmZyb20gb3MgaW1wb3J0IGdldGN3ZApmcm9tIG9zIGlt"
-    code+="cG9ydCBsaXN0ZGlyCmZyb20gc3VicHJvY2VzcyBpbXBvcnQgY2FsbAoKY291bnQg"
-    code+="PSAwCnRhYmxlID0ge30KZm9sZGVyID0gZ2V0Y3dkKCkKc2l6ZXMgPSBbCiAgICAi"
-    code+="UGV0YWJ5dGVzIiwKICAgICJUZXJhYnl0ZXMiLAogICAgIkdpZ2FieXRlcyIsCiAg"
-    code+="ICAiTWVnYWJ5dGVzIiwKICAgICJLeWxvYnl0ZXMiLAogICAgIkJ5dGVzIiwKXQoK"
-    code+="Zm9yIHJlc291cmNlIGluIGxpc3RkaXIoZm9sZGVyKToKICAgIGNvdW50ICs9IDEK"
-    code+="ICAgIG91dCA9IHBvcGVuKCJkdSAtc2ggIiArIGZvbGRlciArICIvIiArIHJlc291"
-    code+="cmNlKS5yZWFkKCkKICAgIHNpemUsIGZwYXRoID0gb3V0LnN0cmlwKCkuc3BsaXQo"
-    code+="KQogICAgc2l6ZXQgPSBzaXplW2xlbihzaXplKSAtIDFdCiAgICBzaXplcSA9IHNp"
-    code+="emVbMDpsZW4oc2l6ZSktMV0KICAgIGlmIHNpemV0IG5vdCBpbiB0YWJsZToKICAg"
-    code+="ICAgICB0YWJsZVtzaXpldF0gPSBbXQogICAgdGFibGVbc2l6ZXRdLmFwcGVuZCh7"
-    code+="CiAgICAgICAgInNpemUiOiBmbG9hdChzaXplcSksCiAgICAgICAgInR5cGUiOiBz"
-    code+="aXpldCwKICAgICAgICAiZmlsZSI6IGZwYXRoLAogICAgfSkKCmZvciBmaWxlc2l6"
-    code+="ZSBpbiBzaXplczoKICAgIHN0eXBlID0gZmlsZXNpemVbMF0KICAgIGlmIHN0eXBl"
-    code+="IG5vdCBpbiB0YWJsZTogY29udGludWUKICAgIGxzaXplID0gMCAjIExvbmdlc3Qg"
-    code+="c2l6ZQogICAgbGxpbmUgPSAwICMgTG9uZ2VzdCBsaW5lCiAgICBvcmRlcmVkID0g"
-    code+="c29ydGVkKHRhYmxlW3N0eXBlXSwKICAgICAgICBrZXk9bGFtYmRhIHg6IHhbInNp"
-    code+="emUiXSwKICAgICAgICByZXZlcnNlPVRydWUpCiAgICBmb3IgZGF0YSBpbiBvcmRl"
-    code+="cmVkOgogICAgICAgIGxlbmd0aCA9IGxlbihkYXRhWyJmaWxlIl0pCiAgICAgICAg"
-    code+="aWYgbGVuZ3RoID4gbGxpbmU6IGxsaW5lID0gbGVuZ3RoCiAgICBsc2l6ZSA9IGxl"
-    code+="bihzdHIob3JkZXJlZFswXVsic2l6ZSJdKSkKICAgIGxsaW5lICs9IGxzaXplICsg"
-    code+="MiAjIEFkZCBsb25nZXN0IHNpemUgYW5kIHNlcGFyYXRvcgogICAgdGl0bGUgPSAo"
-    code+="Ii0iICogKGxzaXplKzEpKSAjIExlZnQgc2VwYXJhdG9yCiAgICB0aXRsZSArPSAi"
-    code+="XHgyMCIgKyBmaWxlc2l6ZSArICJceDIwIgogICAgdGl0bGUgKz0gIi0iICogKGxs"
-    code+="aW5lIC0gbGVuKHRpdGxlKSkKICAgIHByaW50KHRpdGxlKSAjIFByaW50IHRpdGxl"
-    code+="IHBlciBncm91cAogICAgZm9yIGRhdGEgaW4gb3JkZXJlZDoKICAgICAgICB0YW1h"
-    code+="bm8gPSBzdHIoZGF0YVsic2l6ZSJdKS5yanVzdChsc2l6ZSkKICAgICAgICBwcmlu"
-    code+="dCgiezB9ezF9IHsyfSIuZm9ybWF0KHRhbWFubywKICAgICAgICAgICAgZGF0YVsi"
-    code+="dHlwZSJdLAogICAgICAgICAgICBkYXRhWyJmaWxlIl0pKQoKZXhpdCgwKQo="
-    echo "$code" | base64 -d 1> "$script"
-    if [[ -e "$script" ]]; then
-        /usr/bin/env python -- "$script"
-        rm -f -- "$script" 2> /dev/null
-    fi
-}
-
-# Statistics of the eth0 bandwidth consumption
-function eth0stats() {
-    # apt-get install vnstat vnstati
-    rm -f /tmp/vnstati-*.png 2> /dev/null
-    output="/tmp/vnstati-$(date +%s).png"
-    vnstati -i eth0 -d -o "$output"
-    xdg-open "$output" &> /dev/null
-}
-
-# Statistics of the wlan0 bandwidth consumption
-function wlan0stats() {
-    # apt-get install vnstat vnstati
-    rm -f /tmp/vnstati-*.png 2> /dev/null
-    output="/tmp/vnstati-$(date +%s).png"
-    vnstati -i wlan0 -d -o "$output"
-    xdg-open "$output" &> /dev/null
-}
-
-# Disguise CURL as a normal web browser
-function agent() {
-    curl -H 'DNT: 1' \
-    -H 'Pragma: no-cache' \
-    -H 'Upgrade-Insecure-Requests: 1' \
-    -H 'Accept-Language: en-US,en;q=0.8' \
-    -H 'Accept-Encoding: gzip, deflate, sdch, br' \
-    -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' \
-    -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2725.0 Safari/537.36' \
-    -H 'Cache-Control: no-cache' \
-    -H 'Connection: keep-alive' \
-    --compressed "$@"
-}
-
-# HTTP request with malformed HTTP method.
-function malformed() {
-    curl -X 'FOOBAR / cixtor.com / HELLO " WORLD' \
-    -H 'DNT: 1' \
-    -H 'Pragma: no-cache' \
-    -H 'Upgrade-Insecure-Requests: 1' \
-    -H 'Accept-Language: en-US,en;q=0.8' \
-    -H 'Accept-Encoding: gzip, deflate, sdch, br' \
-    -H 'Accept: text/html,application/xhtml+xml,application/xml' \
-    -H 'User-Agent: Mozilla"/"5.0 (KHTML, like Gecko) Safari/5"3"7"."3"6' \
-    -H 'Cache-Control: no-cache' \
-    -H 'Connection: keep-alive' \
-    --compressed "$@"
-}
-
-# Disguise CURL as the Google web crawler.
-function googlebot() {
-    curl -H 'DNT: 1' \
-    -H 'Upgrade-Insecure-Requests: 1' \
-    -H 'Accept-Encoding: gzip, deflate' \
-    -H 'Accept-Language: en-US,en;q=0.8' \
-    -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' \
-    -H 'User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)' \
-    --compressed "$@"
-}
-
-# Install screencast recorder to GIF.
-# apt install byzanz xdotool x11-utils libx11-dev
-# https://github.com/syohex/byzanz-window
-function win2gif() {
-    command -v byzanz-record 1> /dev/null
-
-    if [[ "$?" -eq 0 ]]; then
-        byzanz-window "$@"
-    else
-        echo "Missing dependencies"
-        echo "apt install byzanz xdotool x11-utils libx11-dev"
-        echo "https://github.com/syohex/byzanz-window"
-        return 1
-    fi
-}
-
-# Lint CSS files ignoring some rules.
-function csslint() {
-    csslint_bin=$(which csslint 2> /dev/null)
-    if [[ "$?" -eq 0 ]]; then
-        rules="adjoining-classes,box-sizing,box-model,ids"
-        "$csslint_bin" --format=compact --ignore="$rules" "$1"
-    else
-        echo "npm install -g csslint"
-        return 1
-    fi
-}
-
-# Extract most known archives with one command
-function extract() {
-    if [[ -f "$1" ]]; then
-        case $1 in
-            *.tar.bz2) tar xjf "$1"    ;;
-            *.tar.gz)  tar xzf "$1"    ;;
-            *.bz2)     bunzip2 "$1"    ;;
-            *.rar)     unrar e "$1"    ;;
-            *.gz)      gunzip "$1"     ;;
-            *.tar)     tar xf "$1"     ;;
-            *.tbz2)    tar xjf "$1"    ;;
-            *.tgz)     tar xzf "$1"    ;;
-            *.zip)     unzip "$1"      ;;
-            *.Z)       uncompress "$1" ;;
-            *.7z)      7z x "$1"       ;;
-            *)         echo "'$1' cannot be extracted via extract()" ;;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
-}
-
-# Get top one million domains from Alexa.
-function tld1m() {
-    wget "http://s3.amazonaws.com/alexa-static/top-1m.csv.zip" \
-    --user-agent="Mozilla/5.0 (KHTML, like Gecko) Safari/537.36" \
-    --output-document="top-1m.csv-$(date +%s).zip"
-}
-
-# Starts a chronometer in the terminal.
-function chronometer() {
-    while true; do
-        date && sleep 1
-    done
-}
-
-# Print some (useful?) emoticons.
-function shrug() {
-    echo "¯\_(ツ)_/¯"
-}
-
-# Create a new profile for mate-terminal with Monokai colors
-function install_mate_monokai_terminal() {
-    PROFILE_SLUG="monokai-dark"
-    PROFILE_NAME="Monokai Dark"
-    PROFILE_BOLD="#f8f8f2"
-    PROFILE_BGROUND="#272822"
-    PROFILE_FGROUND="#f8f8f2"
-    PROFILE_FONT="Menlo for Powerline 8"
-    PROFILE_PALETTE="#272822:#f92672:#a6e22e:#f4bf75"
-    PROFILE_PALETTE+=":#66d9ef:#ae81ff:#a1efe4:#f8f8f2"
-    PROFILE_PALETTE+=":#75715e:#f92672:#a6e22e:#f4bf75"
-    PROFILE_PALETTE+=":#66d9ef:#ae81ff:#a1efe4:#f9f8f5"
-    PROFILE_KEY="/org/mate/terminal/profiles/${PROFILE_SLUG}"
-    PROFILE_LIST="/org/mate/terminal/global/profile-list"
-
-    command -v dconf 1> /dev/null
-
-    if [[ "$?" -ne 0 ]]; then
-        echo "Install gvariant database manager"
-        echo "apt-get install dconf-cli"
-        exit 1
-    fi
-
-    profiles=$(dconf read "$PROFILE_LIST")
-    echo "$profiles" | grep -q "$PROFILE_SLUG"
-    if [[ "$?" -eq 1 ]]; then
-        profiles=$(echo "$profiles" | sed "s;];, '${PROFILE_SLUG}'];")
-        dconf write "$PROFILE_LIST" "${profiles}"
-    fi
-
-    # Set specific values for the selected theme.
-    dconf write "${PROFILE_KEY}/visible-name" "'${PROFILE_NAME}'"
-    dconf write "${PROFILE_KEY}/background-color" "'${PROFILE_BGROUND}'"
-    dconf write "${PROFILE_KEY}/foreground-color" "'${PROFILE_FGROUND}'"
-    dconf write "${PROFILE_KEY}/bold-color" "'${PROFILE_BOLD}'"
-    dconf write "${PROFILE_KEY}/palette" "'${PROFILE_PALETTE}'"
-    dconf write "${PROFILE_KEY}/font" "'${PROFILE_FONT}'"
-    dconf write "${PROFILE_KEY}/use-theme-background" "false"
-    dconf write "${PROFILE_KEY}/bold-color-same-as-fg" "true"
-    dconf write "${PROFILE_KEY}/use-system-font" "false"
-    dconf write "${PROFILE_KEY}/allow-bold" "true"
-
-    # Set default window and buffer size.
-    dconf write "${PROFILE_KEY}/use-custom-default-size" "true"
-    dconf write "${PROFILE_KEY}/default-size-columns" "116"
-    dconf write "${PROFILE_KEY}/default-size-rows" "32"
-
-    # Set window scroll behavior.
-    dconf write "${PROFILE_KEY}/scrollback-lines" "1"
-    dconf write "${PROFILE_KEY}/scrollback-unlimited" "true"
-    dconf write "${PROFILE_KEY}/scrollbar-position" "'right'"
-    dconf write "${PROFILE_KEY}/scroll-on-keystroke" "true"
-    dconf write "${PROFILE_KEY}/scroll-on-output" "false"
-    dconf write "${PROFILE_KEY}/scroll-background" "true"
-
-    dconf write "${PROFILE_KEY}/background-type" "'solid'"
-    dconf write "${PROFILE_KEY}/cursor-blink-mode" "'system'"
-    dconf write "${PROFILE_KEY}/cursor-shape" "'block'"
-    dconf write "${PROFILE_KEY}/default-show-menubar" "false"
-    dconf write "${PROFILE_KEY}/use-theme-colors" "false"
-}
-
-# Check reddit username availability
-function redditnick() {
-    response=$(
-    curl 'https://www.reddit.com/api/check_username.json' \
-    -H 'Accept-Language: en-US,en;q=0.8' \
-    -H 'Accept-Encoding: gzip, deflate, br' \
-    -H 'Accept: application/json, text/javascript, */*; q=0.01' \
-    -H 'User-Agent: Mozilla/5.0 (KHTML, like Gecko) Safari/537.36' \
-    -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' \
-    -H 'X-Requested-With: XMLHttpRequest' \
-    -H 'Referer: https://www.reddit.com/' \
-    -H 'Origin: https://www.reddit.com' \
-    -H 'Connection: keep-alive' \
-    --data "user=${1}" \
-    --compressed --silent
-    )
-    if [[ "$response" == "{}" ]]; then
-        echo "${1} is available"
-        return 0
-    else
-        echo "$response"
-        return 1
-    fi
-}
-
-# Unshorten a shortened URL.
-function unshorten() {
-    encoded_url=$(echo "$1" | strconv urlenc)
-    csrftoken=$(genpasswd -type 1Aa -length 32)
-    response=$(
-        curl -H 'DNT: 1' \
-        -H "Connection: keep-alive" \
-        -H "Origin: http://unshorten.it" \
-        -H "Referer: http://unshorten.it/" \
-        -H "Accept-Encoding: gzip, deflate" \
-        -H "X-Requested-With: XMLHttpRequest" \
-        -H "Cookie: csrftoken=${csrftoken}" \
-        -H "User-Agent: Mozilla/5.0 (KHTML, like Gecko) Safari/537.36" \
-        -H "Content-Type: application/x-www-form-urlencoded; charset=UTF-8" \
-        --url "http://unshorten.it/main/get_long_url" \
-        --data "short-url=${encoded_url}" \
-        --data "csrfmiddlewaretoken=${csrftoken}" \
-        --compressed --silent
-    )
-    result=$(echo "$response" | python -m json.tool)
-    if [[ "$?" -eq 0 ]]; then echo "$result"; else echo "$response"; fi
-}
-
-# Download media files from OpenGraph video tags.
-function ogvideodl() {
-    echo "@ $1"
-    response=$(
-        curl -H 'dnt: 1' \
-        -H 'Connection: keep-alive' \
-        -H 'Cache-Control: max-age=0' \
-        -H 'Accept-Language: en-US,en;q=0.5' \
-        -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
-        -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:46.0) Gecko/20100101 Firefox/46.0' \
-        --compressed --silent "$1"
-    )
-
-    ogtag=$(echo "$response" | grep '"og:video"')
-
-    if [[ "$ogtag" == "" ]]; then
-        echo "No OpenGraph video tag"
-        return 1
-    else
-        url=$(echo "$ogtag" | sed 's;.*content=";;' | cut -d '"' -f 1)
-        filename=$(echo "$url" | rev | cut -d '/' -f 1 | rev)
-
-        echo "  ${url}"
-        echo "  ${filename}"
-        curl -H 'dnt: 1' \
-        -H 'Connection: keep-alive' \
-        -H 'Cache-Control: max-age=0' \
-        -H 'Accept-Language: en-US,en;q=0.5' \
-        -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
-        -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:46.0) Gecko/20100101 Firefox/46.0' \
-        --compressed --output "$filename" "$url"
-
-        if [[ "$?" -eq 0 ]]; then
-            notify-send "OpenGraph Video Download" "$url" -i "dialog-information"
-            return 0
-        else
-            notify-send "OpenGraph Video Download" "$url" -i "dialog-error"
-            return 1
-        fi
-    fi
-}
+# Include private additional settings.
+if [ -f "$HOME/.private" ]; then
+    source "$HOME/.private"
+fi

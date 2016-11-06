@@ -1,6 +1,7 @@
 #!/bin/bash
-inst_path="$HOME/.config/sublime-text-3/Packages/"
-repositories=(
+SYSTEM=$(uname -s)
+INST_PATH="$HOME/.config/sublime-text-3/Packages/"
+REPOSITORIES=(
     "Vala|technosophos/Vala-TMBundle"
     "GoSublime|DisposaBoy/GoSublime"
     "CPP11|noct/sublime-cpp11"
@@ -20,14 +21,20 @@ repositories=(
     "SublimeLinter-csslint|SublimeLinter/SublimeLinter-csslint"
     "SublimeLinter-shellcheck|SublimeLinter/SublimeLinter-shellcheck"
 )
-if [[ -e "${inst_path}" ]]; then
-    cd "$inst_path"
-    for repo in "${repositories[@]}"; do
-        local_name=$(echo $repo | awk -F '|' '{print $1}')
-        repo_name=$(echo $repo | awk -F '|' '{print $2}')
-        repo_url="https://github.com/${repo_name}"
-        echo -e "Install '\e[0;33m${repo_name}\e[0m' as '\e[0;32m${local_name}\e[0m'"
-        git clone "${repo_url}" "${local_name}"
+
+if [[ "$SYSTEM" == "Darwin" ]]; then
+    INST_PATH="$HOME/Library/Application Support/Sublime Text 3/Packages/"
+fi
+
+if [[ -e "${INST_PATH}" ]]; then
+    cd "$INST_PATH" || exit
+
+    for REPO in "${REPOSITORIES[@]}"; do
+        LOCAL_NAME=$(echo "$REPO" | awk -F '|' '{print $1}')
+        REPO_NAME=$(echo "$REPO" | awk -F '|' '{print $2}')
+        REPO_URL="https://github.com/${REPO_NAME}"
+        echo -e "Install '\e[0;33m${REPO_NAME}\e[0m' as '\e[0;32m${LOCAL_NAME}\e[0m'"
+        git clone "${REPO_URL}" "${LOCAL_NAME}"
         echo
     done
 fi

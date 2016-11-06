@@ -15,6 +15,13 @@
                 "ignore": "adjoining-classes,box-sizing,box-model,ids",
                 "warnings": ""
             },
+            "gometalinter": {
+                "@disable": false,
+                "args": [],
+                "excludes": [],
+                "gopath": "/opt/golang/gopath",
+                "goroot": "/opt/golang/build"
+            },
             "jshint": {
                 "@disable": false,
                 "args": [],

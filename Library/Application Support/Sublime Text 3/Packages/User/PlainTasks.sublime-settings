@@ -18,8 +18,6 @@
     // "color_scheme": "Packages/PlainTasks/tasks-monokai.hidden-tmTheme",
     // "color_scheme": "Packages/PlainTasks/tasks-solarized-dark.hidden-tmTheme",
     // "color_scheme": "Packages/PlainTasks/tasks-solarized-light.hidden-tmTheme",
-    "font_size": 10,
-    "font_face": "Monospace",
     "draw_indent_guides": true,
     "line_numbers": true,
     "gutter": true,
