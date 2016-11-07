@@ -1,0 +1,46 @@
+#!/bin/bash
+ARGS="commit" # Initialize arguments.
+BINARY=$(which git 2> /dev/null)
+
+if [[ "$BINARY" == "" ]]; then
+    echo "Git is not installed"
+    exit 1
+fi
+
+for PARAM in "$@"; do
+    if echo "$PARAM" | grep -qE "\s"; then
+        # Escape some arguments.
+        PARAM="'${PARAM}'"
+    fi
+    # Append with space.
+    ARGS+="${PARAM} "
+done
+
+# Detect custom -d argument.
+if echo "$ARGS" | grep -qE "\-d\s"; then
+    echo "$ARGS" | grep -qE "\-d\s[0-9]{4}\-[0-9]{2}\-[0-9]{2}"
+
+    if [[ "$?" -eq 1 ]]; then
+        echo "Usage: git commit [args] -d yyyy-mm-dd"
+        exit 1
+    fi
+
+    # Extract the date and time from the custom -d parameter.
+    DATE=$(echo "$ARGS" | sed -E "s;.*\-d ([0-9\-]{10}).*;\1;")
+    # Clean up arguments; remove the custom -d parameter.
+    ARGS=$(echo "$ARGS" | sed -E "s;\-d [0-9\-]{10};;")
+    # Build the ISO date string.
+    COMDATE="${DATE}T09:00:00"
+
+    export GIT_AUTHOR_DATE="$COMDATE"
+    export GIT_COMMITTER_DATE="$COMDATE"
+
+    echo "[commit] ${GIT_COMMITTER_DATE}"
+    echo "[author] ${GIT_AUTHOR_DATE}"
+    echo "[params] ${ARGS}"
+fi
+
+if [[ "$BINARY" != "" ]]; then
+    eval "${BINARY} ${ARGS}"
+    exit $?
+fi
