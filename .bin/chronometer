@@ -1,0 +1,6 @@
+#!/bin/bash
+# Starts a chronometer in the terminal.
+while true; do
+    echo -en "\r$(date)"
+    sleep 1
+done
