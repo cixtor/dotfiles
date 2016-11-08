@@ -1,0 +1,12 @@
+#!/bin/bash
+# Eject the latest mounted DMG image.
+if [[ $(uname -s) == "Darwin" ]]; then
+    DISK_NAME=$(mount | tail -n1 | awk '{print $1}')
+
+    if echo "$DISK_NAME" | grep -q 'automounted'; then
+        echo "Cannot unmount automounted disks"
+        exit 1
+    fi
+
+    umount "$DISK_NAME"
+fi
