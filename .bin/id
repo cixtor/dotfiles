@@ -1,0 +1,10 @@
+#!/bin/bash
+# Format user group list
+if [[ "$@" == "" ]]; then
+    IFS=$','
+    for item in $(/usr/bin/id); do
+        echo "- ${item}"
+    done
+else
+    /usr/bin/id "$@"
+fi
