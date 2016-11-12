@@ -1,0 +1,18 @@
+#!/bin/bash
+# Get the local IP address of all the network nodes.
+INDEX=0
+
+if [[ $(uname -s) == "Darwin" ]]; then
+    NAMES=($(ifconfig -u | grep ': flags=' | cut -d: -f1))
+else
+    NAMES=($(ifconfig -a | grep 'Link encap' | awk '{print $1}'))
+fi
+
+IPS=($(ifconfig | grep inet | grep -v inet6 | awk '{print $2}'))
+
+for name in "${NAMES[@]}"; do
+    address=$(echo "${IPS[INDEX]}" | sed 's/addr://')
+    if [[ "$address" == "" ]]; then address="none"; fi
+    echo "${name}: ${address}"
+    INDEX=$(( INDEX + 1 ))
+done
