@@ -1,0 +1,11 @@
+#!/bin/bash
+# Rudimentary password manager
+OUTPUT="/tmp/passwords.txt"
+STORAGE="${HOME}/passwords.dat"
+
+echo "Exporting to ${OUTPUT}"
+
+if openssl enc -aes-256-cbc -d -in "$STORAGE" -out "$OUTPUT"; then
+    /usr/bin/vim -- "$OUTPUT"
+    rm -fv -- "$OUTPUT"
+fi
