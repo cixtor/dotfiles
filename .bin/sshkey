@@ -1,0 +1,9 @@
+#!/bin/bash
+# Generate a new set of SSH keys
+# https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+if [[ "$1" == "" ]]; then
+    echo "Usage: sshkey [email]"
+    exit 2
+fi
+
+ssh-keygen -t rsa -b 4096 -C "$1"
