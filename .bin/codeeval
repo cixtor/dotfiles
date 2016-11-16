@@ -32,6 +32,7 @@ PHPUNIT_BIN="/usr/local/bin/phpunit"
 EXTENSION=$(echo "${SOLUTION_FILE}" | rev | cut -d. -f1 | rev)
 
 case "$EXTENSION" in
+    'sh' ) EXEC_COMMAND="bash ${SOLUTION_FILE} %s";;
     'rb' ) EXEC_COMMAND="ruby ${SOLUTION_FILE} %s";;
     'py' ) EXEC_COMMAND="python3 ${SOLUTION_FILE} %s";;
     'php' ) EXEC_COMMAND="php -f ${SOLUTION_FILE} %s";;
