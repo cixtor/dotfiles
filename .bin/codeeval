@@ -33,6 +33,7 @@ EXTENSION=$(echo "${SOLUTION_FILE}" | rev | cut -d. -f1 | rev)
 
 case "$EXTENSION" in
     'cpp' ) EXEC_COMMAND="g++ -o test.bin ${SOLUTION_FILE} && ./test.bin %s && rm test.bin";;
+    'swift' ) EXEC_COMMAND="swiftc -o test.bin ${SOLUTION_FILE} && ./test.bin %s && rm test.bin";;
     'go' ) EXEC_COMMAND="go run ${SOLUTION_FILE} %s";;
     'sh' ) EXEC_COMMAND="bash ${SOLUTION_FILE} %s";;
     'rb' ) EXEC_COMMAND="ruby ${SOLUTION_FILE} %s";;
