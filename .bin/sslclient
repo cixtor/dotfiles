@@ -1,0 +1,4 @@
+#!/bin/bash
+# Display information about an SSL certificate.
+if [[ "$1" == "" ]]; then echo "Usage: $0 [domain]"; exit 1; fi
+echo -n '' | openssl s_client -connect "${1}:443"
