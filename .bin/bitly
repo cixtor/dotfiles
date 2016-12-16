@@ -1,0 +1,50 @@
+#!/bin/bash
+#
+# Bitly Click Faker
+# https://cixtor.com/
+# https://bitly.com/pages/about
+# https://en.wikipedia.org/wiki/Bitly
+#
+# Bitly is a link management platform. Bitly shortens 600 million links per
+# month, for use in social networking, SMS, and email. Bitly makes money by
+# charging for access to aggregate data created as a result of many people using
+# the shortened URLs. The Bitly URL shortening service became popular on Twitter
+# after it became the default URL shortening service on the website. It was
+# subsequently replaced by Twitter's own t.co service.
+#
+
+SUCCESS=0
+FAILURE=0
+UNIQUE="$1"
+HOWMANY="${2:-100}"
+MISSING="$HOWMANY" # Missing requests
+FINISHED="" # HTTP requests status bar.
+
+function progress() {
+    START="$1" # Finished HTTP requests.
+    LIMIT="$2" # How many blank blocks to print.
+    LEFT=$((HOWMANY-LIMIT)) # How many requests are left
+    echo -en "\rhttp://bit.ly/${UNIQUE}+ " # Reset and info.
+    echo -en "${START}" # Print status of finished HTTP requests.
+    for ((j = 0; j < LIMIT; j++)); do echo -en "\xe2\x96\x91"; done
+    echo -n " >>> ${LEFT}/${HOWMANY}"
+}
+
+if [[ "$UNIQUE" == "" ]]; then echo "Usage: $0 [4uAQ2gA]"; exit; fi
+
+progress "" "$HOWMANY"
+
+for ((k = 0; k < HOWMANY; k++)); do
+    RES=$(curl "http://bit.ly/${1}" -s -w "%{http_code}" -o /dev/null)
+    if [[ "$RES" -eq 301 ]]; then
+        SUCCESS=$((SUCCESS+1))
+        FINISHED+="\xe2\x96\x88"
+    else
+        FAILURE=$((FAILURE+1))
+        FINISHED+="X"
+    fi
+    MISSING=$((MISSING-1))
+    progress "$FINISHED" "$MISSING"
+done
+
+echo # Insert new line to separate output
