@@ -1,0 +1,12 @@
+#!/bin/bash
+# Monitor and notify abount directory changes.
+if command -v fswatch &> /dev/null; then
+    CWD=$(pwd) # Monitor current directory.
+    fswatch -otx "$CWD" | xargs -n1 -I{} "$@"
+else
+    echo "Filesystem Watcher is missing"
+    echo "https://github.com/emcrisostomo/fswatch"
+    echo "apt-get install fswatch"
+    echo "brew install fswatch"
+    exit 1
+fi
