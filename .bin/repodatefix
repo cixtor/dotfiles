@@ -1,0 +1,48 @@
+#!/bin/bash
+IFS=$'\n'
+
+function report() {
+    INDEX=0
+    DATES=($(git log | grep "Date"))
+    TOTAL=$(git log | grep -c "Date")
+    HASHES=($(git log | grep "^commit" | awk '{print $2}'))
+    AUTHOR=$(git config --get "user.name")
+    EADDRESS=$(git config --get "user.email")
+    ORIGINURL=$(git config --get "remote.origin.url")
+    echo "Author: ${AUTHOR} <${EADDRESS}>"
+    echo "Repository: ${ORIGINURL}"
+    for FULLDATE in "${DATES[@]}"; do
+        DATE="${FULLDATE:8:100}"
+        UNIQUE="${HASHES[INDEX]}"
+        echo "${UNIQUE} >>> ${DATE}"
+        INDEX=$((INDEX+1))
+    done
+    echo "Total commits: ${TOTAL}"
+}
+
+COMMIT="$1" # Full commit hash.
+COMDATE="${2}T09:00:00" # yyyy-mm-dd
+
+if [[ "$COMMIT" == "" ]]; then
+    S=$(echo "$0" | rev | cut -d/ -f1 | rev)
+    echo "Git Commit Date Fixer"
+    echo "  https://cixtor.com/"
+    echo "  https://en.wikipedia.org/wiki/Git"
+    echo "  https://github.com/cixtor/dotfiles/.bin/"
+    echo "Usage:"
+    echo "  $S -status"
+    echo "  $S [commit] yyyy-mm-dd"
+    echo "  $S c003ba6...3557382 2011-12-31"
+    echo "  git push --force # rewrite commit history"
+    exit 2
+fi
+
+if [[ "$1" == "-status" ]]; then report; exit 0; fi
+
+git filter-branch -f --env-filter \
+"if [ \$GIT_COMMIT == $COMMIT ]; then
+export GIT_AUTHOR_DATE='$COMDATE'
+export GIT_COMMITTER_DATE='$COMDATE'
+fi"
+
+report
