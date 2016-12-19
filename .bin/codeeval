@@ -14,12 +14,16 @@
 IFS=$'\n'
 
 if [[ "$1" == "" ]] || [[ "$1" =~ help ]]; then
+    S=$(echo "$0" | rev | cut -d/ -f 1 | rev)
     echo "CodeEval Solution Checker"
-    echo "https://www.codeeval.com/"
+    echo "  https://cixtor.com/"
+    echo "  https://www.codeeval.com/"
+    echo "  https://en.wikipedia.org/wiki/Competitive_programming"
     echo "Usage:"
-    echo "  $0 [challenge.ext] [--debug]"
-    echo "  $0 solution.cpp --debug"
-    echo "  $0 solution.go"
+    echo "  $S [challenge.ext] [-debug]"
+    echo "  $S solution.cpp -new [name] Creates new challenge"
+    echo "  $S solution.cpp -debug      Prints all unit-tests"
+    echo "  $S solution.go              Executes all unit-tests"
     exit 1
 fi
 
@@ -30,6 +34,37 @@ TEMP_INPUT_FILE='temp.input.txt'
 UNIT_TEST_FILE='temp.unittest.php'
 PHPUNIT_BIN="/usr/local/bin/phpunit"
 EXTENSION=$(echo "${SOLUTION_FILE}" | rev | cut -d. -f1 | rev)
+
+if [[ "$1" == "-new" ]]; then
+    if [[ "$2" == "" ]]; then
+        echo "Challenge name is missing"
+        exit 1
+    fi
+
+    if [[ -e "$2" ]]; then
+        echo "Directory already exists"
+        exit 1
+    fi
+
+    CODE=""
+    NAME="$2"
+
+    mkdir -pv -- "$NAME" 2> /dev/null
+    touch -- "${NAME}/input.txt"
+    touch -- "${NAME}/output.txt"
+
+    CODE+="cGFja2FnZSBtYWluCgppbXBvcnQgKAoJImJ1ZmlvIgoJImZtdCIKCSJvcyIKCSJzdHJjb252IgoJInN0"
+    CODE+="cmluZ3MiCikKCmZ1bmMgc29sdXRpb24ocGFydHMgW11zdHJpbmcpIHN0cmluZyB7CglyZXR1cm4gIiIK"
+    CODE+="fQoKZnVuYyBtYWluKCkgewoJZmlsZSwgZXJyIDo9IG9zLk9wZW4ob3MuQXJnc1sxXSkKCglpZiBlcnIg"
+    CODE+="IT0gbmlsIHsKCQlwYW5pYyhlcnIpCgl9CgoJdmFyIGxpbmUgc3RyaW5nCgl2YXIgcGFydHMgW11zdHJp"
+    CODE+="bmcKCglzY2FubmVyIDo9IGJ1ZmlvLk5ld1NjYW5uZXIoZmlsZSkKCglmb3Igc2Nhbm5lci5TY2FuKCkg"
+    CODE+="ewoJCWxpbmUgPSBzY2FubmVyLlRleHQoKQoJCXBhcnRzID0gc3RyaW5ncy5TcGxpdChsaW5lLCAiOyIp"
+    CODE+="CgoJCWZtdC5QcmludGxuKHNvbHV0aW9uKHBhcnRzKSkKCX0KfQo="
+
+    echo "$CODE" | base64 -D 1> "${NAME}/solution.go"
+    echo "cd ${NAME} && $0 solution.go"
+    exit
+fi
 
 case "$EXTENSION" in
     'cpp' ) EXEC_COMMAND="g++ -o test.bin ${SOLUTION_FILE} && ./test.bin %s && rm test.bin";;
@@ -91,7 +126,7 @@ PHP_CODE+="}"
 echo -e "$PHP_CODE" > "$UNIT_TEST_FILE"
 
 # Print the content of the test file if necessary.
-if [[ "$DEBUG_UNIT_TEST" == "--debug" ]]; then
+if [[ "$DEBUG_UNIT_TEST" == "-debug" ]]; then
     cat "$UNIT_TEST_FILE" && exit 0
 fi
 
