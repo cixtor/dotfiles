@@ -140,6 +140,7 @@ export PATH="$PATH:/opt/phpsa/bin" # https://github.com/ovr/phpsa
 export PATH="$PATH:/opt/pfff/bin" # https://github.com/facebook/pfff
 export PATH="$PATH:/opt/siege" # https://github.com/JoeDog/siege
 export PATH="$PATH:/opt/xsser" # https://xsser.03c8.net/
+export PATH="$PATH:/opt/wpscan" # https://github.com/wpscanteam/wpscan
 export PATH="$PATH:/opt/phan" # https://github.com/etsy/phan
 export PATH="$PATH:/opt/apktool" # https://github.com/iBotPeaches/Apktool
 export PATH="$PATH:/opt/ttygif/bin" # https://github.com/icholy/ttygif
