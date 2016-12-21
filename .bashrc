@@ -137,6 +137,7 @@ export PATH="$PATH:/opt/powertop" # https://github.com/fenrus75/powertop
 export PATH="$PATH:/opt/ngrok/bin" # https://ngrok.com/
 export PATH="$PATH:/opt/nmap/bin" # https://nmap.org/
 export PATH="$PATH:/opt/phpsa/bin" # https://github.com/ovr/phpsa
+export PATH="$PATH:/opt/php7cc/bin" # https://github.com/sstalle/php7cc
 export PATH="$PATH:/opt/pfff/bin" # https://github.com/facebook/pfff
 export PATH="$PATH:/opt/siege" # https://github.com/JoeDog/siege
 export PATH="$PATH:/opt/xsser" # https://xsser.03c8.net/
