@@ -29,6 +29,7 @@ homebrew/php/phploc
 homebrew/php/phpmd
 homebrew/php/phpmetrics
 homebrew/php/phpunit
+protobuf
 qrencode
 rtmpdump
 ruby
