@@ -1,6 +1,13 @@
 #!/bin/bash
 # Starts a chronometer in the terminal.
+trap ctrlc SIGINT
+function ctrlc() {
+    echo # separator
+    echo "= $(date)"
+    exit 0
+}
+echo "@ $(date)"
 while true; do
-    echo -en "\r$(date)"
+    echo -en "\r- $(date)"
     sleep 1
 done
