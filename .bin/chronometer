@@ -1,11 +1,21 @@
 #!/bin/bash
-# Starts a chronometer in the terminal.
 trap ctrlc SIGINT
 function ctrlc() {
     echo # separator
     echo "= $(date)"
     exit 0
 }
+
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+    S=$(echo "$0" | rev | cut -d/ -f1 | rev)
+    echo "Chronometer"
+    echo "Usage:"
+    echo "  $S      Runs indefinitely (until Ctrl+C)"
+    echo "  $S [N]  Stops at N seconds (sleep N)"
+    echo "  $S -h   Prints this message"
+    exit 2
+fi
+
 INDEX=0
 LIMIT="$1"
 echo "@ $(date)"
