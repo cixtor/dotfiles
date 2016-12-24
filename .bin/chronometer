@@ -6,8 +6,13 @@ function ctrlc() {
     echo "= $(date)"
     exit 0
 }
+INDEX=0
+LIMIT="$1"
 echo "@ $(date)"
 while true; do
+    INDEX=$((INDEX+1))
     echo -en "\r- $(date)"
     sleep 1
+    if [[ "$LIMIT" == "" ]]; then continue; fi
+    if [[ "$INDEX" -ge "$LIMIT" ]]; then ctrlc; fi
 done
