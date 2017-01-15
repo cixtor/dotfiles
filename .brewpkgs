@@ -38,5 +38,6 @@ shellcheck
 speex
 tree
 unrar
+vnstat
 wget
 homebrew/php/wp-cli
