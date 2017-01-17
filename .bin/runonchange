@@ -1,0 +1,25 @@
+#!/bin/bash
+# Monitor and notify abount directory changes.
+if command -v fswatch &> /dev/null; then
+    echo "fswatch -o [DIRS] | xargs -n1 [COMMAND]"
+elif command -v inotifywait &> /dev/null; then
+    DIRECTORY=$(pwd)
+    while inotifywait -r -e modify --format="%w%f" "$DIRECTORY"; do
+        URGENCY="normal"
+        if [[ "$1" != "" ]]; then
+            if eval "$@"; then
+                URGENCY="normal"
+            else
+                URGENCY="critical"
+            fi
+        fi
+        SHORT_DIRECTORY="${DIRECTORY//$HOME/\~}"
+        notify-send "Run On Change" \
+        "Directory ${SHORT_DIRECTORY} has changed" \
+        --urgency="$URGENCY" \
+        --expire-time=2000
+    done
+else
+    echo "Mac: brew install fswatch"
+    echo "Linux: apt-get install inotify-tools"
+fi
