@@ -1,0 +1,42 @@
+#!/bin/bash
+if [[ "$1" == "" ]] || [[ "$1" =~ "help" ]]; then
+    S=$(basename "$0")
+    echo "Media Date Fixer"
+    echo
+    echo "Many photo/video managers will sort the files using the modification date"
+    echo "rather than the date reported in the EXIF data or the file name in itself"
+    echo "(assuming that it follows a format). If you prefer to order your files by"
+    echo "their file name you can change the modification time using the Unix's touch"
+    echo "command. This script will take \"IMG_19990314_124503.jpg\" and assign the"
+    echo "modification date \"14 Mar, 1999 at 12:45:03\". Any other file with that"
+    echo "pattern will be modified."
+    echo
+    echo "Usage:"
+    echo "  $S [IMG_*]"
+    echo "  $S [VID_*]"
+    exit 2
+fi
+
+for FILEPATH in "$@"; do
+    # Skip non-existing files.
+    if [[ ! -e "$FILEPATH" ]]; then
+        continue
+    fi
+
+    FILENAME=$(basename "$FILEPATH")
+
+    if echo "$FILENAME" | grep -qE "^..._[0-9]{8}_[0-9]{6}\....$"; then
+        YEAR=$(echo "$FILENAME" | cut -c5-8)
+        MONTH=$(echo "$FILENAME" | cut -c9-10)
+        DAY=$(echo "$FILENAME" | cut -c11-12)
+        HOUR=$(echo "$FILENAME" | cut -c14-15)
+        MINUTES=$(echo "$FILENAME" | cut -c16-17)
+        # For some reason the variable SECONDS deletes leading zeroes.
+        ZECONDS=$(echo "$FILENAME" | cut -c18-19)
+        TIMESTAMP="${YEAR}${MONTH}${DAY}${HOUR}${MINUTES}.${ZECONDS}"
+
+        echo "${FILENAME} >>> ${YEAR}/${MONTH}/${DAY} at ${HOUR}:${MINUTES}:${ZECONDS}"
+
+        touch -t "${TIMESTAMP}" -- "$FILEPATH"
+    fi
+done
