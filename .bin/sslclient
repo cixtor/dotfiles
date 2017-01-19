@@ -1,4 +1,14 @@
 #!/bin/bash
 # Display information about an SSL certificate.
-if [[ "$1" == "" ]]; then echo "Usage: $0 [domain]"; exit 1; fi
-echo -n '' | openssl s_client -connect "${1}:443"
+if [[ "$1" == "" ]] || [[ "$1" =~ help ]]; then
+    SCRIPT=$(basename "$0")
+    echo "SSL Certificate Client"
+    echo "Usage:"
+    echo "  $SCRIPT [host]       Displays SSL certificate information"
+    exit 2
+fi
+
+ACTION="${2:-none}"
+DOMAIN="${1:-example.com}"
+
+echo | openssl s_client -connect "${DOMAIN}:443"
