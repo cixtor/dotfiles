@@ -37,6 +37,9 @@ for FILEPATH in "$@"; do
 
         echo "${FILENAME} >>> ${YEAR}/${MONTH}/${DAY} at ${HOUR}:${MINUTES}:${ZECONDS}"
 
-        touch -t "${TIMESTAMP}" -- "$FILEPATH"
+        touch -mt "$TIMESTAMP" -- "$FILEPATH"
+
+        MODIFICATION=$(GetFileInfo -m "$FILEPATH")
+        SetFile -d "$MODIFICATION" "$FILEPATH"
     fi
 done
