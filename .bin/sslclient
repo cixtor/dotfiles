@@ -5,12 +5,44 @@ if [[ "$1" == "" ]] || [[ "$1" =~ help ]]; then
     echo "SSL Certificate Client"
     echo "Usage:"
     echo "  $SCRIPT [host]       Displays SSL certificate information"
+    echo "  $SCRIPT [host] -new  Creates a new self-signed certificate"
     echo "  $SCRIPT [host] -exp  Displays the expiration of a certificate"
     exit 2
 fi
 
 ACTION="${2:-none}"
 DOMAIN="${1:-example.com}"
+
+if [[ "$ACTION" == "-new" ]]; then
+openssl req -x509 -nodes -days 365 -newkey rsa:496 -keyout "${DOMAIN}.key" -out "${DOMAIN}.crt"
+echo "<IfModule mod_ssl.c>
+    <VirtualHost ${DOMAIN}.test:443>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/${DOMAIN}
+        #LogLevel info ssl:warn
+        ErrorLog \${APACHE_LOG_DIR}/${DOMAIN}_ssl_error.log
+        CustomLog \${APACHE_LOG_DIR}/${DOMAIN}_ssl_access.log combined
+        SSLEngine on
+        SSLCertificateFile  /etc/ssl/certs/${DOMAIN}.crt
+        SSLCertificateKeyFile   /etc/ssl/private/${DOMAIN}.key
+        <FilesMatch \"\.(cgi|shtml|phtml|php)\$\">
+            SSLOptions +StdEnvVars
+        </FilesMatch>
+        <Directory /usr/lib/cgi-bin>
+            SSLOptions +StdEnvVars
+        </Directory>
+        <Directory /data/${DOMAIN}>
+            AllowOverride All
+            Require all granted
+            SSLOptions +StdEnvVars
+            Options -Indexes -MultiViews +SymLinksIfOwnerMatch
+        </Directory>
+        BrowserMatch \"MSIE [2-6]\" nokeepalive ssl-unclean-shutdown downgrade-1.0 force-response-1.0
+        BrowserMatch \"MSIE [17-9]\" ssl-unclean-shutdown
+    </VirtualHost>
+</IfModule>"
+exit
+fi
 
 if [[ "$ACTION" == "-exp" ]]; then
     echo "domain=${DOMAIN}"; echo \
