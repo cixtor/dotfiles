@@ -43,3 +43,6 @@ alias mp3dl="youtube-dl --extract-audio --audio-format mp3 --audio-quality 0"
 
 # Automatically colorize Diff's output
 alias diff="colordiff -u"
+
+# Stress test the responsiveness of a network node
+alias ddos="hping3 -c 10000 -d 120 -S -w 64 -p 21 --flood --rand-source"
