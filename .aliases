@@ -40,3 +40,6 @@ alias gitgraph='git log --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s 
 
 # Download YouTube video and extract audio
 alias mp3dl="youtube-dl --extract-audio --audio-format mp3 --audio-quality 0"
+
+# Automatically colorize Diff's output
+alias diff="colordiff -u"
