@@ -1,3 +1,6 @@
+" VIM - Vi IMproved
+" brew install vim
+
 " Show line numbers
 set number
 set numberwidth=3
@@ -65,9 +68,14 @@ set showmode
 set splitright
 set splitbelow
 
-" Activate filetype plugins automatically
-" Use :filetype to get more information
-" https://github.com/elentok/plaintasks.vim
+" Required plugin manager settings
+" https://github.com/VundleVim/Vundle.vim
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+call vundle#end()
 filetype plugin on
 
 " Configure https://github.com/itchyny/lightline.vim
