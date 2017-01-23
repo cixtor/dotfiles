@@ -77,6 +77,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'elentok/plaintasks.vim'
+Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin on
 
