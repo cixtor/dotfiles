@@ -45,6 +45,9 @@ if [[ ! -e "${VIDEO}.mp3" ]]; then
     exit 1
 fi
 
+echo "Delete all tags..."
+id3v2 --delete-all "${VIDEO}.mp3"
+
 echo "Setting title: \"${TITLE}\""
 echo "Setting author: \"${AUTHOR}\""
 id3v2 -t "$TITLE" -a "$AUTHOR" "${VIDEO}.mp3"
