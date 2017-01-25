@@ -5,6 +5,9 @@ alias ls='ls -G'
 alias cat='cat -v'
 alias grep='grep --color=auto'
 
+# Simplify Caskroom calls.
+alias cask="brew cask"
+
 # Print generic default date based on Go.
 alias ansic="echo 'Mon Jan _2 15:04:05 2006 - 1136239445'"
 
