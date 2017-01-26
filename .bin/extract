@@ -1,0 +1,37 @@
+#!/bin/bash
+if [[ "$1" =~ help ]]; then
+    echo "Extract most common archives"
+    echo "Usage:"
+    echo "  extract archive.tar.bz2"
+    echo "  extract archive.tar.gz"
+    echo "  extract archive.bz2"
+    echo "  extract archive.rar"
+    echo "  extract archive.gz"
+    echo "  extract archive.tar"
+    echo "  extract archive.tbz2"
+    echo "  extract archive.tgz"
+    echo "  extract archive.zip"
+    echo "  extract archive.Z"
+    echo "  extract archive.7z"
+    exit 2
+fi
+
+if [[ ! -f "$1" ]]; then
+	echo "Invalid archive passed"
+	exit 1
+fi
+
+case "$1" in
+    *.tar.bz2) tar xjf "$1"    ;;
+    *.tar.gz)  tar xzf "$1"    ;;
+    *.bz2)     bunzip2 "$1"    ;;
+    *.rar)     unrar e "$1"    ;;
+    *.gz)      gunzip "$1"     ;;
+    *.tar)     tar xf "$1"     ;;
+    *.tbz2)    tar xjf "$1"    ;;
+    *.tgz)     tar xzf "$1"    ;;
+    *.zip)     unzip "$1"      ;;
+    *.Z)       uncompress "$1" ;;
+    *.7z)      7z x "$1"       ;;
+    *)         echo "'$1' cannot be extracted" ;;
+esac
