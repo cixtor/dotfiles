@@ -1,0 +1,23 @@
+#!/bin/bash
+DATE=$(date +%Y%m%d)
+DIRECTORY="${HOME}/Safari.${DATE}"
+
+mkdir -pv "${DIRECTORY}/Safari" || exit
+mkdir -pv "${DIRECTORY}/Preferences" || exit
+mkdir -pv "${DIRECTORY}/Safari/Databases" || exit
+mkdir -pv "${DIRECTORY}/Safari/Extensions" || exit
+
+cp -- "${HOME}/Library/Safari/History.db" "${DIRECTORY}/Safari/"
+cp -- "${HOME}/Library/Safari/TopSites.plist" "${DIRECTORY}/Safari/"
+cp -- "${HOME}/Library/Safari/Bookmarks.plist" "${DIRECTORY}/Safari/"
+cp -- "${HOME}/Library/Safari/LastSession.plist" "${DIRECTORY}/Safari/"
+cp -- "${HOME}/Library/Safari/Databases/Databases.db" "${DIRECTORY}/Safari/Databases/"
+cp -- "${HOME}/Library/Preferences/com.apple.Safari.plist" "${DIRECTORY}/Preferences/"
+cp -- "${HOME}/Library/Preferences/com.apple.Safari.Extensions.plist" "${DIRECTORY}/Preferences/"
+
+cp -r -- "${HOME}/Library/Safari/Extensions" "${DIRECTORY}/Safari/"
+
+if zip -r9 "${DIRECTORY}.zip" "$DIRECTORY"; then
+    rm -rf -- "$DIRECTORY" 2> /dev/null
+    echo "  creating: ${DIRECTORY}.zip"
+fi
