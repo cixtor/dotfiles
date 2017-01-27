@@ -22,7 +22,7 @@ if command -v fswatch &> /dev/null; then
     if command -v terminal-notifier &> /dev/null; then
         NOTIFICATION="terminal-notifier -message '${COMMAND}' ${RANDOM} -title 'Finished Execution' -timeout 2 &> /dev/null"
     fi
-    fswatch -o . | xargs -n1 sh -c "${COMMAND} ; ${NOTIFICATION}"
+    fswatch -o -e ".git" . | xargs -n1 sh -c "${COMMAND} ; ${NOTIFICATION}"
     exit
 fi
 
