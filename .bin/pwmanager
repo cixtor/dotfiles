@@ -10,6 +10,16 @@ echo "OpenSSL Password Manager"
 
 rm -- "$TMPFILE" 2> /dev/null
 
+if [[ ! -e "$STORAGE" ]]; then
+    echo "Creating new password database"
+    vim -- "$PLAINTEXT"
+    echo "Encrypting password database"
+    openssl enc -aes-256-cbc -in "$PLAINTEXT" -out "$STORAGE"
+    rm -- "$PLAINTEXT" 2> /dev/null
+    echo "Finished!"
+    exit
+fi
+
 if [[ "$1" == "-edit" ]]; then
 	echo "Decrypting password database"
 	if ! openssl enc -aes-256-cbc -d -in "$STORAGE" -out "$PLAINTEXT"; then
