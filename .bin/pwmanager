@@ -1,7 +1,30 @@
 #!/bin/bash
 # Rudimentary password manager
-OUTPUT="/tmp/passwords.txt"
-STORAGE="${HOME}/passwords.dat"
+TMPFILE=$(mktemp)
+TMPFOLDER=$(dirname "$TMPFILE")
+STORAGE="${HOME}/.passwords.dat"
+PLAINTEXT="${HOME}/.passwords.txt"
+OUTPUT="${TMPFOLDER}/.passwords.txt"
+
+echo "OpenSSL Password Manager"
+
+rm -- "$TMPFILE" 2> /dev/null
+
+if [[ "$1" == "-edit" ]]; then
+	echo "Decrypting password database"
+	if ! openssl enc -aes-256-cbc -d -in "$STORAGE" -out "$PLAINTEXT"; then
+		echo "Incorrect password; aborting edit procedure."
+		exit 1
+	fi
+
+	vim -- "$PLAINTEXT"
+	rm -- "$STORAGE" 2> /dev/null
+	echo "Re-encrypting password database"
+	openssl enc -aes-256-cbc -in "$PLAINTEXT" -out "$STORAGE"
+	rm -- "$PLAINTEXT" 2> /dev/null
+	echo "Finished!"
+	exit
+fi
 
 echo "Exporting to ${OUTPUT}"
 
