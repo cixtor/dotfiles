@@ -10,9 +10,10 @@ echo "OpenSSL Password Manager"
 
 rm -- "$TMPFILE" 2> /dev/null
 
-if [[ ! -e "$STORAGE" ]]; then
+if [[ ! -e "$STORAGE" ]] || [[ "$1" == "-create" ]]; then
     echo "Creating new password database"
     vim -- "$PLAINTEXT"
+    rm -- "$STORAGE" 2> /dev/null
     echo "Encrypting password database"
     openssl enc -aes-256-cbc -in "$PLAINTEXT" -out "$STORAGE"
     rm -- "$PLAINTEXT" 2> /dev/null
@@ -21,19 +22,19 @@ if [[ ! -e "$STORAGE" ]]; then
 fi
 
 if [[ "$1" == "-edit" ]]; then
-	echo "Decrypting password database"
-	if ! openssl enc -aes-256-cbc -d -in "$STORAGE" -out "$PLAINTEXT"; then
-		echo "Incorrect password; aborting edit procedure."
-		exit 1
-	fi
+    echo "Decrypting password database"
+    if ! openssl enc -aes-256-cbc -d -in "$STORAGE" -out "$PLAINTEXT"; then
+        echo "Incorrect password; aborting edit procedure."
+        exit 1
+    fi
 
-	vim -- "$PLAINTEXT"
-	rm -- "$STORAGE" 2> /dev/null
-	echo "Re-encrypting password database"
-	openssl enc -aes-256-cbc -in "$PLAINTEXT" -out "$STORAGE"
-	rm -- "$PLAINTEXT" 2> /dev/null
-	echo "Finished!"
-	exit
+    vim -- "$PLAINTEXT"
+    rm -- "$STORAGE" 2> /dev/null
+    echo "Re-encrypting password database"
+    openssl enc -aes-256-cbc -in "$PLAINTEXT" -out "$STORAGE"
+    rm -- "$PLAINTEXT" 2> /dev/null
+    echo "Finished!"
+    exit
 fi
 
 echo "Exporting to ${OUTPUT}"
