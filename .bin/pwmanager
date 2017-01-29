@@ -10,6 +10,24 @@ echo "OpenSSL Password Manager"
 
 rm -- "$TMPFILE" 2> /dev/null
 
+if [[ "$1" =~ "help" ]]; then
+    SCRIPT=$(basename "$0")
+    echo
+    echo "This is a rudimentary password manager powered by OpenSSL. Using a file"
+    echo "with information about the accounts in plain text, the tool will encrypt"
+    echo "the data using AES-256-CBC. Be aware that the decryption process puts the"
+    echo "data in a temporary file that can be easily accessed by any 3rd-party"
+    echo "application or user in the system until the editor of choice used to"
+    echo "manage its content is closed."
+    echo
+    echo "Usage:"
+    echo "  ${SCRIPT}          Manages the password database"
+    echo "  ${SCRIPT} -help    Prints this information message"
+    echo "  ${SCRIPT} -edit    Modifies an existing password database"
+    echo "  ${SCRIPT} -create  Creates or overrides a password database"
+    exit 2
+fi
+
 if [[ ! -e "$STORAGE" ]] || [[ "$1" == "-create" ]]; then
     echo "Creating new password database"
     vim -- "$PLAINTEXT"
