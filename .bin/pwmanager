@@ -1,14 +1,9 @@
 #!/bin/bash
 # Rudimentary password manager
-TMPFILE=$(mktemp)
-TMPFOLDER=$(dirname "$TMPFILE")
 STORAGE="${HOME}/.passwords.dat"
 PLAINTEXT="${HOME}/.passwords.txt"
-OUTPUT="${TMPFOLDER}/.passwords.txt"
 
 echo "OpenSSL Password Manager"
-
-rm -- "$TMPFILE" 2> /dev/null
 
 if [[ "$1" =~ "help" ]]; then
     SCRIPT=$(basename "$0")
@@ -55,9 +50,10 @@ if [[ "$1" == "-edit" ]]; then
     exit
 fi
 
+OUTPUT=$(mktemp)
 echo "Exporting to ${OUTPUT}"
-
 if openssl enc -aes-256-cbc -d -in "$STORAGE" -out "$OUTPUT"; then
     /usr/bin/vim -- "$OUTPUT"
+    echo -n "Deleting TMP "
     rm -fv -- "$OUTPUT"
 fi
