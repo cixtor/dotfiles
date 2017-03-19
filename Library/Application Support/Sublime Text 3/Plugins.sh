@@ -33,7 +33,7 @@ if [[ -e "${INST_PATH}" ]]; then
         LOCAL_NAME=$(echo "$REPO" | awk -F '|' '{print $1}')
         REPO_NAME=$(echo "$REPO" | awk -F '|' '{print $2}')
         REPO_URL="https://github.com/${REPO_NAME}"
-        echo -e "Install '\e[0;33m${REPO_NAME}\e[0m' as '\e[0;32m${LOCAL_NAME}\e[0m'"
+        echo "Installing ${REPO_URL}"
         git clone "${REPO_URL}" "${LOCAL_NAME}"
         echo
     done
