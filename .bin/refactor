@@ -1,0 +1,39 @@
+#!/bin/bash
+if [[ "$1" == "" ]]; then
+    SCRIPT=$(basename "$0")
+    echo "Rename"
+    echo
+    echo "Searches all the files in the current directory containing"
+    echo "the [old] and replacement every occurrence with [new]. Be "
+    echo "aware that forward slashes must be escaped in both cases."
+    echo
+    echo "Usage: ${SCRIPT} [old] [new]"
+    exit 2
+fi
+
+IFS=$'\n'
+COUNTER=0
+QUERY="${1:-foo}"
+REPLACEMENT="${2:-bar}"
+OCURRENCES=($(grep -rn --color=yes "$QUERY" .))
+FILES=($(grep -rn "$QUERY" . | cut -d: -f1 | sort | uniq))
+
+echo "@ Scanning directory"
+for OCURRENCE in "${OCURRENCES[@]}"; do
+    COUNTER=$((COUNTER + 1))
+    echo "  ${OCURRENCE}"
+done
+
+if [[ "$COUNTER" -eq 0 ]]; then
+    echo "= Nothing was found."
+    exit 1
+fi
+
+echo -n "@ Found ${COUNTER} occurrences; continue? [y/n] "
+read ANSWER; if [[ "$ANSWER" != "y" ]]; then exit; fi
+
+echo "@ Rename all occurrences"
+for FILE in "${FILES[@]}"; do
+    echo "  Fixing ${FILE} ..."
+    sed -i "" "s/$QUERY/$REPLACEMENT/g" "$FILE"
+done
