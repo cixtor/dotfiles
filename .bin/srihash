@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [[ "$1" == "" ]]; then
+    SCRIPT=$(basename "$0")
+    echo "Subresource Integrity"
+    echo
+    echo "https://www.srihash.org/"
+    echo "https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity"
+    echo
+    echo "Subresource Integrity (SRI) is a security feature that enables"
+    echo "browsers to verify that files they fetch (for example, from a "
+    echo "CDN) are delivered without unexpected manipulation. It works  "
+    echo "by allowing you to provide a cryptographic hash that a fetched"
+    echo "file must match."
+    echo
+    echo "Usage:"
+    echo "  ${SCRIPT} /path/to/file.css"
+    echo "  ${SCRIPT} https://example.com/file.js"
+    exit 2
+fi
+
+echo -n "sha384-"
+if [[   -e "$1" ]]; then cat -- "$1"  | openssl dgst -sha384 -binary | openssl enc -base64 -A; fi
+if [[ ! -e "$1" ]]; then curl "$1" -s | openssl dgst -sha384 -binary | openssl enc -base64 -A; fi
+echo
