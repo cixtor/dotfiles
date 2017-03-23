@@ -18,7 +18,7 @@ REPOSITORIES=(
     "SublimeLinter-php|SublimeLinter/SublimeLinter-php"
     "SublimeLinter-phpcs|SublimeLinter/SublimeLinter-phpcs"
     "SublimeLinter-jshint|SublimeLinter/SublimeLinter-jshint"
-    "SublimeLinter-csslint|SublimeLinter/SublimeLinter-csslint"
+    "SublimeLinter-stylelint|kungfusheep/SublimeLinter-contrib-stylelint"
     "SublimeLinter-shellcheck|SublimeLinter/SublimeLinter-shellcheck"
 )
 
