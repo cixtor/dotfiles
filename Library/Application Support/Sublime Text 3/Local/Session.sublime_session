@@ -2,7 +2,7 @@
 	"folder_history":
 	[
 	],
-	"last_version": 0,
+	"last_version": 3129,
 	"last_window_id": 1,
 	"log_indexing": false,
 	"settings":
@@ -55,7 +55,7 @@
 			],
 			"find":
 			{
-				"height": 0.0
+				"height": 23.0
 			},
 			"find_in_files":
 			{
@@ -93,7 +93,7 @@
 			],
 			"incremental_find":
 			{
-				"height": 0.0
+				"height": 23.0
 			},
 			"input":
 			{
@@ -131,11 +131,11 @@
 				"height": 0.0
 			},
 			"pinned_build_system": "",
-			"position": "0 390 300 640 502 0 0 1440 877 ",
+			"position": "0 400 196 640 502 0 0 1440 877 ",
 			"project": "",
 			"replace":
 			{
-				"height": 0.0
+				"height": 42.0
 			},
 			"save_all_on_build": true,
 			"select_file":
