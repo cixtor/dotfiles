@@ -40,7 +40,7 @@ for filesize in sizes:
         key=lambda x: x["size"],
         reverse=True)
     for data in ordered:
-        length = len(data["file"])
+        length = len(data["file"].replace(folder + "/", ""))
         if length > lline: lline = length
     lsize = len(str(ordered[0]["size"]))
     lline += lsize + 2 # Add longest size and separator
@@ -50,8 +50,9 @@ for filesize in sizes:
     print(title) # Print title per group
     for data in ordered:
         tamano = str(data["size"]).rjust(lsize)
+        shortFilename = data["file"].replace(folder + "/", "")
         print("{0}{1} {2}".format(tamano,
             data["type"],
-            data["file"]))
+            shortFilename))
 
 exit(0)
