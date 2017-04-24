@@ -18,8 +18,9 @@ REPOSITORIES=(
     "SublimeLinter-php|SublimeLinter/SublimeLinter-php"
     "SublimeLinter-phpcs|SublimeLinter/SublimeLinter-phpcs"
     "SublimeLinter-jshint|SublimeLinter/SublimeLinter-jshint"
-    "SublimeLinter-stylelint|kungfusheep/SublimeLinter-contrib-stylelint"
     "SublimeLinter-shellcheck|SublimeLinter/SublimeLinter-shellcheck"
+    "SublimeLinter-stylelint|kungfusheep/SublimeLinter-contrib-stylelint"
+    "SublimeLinter-gometalinter|alecthomas/SublimeLinter-contrib-gometalinter"
 )
 
 if [[ "$SYSTEM" == "Darwin" ]]; then
