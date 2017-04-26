@@ -12,7 +12,6 @@ REPOSITORIES=(
     "Codec|furikake/sublime-codec"
     "Alignment|wbond/sublime_alignment"
     "PlainTasks|aziz/PlainTasks"
-    "MarkdownLight|sekogan/MarkdownLight"
     "CaseConversion|jdc0589/CaseConversion"
     "SublimeLinter|SublimeLinter/SublimeLinter3"
     "SublimeLinter-php|SublimeLinter/SublimeLinter-php"

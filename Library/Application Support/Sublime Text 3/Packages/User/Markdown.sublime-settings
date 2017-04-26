@@ -1,0 +1,15 @@
+// These settings override both User and Default settings for the Markdown syntax
+{
+    "auto_match_enabled": true,
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": false,
+	"word_wrap": true,
+	"wrap_width": 80,
+	"extensions":
+	[
+		"md",
+		"markdown",
+		"mdown",
+		"markdn"
+	]
+}
