@@ -1,6 +1,5 @@
 #!/bin/bash
 # Execute custom PHPCode_Sniffer coding standard.
-STANDARD="${HOME}/.psr99.xml"
 RULESET=(
     '<?xml version="1.0"?>'
     '<ruleset name="PSR99">'
@@ -20,15 +19,20 @@ RULESET=(
 )
 
 if command -v phpcs &> /dev/null; then
-    if [[ ! -e "$STANDARD" ]]; then
-        for LINE in "${RULESET[@]}"; do
-            echo "$LINE" 1>> "$STANDARD"
-        done
-    fi
+    TEMPORARY=$(mktemp)
+    STANDARD="${TEMPORARY}.xml"
 
-    /usr/bin/env phpcs -w \
+    mv -- "$TEMPORARY" "$STANDARD"
+
+    for LINE in "${RULESET[@]}"; do
+        echo "$LINE" 1>> "$STANDARD"
+    done
+
+    /usr/local/bin/phpcs -w \
     --standard="$STANDARD" \
     --report-width=150 \
     --report=full \
     --colors "$@"
+
+    rm -- "$STANDARD" 2> /dev/null
 fi
