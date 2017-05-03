@@ -12,48 +12,44 @@
 # b_d0vkqfv0   2972:d205390198c6 (inactive) ███████████▎     993
 # b_llslwq8z   2922:a21134e2940d (inactive) ████████████     1043
 # b_n3gmq5yz   2581:c1a2afe566a4 (inactive) ████████████████ 1384
-if [[ "$@" == "branches" ]]; then
+if [[ "$1" == "branches" ]]; then
+    code="" # Base64-encoded Python script
     script="/tmp/hg-branches-$(date +%s).py"
-    code='' # Base64-encoded Python script
-    code+='IyEvdXNyL2Jpbi9lbnYgcHl0aG9uCiMgLSotIGNvZGluZzogdXRmLTggLSotCmltcG9ydCBzdWJw'
-    code+='cm9jZXNzLCByZQoKcHJvYyA9IHN1YnByb2Nlc3MuUG9wZW4oWyJoZyBicmFuY2hlcyAtLWNsb3Nl'
-    code+='ZCAtLWNvbG9yPW5ldmVyIl0sCiAgICBzdGRvdXQ9c3VicHJvY2Vzcy5QSVBFLAogICAgc2hlbGw9'
-    code+='VHJ1ZSkKKG91dHB1dCwgZXJyb3IpID0gcHJvYy5jb21tdW5pY2F0ZSgpCgppZiBlcnJvciA9PSBO'
-    code+='b25lOgogICAgbGluZXMgPSBvdXRwdXQuc3BsaXQoJ1xuJykKICAgIChicmFuY2hlcywgaGVhZHMs'
-    code+='IGNvbW1pdHMpID0gKFtdLCBbXSwgW10pCiAgICBzcGFya3MgPSBbCiAgICAgICAgdSJcdTAwMjAi'
-    code+='LCAjIHNwYWNlCiAgICAgICAgdSJcdTI1OEYiLCAjIOKWjwogICAgICAgIHUiXHUyNThFIiwgIyDi'
-    code+='lo4KICAgICAgICB1Ilx1MjU4RCIsICMg4paNCiAgICAgICAgdSJcdTI1OEMiLCAjIOKWjAogICAg'
-    code+='ICAgIHUiXHUyNThCIiwgIyDilosKICAgICAgICB1Ilx1MjU4QSIsICMg4paKCiAgICAgICAgdSJc'
-    code+='dTI1ODkiLCAjIOKWiQogICAgICAgIHUiXHUyNTg4IiwgIyDilogKICAgIF0KCiAgICBmb3IgbGlu'
-    code+='ZSBpbiBsaW5lczoKICAgICAgICBpZiBsaW5lICE9ICIiOgogICAgICAgICAgICBtYXRjaCA9IHJl'
-    code+='LnNlYXJjaCgnKFxTKylccysoXGQrKTooWzAtOWEtel17MTJ9KScsIGxpbmUpCgogICAgICAgICAg'
-    code+='ICBpZiBtYXRjaCAhPSBOb25lOgogICAgICAgICAgICAgICAgYnJhbmNoZXMuYXBwZW5kKG1hdGNo'
-    code+='Lmdyb3VwKDEpKQogICAgICAgICAgICAgICAgY29tbWl0cy5hcHBlbmQobWF0Y2guZ3JvdXAoMykp'
-    code+='CiAgICAgICAgICAgICAgICBoZWFkcy5hcHBlbmQoaW50KG1hdGNoLmdyb3VwKDIpKSkKCiAgICBj'
-    code+='b3VudGVyID0gMAogICAgYnNwYXJrcyA9IFtdCiAgICBncmVhdGVzdCA9IG1heChoZWFkcykKICAg'
-    code+='IHBlcmNoYXIgPSA4ICMgTWF4aW11bSBzcGFyayBiYXJzIHBlciBjaGFyYWN0ZXIKICAgIG1heGlt'
-    code+='dW0gPSAxNiAjIE1heGltdW0gY2hhcmFjdGVycyBmb3IgMTAwJQogICAgbWF4MTAwcCA9IHBlcmNo'
-    code+='YXIgKiBtYXhpbXVtCiAgICBkaWZmcyA9IFsoZ3JlYXRlc3QgLSBoZWFkKSBmb3IgaGVhZCBpbiBo'
-    code+='ZWFkc10KICAgIG1heF9kaWZmID0gbWF4KGRpZmZzKQogICAgcmVhbF9wMTAwID0gWygoZGlmZiAq'
-    code+='IDEwMCkgLyBtYXhfZGlmZikgZm9yIGRpZmYgaW4gZGlmZnNdOwogICAgZmFrZV9wMTAwID0gWygo'
-    code+='cCAqIG1heDEwMHApIC8gMTAwKSBmb3IgcCBpbiByZWFsX3AxMDBdCgogICAgZm9yIGZha2UgaW4g'
-    code+='ZmFrZV9wMTAwOgogICAgICAgIHVuaXRzID0gKGZha2UgLyAocGVyY2hhciAqIDEuMCkpCiAgICAg'
-    code+='ICAgc3VlbG8gPSBpbnQodW5pdHMpCiAgICAgICAgaWYgKHVuaXRzID09IHN1ZWxvKToKICAgICAg'
-    code+='ICAgICAgYnNwYXJrcy5hcHBlbmQodSJcdTI1ODgiICogc3VlbG8pCiAgICAgICAgZWxzZToKICAg'
-    code+='ICAgICAgICAgcmVzdCA9IGZha2UgLSAoc3VlbG8gKiBwZXJjaGFyKQogICAgICAgICAgICBmaXJz'
-    code+='dCA9ICh1Ilx1MjU4OCIgKiBzdWVsbykKICAgICAgICAgICAgdHJhaWxpbmcgPSBzcGFya3NbcmVz'
-    code+='dF0KICAgICAgICAgICAgYnNwYXJrcy5hcHBlbmQoZmlyc3QgKyB0cmFpbGluZykKCiAgICBmb3Ig'
-    code+='aGVhZCBpbiBoZWFkczoKICAgICAgICBkaWZmID0gKGdyZWF0ZXN0IC0gaGVhZCkKICAgICAgICBp'
-    code+='ZiBjb3VudGVyID09IDA6CiAgICAgICAgICAgIHByaW50IGxpbmVzW2NvdW50ZXJdCiAgICAgICAg'
-    code+='ZWxzZToKICAgICAgICAgICAgd2hpdGViYXIgPSBic3BhcmtzW2NvdW50ZXJdLmxqdXN0KG1heGlt'
-    code+='dW0pCiAgICAgICAgICAgIHByaW50IGxpbmVzW2NvdW50ZXJdLCB3aGl0ZWJhciwgZGlmZgogICAg'
-    code+='ICAgIGNvdW50ZXIgKz0gMQplbHNlOgogICAgcHJpbnQgIkVycm9yOiAiLCBlcnJvcgo='
 
-    if [[ $(uname -s) == "Darwin" ]]; then
-        echo "$code" | base64 -D 1> "$script"
-    else
-        echo "$code" | base64 -d 1> "$script"
-    fi
+    code+="IyEvdXNyL2Jpbi9lbnYgcHl0aG9uCiMgLSotIGNvZGluZzogdXRmLTggLSotCmltcG9ydCBzdWJwcm9j"
+    code+="ZXNzLCBzeXMsIHJlCgpwcm9jID0gc3VicHJvY2Vzcy5Qb3BlbihbIi91c3IvbG9jYWwvYmluL2hnIGJy"
+    code+="YW5jaGVzIC0tY2xvc2VkIC0tY29sb3I9bmV2ZXIiXSwKICAgIHN0ZG91dD1zdWJwcm9jZXNzLlBJUEUs"
+    code+="CiAgICBzaGVsbD1UcnVlKQoob3V0cHV0LCBlcnJvcikgPSBwcm9jLmNvbW11bmljYXRlKCkKCmlmIGVy"
+    code+="cm9yICE9IE5vbmU6CiAgICBwcmludCAiRXJyb3I6ICIsIGVycm9yCiAgICBzeXMuZXhpdCgxKQoKbG9u"
+    code+="Z2VzdCA9IDAKbGluZXMgPSBvdXRwdXQuc3BsaXQoJ1xuJykKKGJyYW5jaGVzLCBoZWFkcywgY29tbWl0"
+    code+="cykgPSAoW10sIFtdLCBbXSkKc3BhcmtzID0gWwogICAgdSJcdTAwMjAiLCAjIHNwYWNlCiAgICB1Ilx1"
+    code+="MjU4RiIsICMg4paPCiAgICB1Ilx1MjU4RSIsICMg4paOCiAgICB1Ilx1MjU4RCIsICMg4paNCiAgICB1"
+    code+="Ilx1MjU4QyIsICMg4paMCiAgICB1Ilx1MjU4QiIsICMg4paLCiAgICB1Ilx1MjU4QSIsICMg4paKCiAg"
+    code+="ICB1Ilx1MjU4OSIsICMg4paJCiAgICB1Ilx1MjU4OCIsICMg4paICl0KCmZvciBsaW5lIGluIGxpbmVz"
+    code+="OgogICAgaWYgbGluZSA9PSAiIjogY29udGludWUKICAgIG1hdGNoID0gcmUuc2VhcmNoKCcoXFMrKVxz"
+    code+="KyhcZCspOihbMC05YS16XXsxMn0pJywgbGluZSkKICAgIGlmIG1hdGNoID09IE5vbmU6IGNvbnRpbnVl"
+    code+="CiAgICBicmFuY2hlcy5hcHBlbmQobWF0Y2guZ3JvdXAoMSkpCiAgICBjb21taXRzLmFwcGVuZChtYXRj"
+    code+="aC5ncm91cCgzKSkKICAgIGhlYWRzLmFwcGVuZChpbnQobWF0Y2guZ3JvdXAoMikpKQogICAgaWYgbGVu"
+    code+="KG1hdGNoLmdyb3VwKDEpKSA+IGxvbmdlc3Q6CiAgICAgICAgbG9uZ2VzdCA9IGxlbihtYXRjaC5ncm91"
+    code+="cCgxKSkKCmJzcGFya3MgPSBbXQpncmVhdGVzdCA9IG1heChoZWFkcykKcGVyY2hhciA9IDggIyBNYXhp"
+    code+="bXVtIHNwYXJrIGJhcnMgcGVyIGNoYXJhY3RlcgptYXhpbXVtID0gMTYgIyBNYXhpbXVtIGNoYXJhY3Rl"
+    code+="cnMgZm9yIDEwMCUKbWF4MTAwcCA9IHBlcmNoYXIgKiBtYXhpbXVtCmRpZmZzID0gWyhncmVhdGVzdCAt"
+    code+="IGhlYWQpIGZvciBoZWFkIGluIGhlYWRzXQptYXhfZGlmZiA9IG1heChkaWZmcykKcmVhbF9wMTAwID0g"
+    code+="WygoZGlmZiAqIDEwMCkgLyBtYXhfZGlmZikgZm9yIGRpZmYgaW4gZGlmZnNdOwpmYWtlX3AxMDAgPSBb"
+    code+="KChwICogbWF4MTAwcCkgLyAxMDApIGZvciBwIGluIHJlYWxfcDEwMF0KCmZvciBmYWtlIGluIGZha2Vf"
+    code+="cDEwMDoKICAgIHVuaXRzID0gKGZha2UgLyAocGVyY2hhciAqIDEuMCkpCiAgICBzdWVsbyA9IGludCh1"
+    code+="bml0cykKICAgIGlmICh1bml0cyA9PSBzdWVsbyk6CiAgICAgICAgYnNwYXJrcy5hcHBlbmQodSJcdTI1"
+    code+="ODgiICogc3VlbG8pCiAgICBlbHNlOgogICAgICAgIHJlc3QgPSBmYWtlIC0gKHN1ZWxvICogcGVyY2hh"
+    code+="cikKICAgICAgICBmaXJzdCA9ICh1Ilx1MjU4OCIgKiBzdWVsbykKICAgICAgICB0cmFpbGluZyA9IHNw"
+    code+="YXJrc1tyZXN0XQogICAgICAgIGJzcGFya3MuYXBwZW5kKGZpcnN0ICsgdHJhaWxpbmcpCgpmb3IgaWR4"
+    code+="LCBoZWFkIGluIGVudW1lcmF0ZShoZWFkcyk6CiAgICBleHRyYSA9ICIiCiAgICBkaWZmID0gKGdyZWF0"
+    code+="ZXN0IC0gaGVhZCkKICAgIGNvbW1pdCA9IGNvbW1pdHNbaWR4XQogICAgYnJhbmNoID0gYnJhbmNoZXNb"
+    code+="aWR4XQogICAgc3BhY2VzID0gIlx4MjAiICogKGxvbmdlc3QgLSBsZW4oYnJhbmNoKSkKICAgIHdoaXRl"
+    code+="YmFyID0gYnNwYXJrc1tpZHhdLmxqdXN0KG1heGltdW0pCiAgICBpZiBpZHggIT0gMDogY29tbWl0ICs9"
+    code+="ICIgKGNsb3NlZCkgJXMgJWQiICUgKHdoaXRlYmFyLCBkaWZmKQogICAgcHJpbnQoIiVzJXMgJWQ6JXMi"
+    code+="ICUgKGJyYW5jaCwgc3BhY2VzLCBoZWFkLCBjb21taXQpKQo="
+
+    echo "$code" | base64 --decode 1> "$script"
 
     if [[ -e "$script" ]]; then
         /usr/bin/env python -- "$script"
