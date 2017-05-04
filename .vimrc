@@ -1,9 +1,20 @@
 " VIM - Vi IMproved
+" VIM plugin manager
 " brew install vim
 
-" Show line numbers
+execute pathogen#infect()
+filetype plugin indent on
+" plugin 'tpope/vim-pathogen'
+" plugin 'itchyny/lightline.vim'
+" plugin 'elentok/plaintasks.vim'
+" plugin 'dracula/vim'
+
+syntax on
 set number
+set nocompatible
 set numberwidth=3
+set background=dark
+colorscheme dracula
 
 " Highlight position of cursor
 " set cursorcolumn
@@ -27,11 +38,6 @@ set novisualbell
 set t_vb=
 set tm=500
 
-" Enable syntax highlighting
-syntax on
-colorscheme monokai
-set background=dark
-
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
 
@@ -46,7 +52,7 @@ set expandtab
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 4 spaces
+" One tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
 
@@ -68,19 +74,10 @@ set showmode
 set splitright
 set splitbelow
 
-" Required plugin manager settings
-" https://github.com/VundleVim/Vundle.vim
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'itchyny/lightline.vim'
-Plugin 'elentok/plaintasks.vim'
-call vundle#end()
-filetype plugin on
+" Limit characters per line in GIT and Mercurial commits
+au FileType hgcommit  set tw=72
+au FileType gitcommit set tw=72
 
-" Configure https://github.com/itchyny/lightline.vim
 let g:lightline = {
   \ 'colorscheme': 'powerline',
   \ 'component': {
