@@ -1,0 +1,12 @@
+#!/bin/bash
+# Reset the expiration time for the Qbserve application.
+# https://qotoqot.com/qbserve/
+# brew cask install qbserve
+
+TIMESTAMP=$(date +%s)
+STORAGE="${HOME}/Library/Application Support/Qbserve/UserDatabase.sqlite"
+
+killall Qbserve # Kill all processes currently running
+sqlite3 -echo "$STORAGE" "SELECT * FROM Apps ORDER BY _id ASC;"
+sqlite3 -echo "$STORAGE" "UPDATE Apps SET latest_use = ${TIMESTAMP};"
+open /Applications/Qbserve.app
