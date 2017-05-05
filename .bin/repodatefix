@@ -23,7 +23,7 @@ function report() {
 COMMIT="$1" # Full commit hash.
 COMDATE="${2}T09:00:00" # yyyy-mm-dd
 
-if [[ "$COMMIT" == "" ]]; then
+if [[ "$COMMIT" == "" ]] || [[ "$COMMIT" =~ help ]]; then
     S=$(echo "$0" | rev | cut -d/ -f1 | rev)
     echo "Git Commit Date Fixer"
     echo "  https://cixtor.com/"
@@ -31,10 +31,70 @@ if [[ "$COMMIT" == "" ]]; then
     echo "  https://github.com/cixtor/dotfiles/.bin/"
     echo "Usage:"
     echo "  $S -status"
+    echo "  $S -allstatus"
     echo "  $S [commit] yyyy-mm-dd"
     echo "  $S c003ba6...3557382 2011-12-31"
     echo "  git push --force # rewrite commit history"
     exit 2
+fi
+
+if [[ "$1" == "-allstatus" ]]; then
+    COUNTER="100"
+    USERNAME="${2:-cixtor}"
+    NOCHANGES="d158955c3de1219dbdee7368efbfd46c"
+    UNTILTHISPAGE="${3:-1}"
+
+    echo ">> https://github.com/${USERNAME}"
+
+    for ((PAGE=1; PAGE<=UNTILTHISPAGE; PAGE++)); do
+        PAGEURL="https://github.com/${USERNAME}?tab=repositories&page=${PAGE}"
+
+        if [[ "$PAGE" -eq 1 ]]; then
+            # First page doesn't needs the page parameter.
+            PAGEURL=$(echo "$PAGEURL" | cut -d "&" -f1)
+        fi
+
+        curl -X GET --url "$PAGEURL" \
+        -H "Mozilla/5.0 (KHTML, like Gecko) Safari/537.36" \
+        -H "Accept: text/html,application/xhtml+xml,application/xml" \
+        --silent | grep "codeRepository" | cut -d '"' -f2 | while read -r REPOSITORY; do
+            COUNTER=$((COUNTER + 1))
+            LINENUM="${COUNTER:1:100}"
+            PROJECT=$(echo "$REPOSITORY" | cut -d "/" -f3)
+            DIRECTORY="${HOME}/projects/${PROJECT}"
+
+            # Dot.files are usually in the home directory.
+            if [[ "$PROJECT" == "dotfiles" ]]; then
+                DIRECTORY="$HOME"
+            fi
+
+            if [[ ! -e "$DIRECTORY" ]]; then
+                printf "%s \x1b[48;5;007m%s\x1b[0m %s\x0a" "$LINENUM" "[ NO-EXISTS  ]" "$DIRECTORY"
+                continue
+            fi
+
+            # Check if the repository has no changes.
+            GITSTATUS=$(git -C "$DIRECTORY" status)
+            CHECKSUM=$(echo "$GITSTATUS" | /sbin/md5 | awk "{print \$1}")
+
+            if [[ "$CHECKSUM" == "$NOCHANGES" ]]; then
+                printf "%s \x1b[48;5;010m%s\x1b[0m %s\x0a" "$LINENUM" "[ UP-TO-DATE ]" "$DIRECTORY"
+                continue
+            fi
+
+            # Determine the number of commits to push upstream.
+            if echo "$GITSTATUS" | grep -q "branch is ahead"; then
+                HOWMANY=$(echo "$GITSTATUS" | grep "ahead" | cut -d "'" -f3)
+                HOWMANY=$(echo "$HOWMANY" | rev | cut -c2-100 | rev)
+                printf "%s \x1b[48;5;014m%s\x1b[0m %s (ahead%s)\x0a" "$LINENUM" "[TO-PUSH-LIVE]" "$DIRECTORY" "$HOWMANY"
+                continue
+            fi
+
+            # Report additional changes including added, modified, and untracked files.
+            printf "%s \x1b[48;5;011m%s\x1b[0m %s\x0a" "$LINENUM" "[SOME-CHANGES]" "$DIRECTORY"
+        done
+    done
+    exit 0
 fi
 
 if [[ "$1" == "-status" ]]; then report; exit 0; fi
