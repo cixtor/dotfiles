@@ -41,10 +41,16 @@ if [[ "$1" == "-edit" ]]; then
         exit 1
     fi
 
+    ENCRYPT="true"
     vim -- "$PLAINTEXT"
     rm -- "$STORAGE" 2> /dev/null
     echo "Re-encrypting password database"
-    openssl enc -aes-256-cbc -in "$PLAINTEXT" -out "$STORAGE"
+    while [[ "$ENCRYPT" == "true" ]]; do
+        if openssl enc -aes-256-cbc -in "$PLAINTEXT" -out "$STORAGE"; then
+            ENCRYPT="false"
+            break
+        fi
+    done
     rm -- "$PLAINTEXT" 2> /dev/null
     echo "Finished!"
     exit
