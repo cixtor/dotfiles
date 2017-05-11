@@ -66,11 +66,10 @@ export EDITOR=vim
 export HGEDITOR=vim
 export GIT_EDITOR=vim
 
-# Disable Homebrew analytics
-export HOMEBREW_NO_ANALYTICS=1
-
-# Remove Homebrew's stupid emoji
-export HOMEBREW_NO_EMOJI=1
+# Homebrew - https://brew.sh
+# The missing package manager for macOS
+export HOMEBREW_NO_EMOJI=1     # Remove Homebrew's stupid emoji
+export HOMEBREW_NO_ANALYTICS=1 # Disable Homebrew analytics
 
 # GoLang - http://golang.org/
 # https://golang.org/doc/install
@@ -88,98 +87,18 @@ export PATH="$PATH:/opt/rustlang/packages/bin"
 export PATH="$PATH:/opt/rustlang/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 
-# IPFS is the Distributed Web
-# https://ipfs.io/
-export PATH="$PATH:/opt/ipfs"
-export IPFS_PATH="$HOME/IPFS"
-
-# General-Purpose Programming Language
-export PATH="$PATH:/opt/qtcreator/Tools/QtCreator/bin" # https://www.qt.io/ide/
-export PATH="$PATH:/opt/dlang/bin" # https://dlang.org/
-export PATH="$PATH:/opt/kore/bin" # https://kore.io/
-export PATH="$PATH:/opt/ruby/bin" # https://www.ruby-lang.org/en/
-export PATH="$PATH:/opt/rvm/bin" # https://rvm.io/
-export PATH="$PATH:/opt/php/bin" # https://secure.php.net/
-export PATH="$PATH:/opt/php/sbin" # https://secure.php.net/
-export PATH="$PATH:/opt/nodejs/bin" # https://nodejs.org/en/
-export PATH="$PATH:/opt/coffeescript/bin" # http://coffeescript.org/
-
 # LLVM Compiler Infrastructure
 # http://llvm.org/releases/download.html
 export PATH="$PATH:/opt/llvm/bin"
 
-# Java and Android Development Environment
-export JAVA_HOME="/opt/javadevkit"
-export PATH="$PATH:/opt/javadevkit/bin"
-export PATH="$PATH:/opt/android-studio/bin"
-
-# Revision Control System (RCS)
-export PATH="$PATH:/opt/gitscm/bin" # https://git-scm.com/
-export PATH="$PATH:/opt/mercurial/bin" # https://www.mercurial-scm.org/
-export PATH="$PATH:/opt/subversion/bin" # https://subversion.apache.org/
-export PATH="$PATH:/opt/meld/bin" # http://meldmerge.org/
+# Java Development Kit
+#export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+#export ANDROID_HOME="/usr/local/share/android-sdk"
 
 # Miscellaneous Apps
-export PATH="$PATH:/opt/commonbin"
 export PATH="$PATH:/opt/mamutools"
-export PATH="$PATH:/opt/standalone"
-export PATH="$PATH:/opt/neovim/bin" # https://github.com/neovim/neovim
-export PATH="$PATH:/opt/phpshellgen" # https://github.com/cixtor/phpshellgen
-export PATH="$PATH:/opt/bind9utils/bin" # https://wiki.debian.org/Bind9
-export PATH="$PATH:/opt/treecommand/bin" # http://mama.indstate.edu/users/ice/tree/
-export PATH="$PATH:/opt/colordiff/bin" # https://github.com/daveewart/colordiff
-export PATH="$PATH:/opt/powertop" # https://github.com/fenrus75/powertop
-export PATH="$PATH:/opt/ngrok/bin" # https://ngrok.com/
-export PATH="$PATH:/opt/nmap/bin" # https://nmap.org/
-export PATH="$PATH:/opt/phpsa/bin" # https://github.com/ovr/phpsa
-export PATH="$PATH:/opt/php7cc/bin" # https://github.com/sstalle/php7cc
-export PATH="$PATH:/opt/pfff/bin" # https://github.com/facebook/pfff
-export PATH="$PATH:/opt/siege" # https://github.com/JoeDog/siege
-export PATH="$PATH:/opt/xsser" # https://xsser.03c8.net/
-export PATH="$PATH:/opt/wpscan" # https://github.com/wpscanteam/wpscan
-export PATH="$PATH:/opt/phan" # https://github.com/etsy/phan
-export PATH="$PATH:/opt/apktool" # https://github.com/iBotPeaches/Apktool
-export PATH="$PATH:/opt/ttygif/bin" # https://github.com/icholy/ttygif
-export PATH="$PATH:/opt/hexedit/bin" # http://www.hexedit.com/
-export PATH="$PATH:/opt/charlesproxy/bin" # https://www.charlesproxy.com/
-export PATH="$PATH:/opt/geoloc/bin" # https://github.com/loadzero/geoloc
-export PATH="$PATH:/opt/heroku/bin" # https://toolbelt.heroku.com/
-export PATH="$PATH:/opt/ncftp/bin" # http://www.ncftp.com/
-export PATH="$PATH:/opt/lnav" # http://lnav.org/
-export PATH="$PATH:/opt/nwjs" # https://github.com/nwjs/nw.js/
-export PATH="$PATH:/opt/iographica" # http://iographica.com/
-export PATH="$PATH:/opt/yuicompressor" # https://github.com/yui/yuicompressor
-export PATH="$PATH:/opt/wkhtmltox/bin" # http://wkhtmltopdf.org/
-export PATH="$PATH:/opt/hugo" # http://gohugo.io/
-export PATH="$PATH:/opt/vegeta/bin" # https://github.com/tsenart/vegeta
-export PATH="$PATH:/opt/fierce/bin" # http://git.kali.org/gitweb/?p=packages/fierce.git
-export PATH="$PATH:/opt/metagoofil/bin" # https://github.com/laramies/metagoofil
-
-# Database Engines
-export PATH="$PATH:/opt/redis/bin" # http://redis.io/
-export PATH="$PATH:/opt/postgresql/bin" # https://www.postgresql.org/
-export PATH="$PATH:/opt/mongodb/bin" # https://www.mongodb.com/
-export PATH="$PATH:/opt/mysql/bin" # https://www.mysql.com/
-export PATH="$PATH:/opt/sqlite/bin" # https://sqlite.org/
-
-# Web Server and Performance
-export PATH="$PATH:/opt/apache/bin" # http://www.apache.org/
-export PATH="$PATH:/opt/nginx/sbin" # https://www.nginx.com/
-export PATH="$PATH:/opt/varnish/bin" # https://varnish-cache.org/
-export PATH="$PATH:/opt/memcached/bin" # https://memcached.org/
-export PATH="$PATH:/opt/prax/bin" # https://github.com/ysbaddaden/prax
-
-# HashiCorp: app development, delivery, and maintenance
-export PATH="$PATH:/opt/hashicorp/otto" # https://github.com/hashicorp/otto
-export PATH="$PATH:/opt/hashicorp/nomad" # https://github.com/hashicorp/nomad
-export PATH="$PATH:/opt/hashicorp/vault" # https://github.com/hashicorp/vault
-export PATH="$PATH:/opt/hashicorp/consul" # https://github.com/hashicorp/consul
-export PATH="$PATH:/opt/hashicorp/packer" # https://github.com/mitchellh/packer
-export PATH="$PATH:/opt/hashicorp/serfdom" # https://github.com/hashicorp/serf
-export PATH="$PATH:/opt/hashicorp/terraform" # https://github.com/hashicorp/terraform
-export PATH="$PATH:/opt/hashicorp/vagrant/bin" # https://github.com/mitchellh/vagrant
-
-# Export the location of the SublimeText command line shortcut.
+export PATH="$PATH:/opt/iographica"
+export PATH="$PATH:/opt/phpshellgen"
 export PATH="$PATH:/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 
 # Alias definitions.
