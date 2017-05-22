@@ -1,3 +1,6 @@
+[alias]
+shortlog = !hg log --template "{author|person}\n" | sort | uniq -c | sort -nr
+
 [extensions]
 color =
 
