@@ -2,7 +2,7 @@
 	"folder_history":
 	[
 	],
-	"last_version": 3131,
+	"last_version": 3136,
 	"last_window_id": 1,
 	"log_indexing": false,
 	"settings":
@@ -55,7 +55,7 @@
 			],
 			"find":
 			{
-				"height": 23.0
+				"height": 24.0
 			},
 			"find_in_files":
 			{
@@ -93,7 +93,7 @@
 			],
 			"incremental_find":
 			{
-				"height": 23.0
+				"height": 24.0
 			},
 			"input":
 			{
@@ -135,7 +135,7 @@
 			"project": "",
 			"replace":
 			{
-				"height": 42.0
+				"height": 44.0
 			},
 			"save_all_on_build": true,
 			"select_file":
