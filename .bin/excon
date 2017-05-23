@@ -20,9 +20,12 @@ if command -v fswatch &> /dev/null; then
     COMMAND="$@"
     NOTIFICATION="echo 'Finished execution'"
     if command -v terminal-notifier &> /dev/null; then
-        NOTIFICATION="terminal-notifier -message '${COMMAND}' ${RANDOM} -title 'Finished Execution' -timeout 2 &> /dev/null"
+        NOTIFICATION="terminal-notifier -message '${COMMAND}' ${RANDOM} "
+        NOTIFICATION+="-title 'Finished Execution' -timeout 2 &>/dev/null"
     fi
-    fswatch --one-per-batch --latency 0.5 --exclude ".git" . | xargs -n1 sh -c "${COMMAND} ; ${NOTIFICATION}"
+    fswatch --one-per-batch --latency 0.5 \
+    --exclude=".git" --exclude=".hg" . | \
+    xargs -n1 sh -c "${COMMAND} ; ${NOTIFICATION}"
     exit
 fi
 
