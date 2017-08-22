@@ -82,9 +82,7 @@ export PATH="$PATH:$GOROOT/bin"
 export PATH="$PATH:$GOPATH/bin"
 
 # Rust - https://www.rust-lang.org/
-export RUST_SRC_PATH="/opt/rustlang/source/src/"
-export PATH="$PATH:/opt/rustlang/packages/bin"
-export PATH="$PATH:/opt/rustlang/bin"
+# brew install rust && mkdir ~/.cargo
 export PATH="$PATH:$HOME/.cargo/bin"
 
 # LLVM Compiler Infrastructure
