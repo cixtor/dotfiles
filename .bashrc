@@ -75,8 +75,9 @@ export HOMEBREW_NO_ANALYTICS=1 # Disable Homebrew analytics
 # https://golang.org/doc/install
 # https://golang.org/pkg/#stdlib
 # https://golang.org/doc/articles/race_detector.html
-export GOROOT="/opt/golang/build"
-export GOPATH="/opt/golang/gopath"
+# brew install go && mkdir -pv /usr/local/opt/gopath
+export GOROOT="/usr/local/opt/go/libexec"
+export GOPATH="/usr/local/opt/gopath"
 export GORACE="log_path=stderr exitcode=66"
 export PATH="$PATH:$GOROOT/bin"
 export PATH="$PATH:$GOPATH/bin"
