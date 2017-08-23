@@ -103,6 +103,9 @@ export PATH="$PATH:/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 # Expose gettext binaries
 export PATH="$PATH:/usr/local/opt/gettext/bin"
 
+# Expose additional python binaries
+export PATH="$PATH:/usr/local/opt/python/bin"
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.aliases, instead of adding them here directly. See examples at
