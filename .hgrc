@@ -1,8 +1,12 @@
+[ui]
+merge = Kaleidoscope
+
 [alias]
 shortlog = !hg log --template "{author|person}\n" | sort | uniq -c | sort -nr
 
 [extensions]
 color =
+hgext.extdiff =
 
 [color]
 mode = ansi
@@ -32,3 +36,11 @@ qseries.unapplied = black bold
 qseries.missing = red bold
 resolve.unresolved = red bold
 resolve.resolved = green bold
+
+[extdiff]
+cmd.ksdiff = /usr/local/bin/ksdiff
+opts.ksdiff = --changeset --wait --filelist
+
+[merge-tools]
+Kaleidoscope.executable = /usr/local/bin/ksdiff
+Kaleidoscope.args = --merge --output $output --base $base -- $local $other
