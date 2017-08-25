@@ -43,7 +43,7 @@ alias tulpan='netstat -tulpan'
 alias gitgraph='git log --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 
 # Download YouTube video and extract audio
-alias mp3dl="youtube-dl --extract-audio --audio-format mp3 --audio-quality 0"
+alias mp3dl="youtube-dl --id --extract-audio --audio-format mp3 --audio-quality 0"
 
 # Automatically colorize Diff's output
 alias diff="colordiff -u"
