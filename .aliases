@@ -6,29 +6,29 @@ alias cat='cat -v'
 alias grep='grep --color=auto'
 
 # Simplify Caskroom calls.
-alias cask="brew cask"
+alias cask='brew cask'
 
 # Print generic default date based on Go.
-alias ansic="echo 'Mon Jan _2 15:04:05 2006 - 1136239445'"
+alias ansic='echo '\''Mon Jan _2 15:04:05 2006 - 1136239445'\'''
 
 # Get the public IP address of the current Internet connection
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 # Aliases for the strconv tool
 # https://github.com/cixtor/strconv
-alias replace="strconv replace"
-alias capitalize="strconv capitalize"
-alias upper="strconv uppercase"
-alias lower="strconv lowercase"
-alias md5="strconv md5"
-alias sha1="strconv sha1"
-alias chunk="strconv chunk"
-alias len="strconv length"
-alias b64enc="strconv b64enc"
-alias b64dec="strconv b64dec"
-alias urldec="strconv urldec"
-alias urlenc="strconv urlenc"
-alias rot13="strconv rotate"
+alias replace='strconv replace'
+alias capitalize='strconv capitalize'
+alias upper='strconv uppercase'
+alias lower='strconv lowercase'
+alias md5='strconv md5'
+alias sha1='strconv sha1'
+alias chunk='strconv chunk'
+alias len='strconv length'
+alias b64enc='strconv b64enc'
+alias b64dec='strconv b64dec'
+alias urldec='strconv urldec'
+alias urlenc='strconv urlenc'
+alias rot13='strconv rotate'
 
 # List top ten largest files/directories in current directory
 alias ducks='du -cks * | sort -rn | head -11'
@@ -43,10 +43,10 @@ alias tulpan='netstat -tulpan'
 alias gitgraph='git log --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 
 # Download YouTube video and extract audio
-alias mp3dl="youtube-dl --id --extract-audio --audio-format mp3 --audio-quality 0"
+alias mp3dl='youtube-dl --id --extract-audio --audio-format mp3 --audio-quality 0'
 
 # Automatically colorize Diff's output
-alias diff="colordiff -u"
+alias diff='colordiff -u'
 
 # Stress test the responsiveness of a network node
-alias ddos="hping3 -c 10000 -d 120 -S -w 64 -p 21 --flood --rand-source"
+alias ddos='hping3 -c 10000 -d 120 -S -w 64 -p 21 --flood --rand-source'
