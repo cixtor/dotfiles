@@ -106,6 +106,13 @@ export PATH="$PATH:/usr/local/opt/gettext/bin"
 # Expose additional python binaries
 export PATH="$PATH:/usr/local/opt/python/bin"
 
+# Install and configure stylelint
+# npm install -g stylelint
+# npm install -g stylelint-config-standard
+# echo '{"extends": "/usr/local/lib/node_modules/stylelint-config-standard"}' 1> ~/.stylelintrc
+# stylelint /path/to/file.css --fix
+# stylelint /path/to/file.css
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.aliases, instead of adding them here directly. See examples at
