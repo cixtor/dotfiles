@@ -112,9 +112,12 @@ export PATH="$PATH:/usr/local/opt/python/bin"
 # npm install -g eslint-plugin-react
 # npm install -g eslint-plugin-prettier
 # npm install -g eslint-config-prettier
+# https://github.com/SublimeLinter/SublimeLinter-eslint
 # echo '{"extends": "eslint:recommended"}' 1> ~/.eslintrc
-# echo '{"singleQuote": true, "tabWidth": 4}' 1> ~/.prettierrc
 # echo '{"extends": "plugin:prettier/recommended"}' 1> ~/.eslintrc
+# echo '{"printWidth": 120, "singleQuote": true, "tabWidth": 4}' 1> ~/.prettierrc
+# eslint /path/to/file.js --fix
+# eslint /path/to/file.js
 
 # Install and configure stylelint
 # npm install -g stylelint
