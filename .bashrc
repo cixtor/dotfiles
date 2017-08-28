@@ -122,6 +122,7 @@ export PATH="$PATH:/usr/local/opt/python/bin"
 # Install and configure stylelint
 # npm install -g stylelint
 # npm install -g stylelint-config-standard
+# https://github.com/kungfusheep/SublimeLinter-contrib-stylelint
 # echo '{"extends": "/usr/local/lib/node_modules/stylelint-config-standard"}' 1> ~/.stylelintrc
 # stylelint /path/to/file.css --fix
 # stylelint /path/to/file.css
