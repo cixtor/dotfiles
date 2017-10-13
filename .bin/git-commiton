@@ -1,46 +1,62 @@
 #!/bin/bash
-ARGS="commit" # Initialize arguments.
-BINARY=$(which git 2> /dev/null)
+# https://en.wikipedia.org/wiki/ISO_8601
 
-if [[ "$BINARY" == "" ]]; then
-    echo "Git is not installed"
+function usage() {
+    echo "Usage:"
+    echo "  git commiton yyyy-mm-dd"
+    echo "  git commiton yyyy-mm-dd [files]"
+    echo "  git commiton yyyy-mm-ddThh:ii:ss"
+    echo "  git commiton yyyy-mm-ddThh:ii:ss [files]"
+}
+
+if [[ "$#" -eq 0 ]]; then
+    usage
     exit 1
 fi
 
-for PARAM in "$@"; do
-    if echo "$PARAM" | grep -qE "\s"; then
-        # Escape some arguments.
-        PARAM="'${PARAM}'"
-    fi
-    # Append with space.
-    ARGS+="${PARAM} "
-done
+# default date and time.
+INPUT_DATE=$(date +%Y-%m-%d)
+INPUT_HOUR="09:00:00"
 
-# Detect custom -d argument.
-if echo "$ARGS" | grep -qE "\-d\s"; then
-    echo "$ARGS" | grep -qE "\-d\s[0-9]{4}\-[0-9]{2}\-[0-9]{2}"
+# user defined date and time.
+MAYBE_DATE=$(echo "$1" | cut -c1-10)
+MAYBE_HOUR=$(echo "$1" | cut -c12-19)
 
-    if [[ "$?" -eq 1 ]]; then
-        echo "Usage: git commit [args] -d yyyy-mm-dd"
-        exit 1
-    fi
-
-    # Extract the date and time from the custom -d parameter.
-    DATE=$(echo "$ARGS" | sed -E "s;.*\-d ([0-9\-]{10}).*;\1;")
-    # Clean up arguments; remove the custom -d parameter.
-    ARGS=$(echo "$ARGS" | sed -E "s;\-d [0-9\-]{10};;")
-    # Build the ISO date string.
-    COMDATE="${DATE}T09:00:00"
-
-    export GIT_AUTHOR_DATE="$COMDATE"
-    export GIT_COMMITTER_DATE="$COMDATE"
-
-    echo "[commit] ${GIT_COMMITTER_DATE}"
-    echo "[author] ${GIT_AUTHOR_DATE}"
-    echo "[params] ${ARGS}"
+# check integrity of the user defined date.
+if echo "$MAYBE_DATE" | grep -E -q "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"; then
+    INPUT_DATE="$MAYBE_DATE"
+else
+    usage
+    exit 1
 fi
 
-if [[ "$BINARY" != "" ]]; then
-    eval "${BINARY} ${ARGS}"
-    exit $?
+# check integrity of the user defined time.
+if echo "$MAYBE_HOUR" | grep -E -q "^[0-9]{2}:[0-9]{2}:[0-9]{2}$"; then
+    INPUT_HOUR="$MAYBE_HOUR"
+elif echo "$MAYBE_HOUR" | grep -E -q "^[0-9]{2}:[0-9]{2}$"; then
+    INPUT_HOUR="${MAYBE_HOUR}:00"
+elif echo "$MAYBE_HOUR" | grep -E -q "^[0-9]{2}$"; then
+    INPUT_HOUR="${MAYBE_HOUR}:00:00"
 fi
+
+# automatically add files.
+if [[ "$#" -gt 1 ]]; then
+    SKIPPED_HEADER="false"
+    for FILE in "$@"; do
+        if [[ "$SKIPPED_HEADER" == "false" ]]; then
+            SKIPPED_HEADER="true"
+            continue
+        fi
+        git add -- "$FILE"
+    done
+fi
+
+COMMIT_DATE="${INPUT_DATE}T${INPUT_HOUR}Z"
+
+export GIT_AUTHOR_DATE="$COMMIT_DATE"
+export GIT_COMMITTER_DATE="$COMMIT_DATE"
+
+echo "[commit] ${GIT_COMMITTER_DATE}"
+echo "[author] ${GIT_AUTHOR_DATE}"
+
+git commit
