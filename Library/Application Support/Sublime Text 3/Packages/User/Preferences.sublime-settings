@@ -91,8 +91,10 @@
 		".svn",
 		".git",
 		".hg",
-		"CVS"
+		"CVS",
+		".gometalinter-*"
 	],
+	"font_face": "Menlo",
 	"font_options":
 	[
 	],
@@ -137,7 +139,8 @@
 	"remember_open_files": false,
 	"rulers":
 	[
-		80
+		80,
+		120
 	],
 	"save_on_focus_lost": false,
 	"scroll_past_end": true,
