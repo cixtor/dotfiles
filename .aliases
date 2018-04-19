@@ -39,9 +39,6 @@ alias spy='lsof -i -P +c 0 +M'
 # Identify what ports are open on the computer
 alias tulpan='netstat -tulpan'
 
-# Visualise git log (like gitk, in the terminal)
-alias gitgraph='git log --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
-
 # Download YouTube video and extract audio
 alias mp3dl='youtube-dl --id --extract-audio --audio-format mp3 --audio-quality 0'
 

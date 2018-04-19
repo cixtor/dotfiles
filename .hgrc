@@ -2,7 +2,8 @@
 merge = Kaleidoscope
 
 [alias]
-shortlog = !hg log --template "{author|person}\n" | sort | uniq -c | sort -nr
+report = !hg log --template "{author|email}\n" | sort | uniq -c | sort -nr
+graph = !hg log --template "{shortest(node,7)} {date|rfc3339date} <{author|email}> {desc|strip|firstline}\n"
 
 [extensions]
 color =
