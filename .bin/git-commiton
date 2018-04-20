@@ -3,9 +3,9 @@
 
 function usage() {
     echo "Usage:"
-    echo "  git commiton yyyy-mm-dd"
     echo "  git commiton yyyy-mm-dd [files]"
-    echo "  git commiton yyyy-mm-ddThh:ii:ss"
+    echo "  git commiton yyyy-mm-ddThh [files]"
+    echo "  git commiton yyyy-mm-ddThh:ii [files]"
     echo "  git commiton yyyy-mm-ddThh:ii:ss [files]"
 }
 
@@ -17,6 +17,7 @@ fi
 # default date and time.
 INPUT_DATE=$(date +%Y-%m-%d)
 INPUT_HOUR="09:00:00"
+INPUT_ZONE="-08:00"
 
 # user defined date and time.
 MAYBE_DATE=$(echo "$1" | cut -c1-10)
@@ -51,7 +52,7 @@ if [[ "$#" -gt 1 ]]; then
     done
 fi
 
-COMMIT_DATE="${INPUT_DATE}T${INPUT_HOUR}Z"
+COMMIT_DATE="${INPUT_DATE}T${INPUT_HOUR}${INPUT_ZONE}"
 
 export GIT_AUTHOR_DATE="$COMMIT_DATE"
 export GIT_COMMITTER_DATE="$COMMIT_DATE"
