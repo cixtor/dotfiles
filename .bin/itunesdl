@@ -50,10 +50,10 @@ id3v2 --delete-all "${VIDEO}.mp3"
 
 echo "Setting title: \"${TITLE}\""
 echo "Setting author: \"${AUTHOR}\""
-id3v2 -t "$TITLE" -a "$AUTHOR" "${VIDEO}.mp3"
+id3v2 -t "$TITLE" -a "$AUTHOR" -- "${VIDEO}.mp3"
 
 echo "Importing to iTunes"
-open -a iTunes -g "${VIDEO}.mp3"
+open -a iTunes -g -- "${VIDEO}.mp3"
 
 echo -n "Deleting... "
 sleep 2 && rm -- "${VIDEO}.mp3"
