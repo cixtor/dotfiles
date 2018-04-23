@@ -1,0 +1,48 @@
+#!/bin/bash
+
+echo -n "Full Name:   "; read -r FULLNAME;
+echo -n "Phone (1st): "; read -r PHONE_FIRST;
+echo -n "Phone (2nd): "; read -r PHONE_SECOND;
+echo -n "Phone (3rd): "; read -r PHONE_THIRD;
+echo -n "Picture:     "; read -r PICTURE;
+echo -n "Notes:       "; read -r NOTES;
+
+FORMAT="${FULLNAME// /_}"
+STORAGE="${HOME}/Desktop/${FORMAT}.vcf"
+
+echo "BEGIN:VCARD" 1> "$STORAGE"
+echo "VERSION:3.0" 1>> "$STORAGE"
+echo "FN:${FULLNAME}" 1>> "$STORAGE"
+
+if [[ "$PHONE_FIRST" != "" ]]; then
+    echo "TEL;TYPE=CELL:${PHONE_FIRST}" 1>> "$STORAGE"
+fi
+
+if [[ "$PHONE_SECOND" != "" ]]; then
+    echo "TEL;TYPE=WORK:${PHONE_SECOND}" 1>> "$STORAGE"
+fi
+
+if [[ "$PHONE_THIRD" != "" ]]; then
+    echo "TEL;TYPE=HOME:${PHONE_THIRD}" 1>> "$STORAGE"
+fi
+
+if [[ "$NOTES" != "" ]]; then
+    NOTES=${NOTES//,/\,}
+    echo "NOTE:${NOTES}" 1>> "$STORAGE"
+fi
+
+if [[ "$PICTURE" != "" ]]; then
+    FILENAME=$(basename "$PICTURE")
+    FILEPATH="${HOME}/Downloads/${FILENAME}"
+    wget -q "$PICTURE" -O "$FILEPATH"
+    echo -n "HOTO;ENCODING=BASE64;TYPE=JPEG:" 1>> "${FILEPATH}.txt"
+    base64 -- "$FILEPATH" 1>> "${FILEPATH}.txt"
+    (strconv chunk 74 < "${FILEPATH}.txt") | while read -r LINE; do
+        echo " ${LINE}" 1>> "$STORAGE"
+    done
+    rm -- "${FILEPATH}.txt" 2>/dev/null
+    rm -- "$FILEPATH" 2>/dev/null
+fi
+
+echo "END:VCARD" 1>> "$STORAGE"
+sed -i "" "s/ HOTO;/PHOTO;/" "$STORAGE"
