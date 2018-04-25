@@ -2,7 +2,7 @@
 	"folder_history":
 	[
 	],
-	"last_version": 3136,
+	"last_version": 3175,
 	"last_window_id": 1,
 	"log_indexing": false,
 	"settings":
@@ -55,11 +55,11 @@
 			],
 			"find":
 			{
-				"height": 24.0
+				"height": 40.0
 			},
 			"find_in_files":
 			{
-				"height": 0.0,
+				"height": 102.0,
 				"where_history":
 				[
 				]
@@ -131,7 +131,7 @@
 				"height": 0.0
 			},
 			"pinned_build_system": "",
-			"position": "0 400 196 640 502 0 0 1440 877 ",
+			"position": "0 391 30 658 817 0 0 1440 877 ",
 			"project": "",
 			"replace":
 			{
