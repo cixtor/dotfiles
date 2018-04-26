@@ -1,9 +1,9 @@
 {
 	"margo_oom": 1000,
 	"env": {
-		"GOROOT": "/opt/golang/build",
-		"GOPATH": "/opt/golang/gopath",
-		"PATH": "/opt/golang/gopath/bin:$PATH"
+		"GOROOT": "/usr/local/opt/go/libexec",
+		"GOPATH": "/usr/local/opt/gopath",
+		"PATH": "/usr/local/opt/gopath/bin:$PATH"
 	},
 	"use_gs_gopath": false,
 	"shell": [],
@@ -24,7 +24,7 @@
 		{"cmd": ["go", "install"]},
 		{"cmd": ["go", "vet"]}
 	],
-	"gslint_timeout": 100,
+	"gslint_timeout": 500,
 	"lint_enabled": true,
 	"linters": [],
 	"autocomplete_snippets": true,
@@ -91,5 +91,6 @@
 	"build_command": ["^1"],
 	"auto_complete_triggers": [ {"selector": "source.go", "characters": "."} ],
 	"fn_exclude_prefixes": [".", "_"],
-	"gohtml_extensions": [".html.go"]
+	"gohtml_extensions": [".html.go"],
+	"export_env_vars": [],
 }
