@@ -1,83 +1,86 @@
 {
-    "user": {
-        "debug": false,
-        "delay": 0.25,
-        "error_color": "D02000",
-        "gutter_theme": "Packages/SublimeLinter/gutter-themes/Default/Default.gutter-theme",
-        "gutter_theme_excludes": [],
-        "lint_mode": "background",
-        "linters": {
-            "gometalinter": {
-                "@disable": false,
-                "args": [],
-                "excludes": [],
-                "gopath": "/opt/golang/gopath",
-                "goroot": "/opt/golang/build"
-            },
-            "jshint": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
-            },
-            "php": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
-            },
-            "phpcs": {
-                "@disable": false,
-                "args": [],
-                "excludes": [],
-                "standard": "~/.psr99.xml"
-            },
-            "shellcheck": {
-                "@disable": false,
-                "args": [],
-                "exclude": "",
-                "excludes": []
-            },
-            "stylelint": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
-            }
+    "debug": false,
+    "delay": 0.1,
+    "gutter_theme": "Default",
+    "lint_mode": "background",
+    "linters": {
+        "eslint": {
+            "disable": false,
+            "args": [],
+            "excludes": []
         },
-        "mark_style": "outline",
-        "no_column_highlights_line": false,
-        "passive_warnings": false,
-        "paths": {
-            "linux": [
-                "/opt/php/bin",
-                "/opt/standalone",
-                "/opt/nodejs/bin"
-            ],
-            "osx": [],
-            "windows": []
+        "gometalinter": {
+            "disable": false,
+            "args": [],
+            "excludes": [],
+            "gopath": "/usr/local/opt/gopath",
+            "goroot": "/usr/local/opt/go/libexec"
         },
-        "python_paths": {
-            "linux": [],
-            "osx": [],
-            "windows": []
+        "php": {
+            "disable": false,
+            "args": [],
+            "excludes": []
         },
-        "rc_search_limit": 3,
-        "shell_timeout": 10,
-        "show_errors_on_save": false,
-        "show_marks_in_minimap": true,
-        "syntax_map": {
-            "html (django)": "html",
-            "html (rails)": "html",
-            "html 5": "html",
-            "javascript (babel)": "javascript",
-            "magicpython": "python",
-            "php": "html",
-            "python django": "python",
-            "pythonimproved": "python"
+        "phpcs": {
+            "disable": false,
+            "standard": "~/.psr99.xml",
+            "args": [],
+            "excludes": []
         },
-        "tooltip_fontsize": "1rem",
-        "tooltip_theme": "Packages/SublimeLinter/tooltip-themes/Default/Default.tooltip-theme",
-        "tooltip_theme_excludes": [],
-        "tooltips": false,
-        "warning_color": "DDB700",
-        "wrap_find": true
+        "rubocop": {
+            "disable": false,
+            "args": [],
+            "excludes": []
+        },
+        "shellcheck": {
+            "disable": false,
+            "args": [],
+            "exclude": "",
+            "excludes": []
+        },
+        "stylelint": {
+            "disable": false,
+            "args": [],
+            "excludes": []
+        }
+    },
+    "no_column_highlights_line": true,
+    "paths": {
+        "linux": [],
+        "osx": [],
+        "windows": []
+    },
+    "show_hover_line_report": true,
+    "show_hover_region_report": true,
+    "show_marks_in_minimap": false,
+    "styles": [
+        {
+            "mark_style": "outline",
+            "priority": 1,
+            "scope": "region.yellowish markup.changed.sublime_linter markup.warning.sublime_linter",
+            "icon": "dot",
+            "types": [
+                "warning"
+            ]
+        },
+        {
+            "mark_style": "outline",
+            "priority": 1,
+            "scope": "region.redish markup.deleted.sublime_linter markup.error.sublime_linter",
+            "icon": "dot",
+            "types": [
+                "error"
+            ]
+        }
+    ],
+    "syntax_map": {
+        "html (django)": "html",
+        "html (rails)": "html",
+        "html 5": "html",
+        "javascript (babel)": "javascript",
+        "magicpython": "python",
+        "php": "html",
+        "python django": "python",
+        "pythonimproved": "python"
     }
 }
