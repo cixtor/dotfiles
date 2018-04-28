@@ -1,0 +1,3 @@
+#!/bin/bash
+rm -rfv -- ~/Library/Application\ Support/Deckset/
+rm -rfv -- ~/Library/Application\ Support/com.unsignedinteger.Deckset-Paddle/
