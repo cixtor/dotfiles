@@ -1,0 +1,6 @@
+#!/bin/bash
+rm -rfv -- "${HOME}/Library/Caches/com.plausiblelabs.crashreporter.data"
+rm -rfv -- "${HOME}/Library//Application Scripts/com.apptorium.Expressions-dm"
+rm -rfv -- "${HOME}/Library//Containers/com.apptorium.Expressions-dm"
+rm -rfv -- "${TMPDIR}/com.plausiblelabs.crashreporter.data"
+rm -rfv -- "${TMPDIR}/com.apptorium.Expressions-dm"
