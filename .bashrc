@@ -127,6 +127,30 @@ export PATH="$PATH:/usr/local/opt/python/bin"
 # stylelint /path/to/file.css --fix
 # stylelint /path/to/file.css
 
+# Language Server Protocol
+# https://microsoft.github.io/language-server-protocol/
+# go get -u github.com/sourcegraph/go-langserver
+# git clone https://github.com/tomv564/LSP
+# SublimeText/Packages/User/LSP.sublime-settings
+# {
+#     "clients": {
+#         "golsp": {
+#             "command": ["go-langserver"],
+#             "scopes": ["source.go"],
+#             "syntaxes": [
+#                 "Packages/Go/Go.sublime-syntax",
+#                 "Packages/GoSublime/syntax/GoSublime-9o.sublime-syntax",
+#                 "Packages/GoSublime/syntax/GoSublime-Go-Legacy.sublime-syntax",
+#                 "Packages/GoSublime/syntax/GoSublime-Go.sublime-syntax",
+#                 "Packages/GoSublime/syntax/GoSublime-GsDoc.sublime-syntax",
+#                 "Packages/GoSublime/syntax/GoSublime-HTML.sublime-syntax",
+#                 "Packages/GoSublime/syntax/GoSublime-Template.sublime-syntax"
+#             ],
+#             "languageId": "go"
+#         }
+#     }
+# }
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.aliases, instead of adding them here directly. See examples at

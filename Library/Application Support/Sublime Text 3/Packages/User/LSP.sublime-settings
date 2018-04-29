@@ -1,0 +1,18 @@
+{
+    "clients": {
+        "golsp": {
+            "command": ["go-langserver"],
+            "scopes": ["source.go"],
+            "syntaxes": [
+                "Packages/Go/Go.sublime-syntax",
+                "Packages/GoSublime/syntax/GoSublime-9o.sublime-syntax",
+                "Packages/GoSublime/syntax/GoSublime-Go-Legacy.sublime-syntax",
+                "Packages/GoSublime/syntax/GoSublime-Go.sublime-syntax",
+                "Packages/GoSublime/syntax/GoSublime-GsDoc.sublime-syntax",
+                "Packages/GoSublime/syntax/GoSublime-HTML.sublime-syntax",
+                "Packages/GoSublime/syntax/GoSublime-Template.sublime-syntax"
+            ],
+            "languageId": "go"
+        }
+    }
+}
