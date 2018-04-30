@@ -14,5 +14,30 @@
             ],
             "languageId": "go"
         }
-    }
+    },
+    "show_status_messages": true,
+    "show_view_status": true,
+    "auto_show_diagnostics_panel": false,
+    "show_diagnostics_phantoms": false,
+    "show_diagnostics_count_in_view_status": false,
+    "show_diagnostics_in_view_status": true,
+    "show_diagnostics_severity_level": 3,
+    "diagnostics_highlight_style": "underline",
+    "highlight_active_signature_parameter": true,
+    "document_highlight_style": "underline",
+    "document_highlight_scopes": {
+        "unknown": "text",
+        "text": "text",
+        "read": "markup.inserted",
+        "write": "markup.changed"
+    },
+    "diagnostics_gutter_marker": "dot",
+    "complete_all_chars": true,
+    "completion_hint_type": "auto",
+    "only_show_lsp_completions": false,
+    "resolve_completion_for_snippets": false,
+    "log_debug": false,
+    "log_server": true,
+    "log_stderr": false,
+    "log_payloads": false
 }
