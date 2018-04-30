@@ -15,6 +15,102 @@
             "languageId": "go"
         }
     },
+    "default_clients": {
+        "pyls": {
+            "command": ["pyls"],
+            "scopes": ["source.python"],
+            "syntaxes": ["Packages/Python/Python.sublime-syntax"],
+            "languageId": "python"
+        },
+        "rls": {
+            "command": ["rustup", "run", "nightly", "rls"],
+            "scopes": ["source.rust"],
+            "syntaxes": ["Packages/Rust/Rust.sublime-syntax", "Packages/Rust Enhanced/RustEnhanced.sublime-syntax"],
+            "languageId": "rust"
+        },
+        "clangd": {
+            "command": ["clangd"],
+            "scopes": ["source.c", "source.c++", "source.objc", "source.objc++"],
+            "syntaxes": ["Packages/C++/C.sublime-syntax", "Packages/C++/C++.sublime-syntax", "Packages/Objective-C/Objective-C.sublime-syntax", "Packages/Objective-C/Objective-C++.sublime-syntax"],
+            "languageId": "objc++"
+        },
+        "reason": {
+            "command": ["ocaml-language-server", "--stdio"],
+            "scopes": ["source.reason"],
+            "syntaxes": ["Packages/sublime-reason/Reason.tmLanguage"],
+            "languageId": "reason"
+        },
+        "phpls": {
+            "command": ["php", "~/vendor/felixfbecker/language-server/bin/php-language-server.php"],
+            "scopes": ["source.php", "embedding.php"],
+            "syntaxes": ["Packages/PHP/PHP.sublime-syntax"],
+            "languageId": "php"
+        },
+        "eslint": {
+            "command": ["node", "/Users/tomv/Projects/tomv564/vscode-eslint/eslint-server/src/server"],
+            "scopes": ["source.js"],
+            "syntaxes": ["Packages/Babel/JavaScript (Babel).sublime-syntax", "Packages/JavaScript/JavaScript.sublime-syntax"],
+            "languageId": "javascript",
+            "initializationOptions": {
+                "nodePath": "/usr/local/bin/node"
+            }
+        },
+        "ocaml": {
+            "command": ["ocaml-language-server", "--stdio"],
+            "scopes": ["source.ocaml"],
+            "syntaxes": ["Packages/OCaml/OCaml.sublime-syntax"],
+            "languageId": "ocaml"
+        },
+        "golsp": {
+            "command": ["go-langserver"],
+            "scopes": ["source.go"],
+            "syntaxes": ["Packages/Go/Go.sublime-syntax"],
+            "languageId": "go"
+        },
+        "jdtls": {
+            "command": ["java", "-jar", "PATH_TO_JDT_SERVER/plugins/org.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar", "-configuration", "PATH_TO_CONFIG_DIR"],
+            "scopes": ["source.java"],
+            "syntaxes": ["Packages/Java/Java.sublime-syntax"],
+            "languageId": "java"
+        },
+        "polymer-ide": {
+            "command": ["polymer-editor-service"],
+            "scopes": [
+                "text.html.basic",
+                "text.html",
+                "source.html",
+                "source.js",
+                "source.css",
+                "source.json"
+            ],
+            "syntaxes": [
+                "Packages/HTML/HTML.sublime-syntax",
+                "Packages/CSS/CSS.sublime-syntax",
+                "Packages/JavaScript/JavaScript.sublime-syntax",
+                "Packages/JavaScript/JSON.sublime-syntax"
+            ],
+            "languageId": "javascript",
+            "settings": {
+                "polymer-ide": {
+                    "analyzeWholePackage": false,
+                    "fixOnSave": false
+                }
+            }
+        },
+        "rlang": {
+            "command": ["R", "--quiet", "--slave", "-e", "languageserver::run()"],
+            "languageId": "r",
+            "scopes":
+            [
+                "source.r"
+            ],
+            "syntaxes":
+            [
+                "Packages/R/R.sublime-syntax",
+                "Packages/R-Box/syntax/R Extended.sublime-syntax"
+            ]
+        }
+    },
     "show_status_messages": true,
     "show_view_status": true,
     "auto_show_diagnostics_panel": false,
