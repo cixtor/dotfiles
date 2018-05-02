@@ -12,7 +12,7 @@
 	"fmt_enabled": true,
 	"fmt_tab_indent": true,
 	"fmt_tab_width": 4,
-	"fmt_cmd": [],
+	"fmt_cmd": ["goimports"],
 	"ipc_timeout": 1,
 	"gslint_enabled": true,
 	"lint_filter": [
