@@ -3,7 +3,7 @@
 # Generic aliases
 alias ls='ls -G'
 alias cat='cat -v'
-alias grep='grep --color=auto'
+alias grep='grep --extended-regexp --color=auto'
 
 # Simplify Caskroom calls.
 alias cask='brew cask'
