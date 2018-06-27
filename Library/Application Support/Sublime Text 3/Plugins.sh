@@ -17,6 +17,7 @@ REPOSITORIES=(
     "SublimeLinter-shellcheck|SublimeLinter/SublimeLinter-shellcheck"
     "SublimeLinter-stylelint|kungfusheep/SublimeLinter-contrib-stylelint"
     "SublimeLinter|SublimeLinter/SublimeLinter"
+    "Swift|quiqueg/Swift-Sublime-Package"
     "Vala|technosophos/Vala-TMBundle"
 )
 
