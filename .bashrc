@@ -151,6 +151,33 @@ export PATH="$PATH:/usr/local/opt/python/bin"
 #     }
 # }
 
+function proxyon() {
+    RESPONSE=$(scutil --proxy | tr -d " ")
+
+    HTTPEnable=$(echo "$RESPONSE" | grep "HTTPEnable" | cut -d: -f2)
+    if [[ "$HTTPEnable" -eq 1 ]]; then
+        HTTPProxy=$(echo "$RESPONSE" | grep "HTTPProxy" | cut -d: -f2)
+        HTTPPort=$(echo "$RESPONSE" | grep "HTTPPort" | cut -d: -f2)
+        export HTTP_PROXY="http://${HTTPProxy}:${HTTPPort}"
+    fi
+
+    HTTPSEnable=$(echo "$RESPONSE" | grep "HTTPSEnable" | cut -d: -f2)
+    if [[ "$HTTPSEnable" -eq 1 ]]; then
+        HTTPSProxy=$(echo "$RESPONSE" | grep "HTTPSProxy" | cut -d: -f2)
+        HTTPSPort=$(echo "$RESPONSE" | grep "HTTPSPort" | cut -d: -f2)
+        export HTTPS_PROXY="http://${HTTPSProxy}:${HTTPSPort}"
+    fi
+
+    SOCKSEnable=$(echo "$RESPONSE" | grep "SOCKSEnable" | cut -d: -f2)
+    if [[ "$SOCKSEnable" -eq 1 ]]; then
+        SOCKSProxy=$(echo "$RESPONSE" | grep "SOCKSProxy" | cut -d: -f2)
+        SOCKSPort=$(echo "$RESPONSE" | grep "SOCKSPort" | cut -d: -f2)
+        export SOCKS_PROXY="http://${SOCKSProxy}:${SOCKSPort}"
+    fi
+}
+
+proxyon
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.aliases, instead of adding them here directly. See examples at
