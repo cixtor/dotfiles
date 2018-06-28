@@ -7,6 +7,7 @@ REPOSITORIES=(
     "Codec|furikake/sublime-codec"
     "DocBlockr|spadgos/sublime-jsdocs"
     "GoSublime|DisposaBoy/GoSublime"
+    "INI|clintberry/sublime-text-2-ini"
     "PlainTasks|aziz/PlainTasks"
     "Rust-Enhanced|rust-lang/rust-enhanced"
     "SublimeLinter-eslint|SublimeLinter/SublimeLinter-eslint"
