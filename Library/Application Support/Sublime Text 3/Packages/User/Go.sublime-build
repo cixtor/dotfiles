@@ -1,0 +1,4 @@
+{
+	"selector": "source.go",
+	"cmd": ["goimports", "-w", "$file"]
+}

@@ -1,0 +1,4 @@
+{
+    "filename_filter": "\\.(go|less)$",
+    "build_on_save": 1
+}

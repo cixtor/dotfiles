@@ -92,6 +92,7 @@
 		".git",
 		".hg",
 		"CVS",
+		".golangci-*",
 		".gometalinter-*"
 	],
 	"font_face": "Menlo",
@@ -152,7 +153,7 @@
 	"show_errors_inline": true,
 	"show_full_path": false,
 	"show_line_endings": true,
-	"show_panel_on_build": true,
+	"show_panel_on_build": false,
 	"show_tab_close_buttons": true,
 	"smart_indent": true,
 	"spell_check": false,

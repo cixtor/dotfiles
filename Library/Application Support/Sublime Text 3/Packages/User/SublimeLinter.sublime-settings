@@ -9,8 +9,13 @@
             "args": [],
             "excludes": []
         },
-        "gometalinter": {
+        "golangcilint": {
             "disable": false,
+            "args": [],
+            "excludes": []
+        },
+        "gometalinter": {
+            "disable": true,
             "args": [],
             "excludes": [],
             "gopath": "/usr/local/opt/gopath",
