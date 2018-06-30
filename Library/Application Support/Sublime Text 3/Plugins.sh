@@ -4,6 +4,7 @@ INST_PATH="$HOME/.config/sublime-text-3/Packages/"
 REPOSITORIES=(
     "Alignment|wbond/sublime_alignment"
     "CaseConversion|jdc0589/CaseConversion"
+    "ClangFormat|rosshemsley/SublimeClangFormat"
     "Codec|furikake/sublime-codec"
     "DocBlockr|spadgos/sublime-jsdocs"
     "INI|clintberry/sublime-text-2-ini"

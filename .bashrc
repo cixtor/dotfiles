@@ -127,6 +127,10 @@ export PATH="$PATH:/usr/local/opt/python/bin"
 # stylelint /path/to/file.css --fix
 # stylelint /path/to/file.css
 
+# Install and configure clang-format
+# brew install clang-format
+# clang-format -style WebKit [files]
+
 # Language Server Protocol
 # https://microsoft.github.io/language-server-protocol/
 # go get -u github.com/sourcegraph/go-langserver
