@@ -16,7 +16,6 @@ REPOSITORIES=(
     "SublimeLinter-gometalinter|alecthomas/SublimeLinter-contrib-gometalinter"
     "SublimeLinter-php|SublimeLinter/SublimeLinter-php"
     "SublimeLinter-phpcs|SublimeLinter/SublimeLinter-phpcs"
-    "SublimeLinter-rubocop|SublimeLinter/SublimeLinter-rubocop"
     "SublimeLinter-shellcheck|SublimeLinter/SublimeLinter-shellcheck"
     "SublimeLinter-stylelint|kungfusheep/SublimeLinter-contrib-stylelint"
     "SublimeLinter-swiftlint|mailiam/SublimeLinter-contrib-swiftlint"

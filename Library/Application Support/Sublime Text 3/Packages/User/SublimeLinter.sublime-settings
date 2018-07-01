@@ -25,11 +25,6 @@
             "args": [],
             "excludes": []
         },
-        "rubocop": {
-            "disable": false,
-            "args": [],
-            "excludes": []
-        },
         "shellcheck": {
             "disable": false,
             "args": [],
