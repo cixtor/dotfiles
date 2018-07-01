@@ -9,17 +9,10 @@
             "args": [],
             "excludes": []
         },
-        "golangcilint": {
+        "gometalinter": {
             "disable": false,
             "args": [],
             "excludes": []
-        },
-        "gometalinter": {
-            "disable": true,
-            "args": [],
-            "excludes": [],
-            "gopath": "/usr/local/opt/gopath",
-            "goroot": "/usr/local/opt/go/libexec"
         },
         "php": {
             "disable": false,

@@ -13,7 +13,7 @@ REPOSITORIES=(
     "Rust-Enhanced|rust-lang/rust-enhanced"
     "SublimeLinter|SublimeLinter/SublimeLinter"
     "SublimeLinter-eslint|SublimeLinter/SublimeLinter-eslint"
-    "SublimeLinter-golangci|alecthomas/SublimeLinter-contrib-golang-cilint"
+    "SublimeLinter-gometalinter|alecthomas/SublimeLinter-contrib-gometalinter"
     "SublimeLinter-php|SublimeLinter/SublimeLinter-php"
     "SublimeLinter-phpcs|SublimeLinter/SublimeLinter-phpcs"
     "SublimeLinter-rubocop|SublimeLinter/SublimeLinter-rubocop"
