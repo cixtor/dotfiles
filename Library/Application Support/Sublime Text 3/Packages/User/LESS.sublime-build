@@ -1,4 +1,0 @@
-{
-	"selector": "source.less",
-	"cmd": ["lessc", "--no-color", "$file", "styles.css"]
-}

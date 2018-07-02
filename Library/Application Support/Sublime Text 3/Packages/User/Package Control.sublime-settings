@@ -1,0 +1,40 @@
+{
+	"auto_upgrade": false,
+	"auto_upgrade_frequency": 8760,
+	"bootstrapped": true,
+	"channels":
+	[
+		"https://packagecontrol.io/channel_v3.json"
+	],
+	"debug": false,
+	"in_process_packages":
+	[
+	],
+	"install_missing": true,
+	"installed_packages":
+	[
+		"Alignment",
+		"Case Conversion",
+		"Clang Format",
+		"Codec",
+		"DocBlockr",
+		"Gocode",
+		"INI",
+		"LESS",
+		"LSP",
+		"Package Control",
+		"PlainTasks",
+		"Rust Enhanced",
+		"SublimeLinter",
+		"SublimeLinter-contrib-gometalinter",
+		"SublimeLinter-contrib-swiftlint",
+		"SublimeLinter-eslint",
+		"SublimeLinter-php",
+		"SublimeLinter-phpcs",
+		"SublimeLinter-shellcheck",
+		"SublimeLinter-stylelint",
+		"Swift"
+	],
+	"submit_url": "https://cixtor.com/packagecontrol",
+	"submit_usage": false
+}
