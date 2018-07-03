@@ -3,6 +3,7 @@
 
 function usage() {
     echo "Usage:"
+    echo "  git commiton now [files]"
     echo "  git commiton yyyy-mm-dd [files]"
     echo "  git commiton yyyy-mm-ddThh [files]"
     echo "  git commiton yyyy-mm-ddThh:ii [files]"
@@ -15,13 +16,18 @@ if [[ "$#" -eq 0 ]]; then
 fi
 
 # default date and time.
-INPUT_DATE=$(date +%Y-%m-%d)
+INPUT_DATE=$(date "+%Y-%m-%d")
 INPUT_HOUR="09:00:00"
 INPUT_ZONE="-08:00"
 
 # user defined date and time.
 MAYBE_DATE=$(echo "$1" | cut -c1-10)
 MAYBE_HOUR=$(echo "$1" | cut -c12-19)
+
+if [[ "$MAYBE_DATE" == "now" ]]; then
+    MAYBE_DATE=$(date "+%Y-%m-%d")
+    MAYBE_HOUR=$(date "+%H:%M:%S")
+fi
 
 # check integrity of the user defined date.
 if echo "$MAYBE_DATE" | grep -E -q "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"; then
