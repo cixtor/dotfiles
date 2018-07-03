@@ -1,0 +1,22 @@
+#!/bin/bash
+COMMIT="$2" # Full commit hash.
+COMDATE="$1" # yyyy-mm-dd
+
+if [[ "$COMMIT" == "" ]] || [[ "$COMDATE" == "" ]]; then
+    SCRIPT=$(echo "$0" | rev | cut -d/ -f1 | rev)
+    echo "Repository Status"
+    echo "  https://cixtor.com/"
+    echo "  https://en.wikipedia.org/wiki/Git"
+    echo "  https://github.com/cixtor/dotfiles/.bin/"
+    echo "Usage:"
+    echo "  ${SCRIPT} [yyyy-mm-dd] [commit]"
+    exit 2
+fi
+
+COMDATE="${COMDATE}T09:00:00"
+
+git filter-branch -f --env-filter \
+"if [ \$GIT_COMMIT == $COMMIT ]; then
+export GIT_AUTHOR_DATE='$COMDATE'
+export GIT_COMMITTER_DATE='$COMDATE'
+fi"
