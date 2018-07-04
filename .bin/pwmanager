@@ -1,7 +1,7 @@
 #!/bin/bash
 # Rudimentary password manager
-STORAGE="${HOME}/.passwords.dat"
-PLAINTEXT="${HOME}/.passwords.txt"
+STORAGE="${HOME}/Documents/Vault.aes.dat"
+PLAINTEXT="${HOME}/Documents/Vault.aes.txt"
 
 echo "OpenSSL Password Manager"
 

@@ -28,14 +28,13 @@ fi
 
 for REGION in "${REGIONS[@]}"; do
     echo -n "${REGION}: "
-    curl -X POST \
-    --url "https://e3jbut7jza.execute-api.us-west-2.amazonaws.com/production/trace" \
-    -H "DNT: 1" \
+    curl -XPOST \
     -H "Accept: */*" \
     -H "Content-Type: application/json" \
     -H "Origin: https://latency.apex.sh" \
     -H "Referer: https://latency.apex.sh/" \
     -H "User-Agent: Mozilla/5.0 (KHTML, like Gecko) Safari/537.36" \
-    --data-binary "{\"url\":\"${WEBSITE}\",\"region\":\"${REGION}\"}"
+    --data-binary "{\"url\":\"${WEBSITE}\",\"region\":\"${REGION}\"}" \
+    "https://e3jbut7jza.execute-api.us-west-2.amazonaws.com/production/trace"
     echo
 done

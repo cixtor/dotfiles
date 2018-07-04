@@ -1,0 +1,7 @@
+#!/bin/bash
+ls -lhias -- *-WA00??.{jpg,mp4,opus} | while read -r LINE; do
+    FILE=$(echo "$LINE" | rev | awk '{print $1}' | rev)
+    TIME=$(echo "$LINE" | rev | awk '{print $2}' | sed "s/://g" | rev)
+    NEWFILE=$(echo "$FILE" | sed "s/-WA00/-${TIME}/g" | sed "s/-/_/g")
+    mv -iv -- "$FILE" "$NEWFILE"
+done

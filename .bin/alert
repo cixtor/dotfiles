@@ -1,0 +1,4 @@
+#!/bin/bash
+eval "$@"
+
+terminal-notifier -title "Command Finished Execution" -message "$@"

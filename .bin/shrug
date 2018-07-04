@@ -1,3 +1,3 @@
 #!/bin/bash
 # Print some (useful?) emoticons.
-echo "¯\_(ツ)_/¯"
+echo "¯\\_(ツ)_/¯"
