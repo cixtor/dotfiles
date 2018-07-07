@@ -66,4 +66,4 @@ export GIT_COMMITTER_DATE="$COMMIT_DATE"
 echo "[commit] ${GIT_COMMITTER_DATE}"
 echo "[author] ${GIT_AUTHOR_DATE}"
 
-git commit
+git commit -S
