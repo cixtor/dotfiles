@@ -1,6 +1,6 @@
 #!/bin/bash
-COMMIT="$2" # Full commit hash.
-COMDATE="$1" # yyyy-mm-dd
+COMMIT="$1" # Full commit hash.
+COMDATE="$2" # yyyy-mm-dd
 
 if [[ "$COMMIT" == "" ]] || [[ "$COMDATE" == "" ]]; then
     SCRIPT=$(echo "$0" | rev | cut -d/ -f1 | rev)
@@ -9,11 +9,13 @@ if [[ "$COMMIT" == "" ]] || [[ "$COMDATE" == "" ]]; then
     echo "  https://en.wikipedia.org/wiki/Git"
     echo "  https://github.com/cixtor/dotfiles/.bin/"
     echo "Usage:"
-    echo "  ${SCRIPT} [yyyy-mm-dd] [commit]"
+    echo "  ${SCRIPT} [commit] [yyyy-mm-dd]"
     exit 2
 fi
 
 COMDATE="${COMDATE}T09:00:00"
+
+echo "${COMMIT} - ${COMDATE}"
 
 git filter-branch -f --env-filter \
 "if [ \$GIT_COMMIT == $COMMIT ]; then

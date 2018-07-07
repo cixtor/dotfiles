@@ -95,7 +95,6 @@ export PATH="$PATH:/opt/llvm/bin"
 #export ANDROID_HOME="/usr/local/share/android-sdk"
 
 # Miscellaneous Apps
-export PATH="$PATH:/opt/mamutools"
 export PATH="$PATH:/opt/iographica"
 export PATH="$PATH:/opt/phpshellgen"
 export PATH="$PATH:/Applications/Sublime Text.app/Contents/SharedSupport/bin"
