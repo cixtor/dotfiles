@@ -106,15 +106,13 @@ export PATH="$PATH:/usr/local/opt/gettext/bin"
 export PATH="$PATH:/usr/local/opt/python/bin"
 
 # Install and configure eslint and prettier
-# npm install -g eslint
-# npm install -g prettier
-# npm install -g eslint-plugin-react
-# npm install -g eslint-plugin-prettier
-# npm install -g eslint-config-prettier
+# brew install eslint
+# brew install prettier
+# https://github.com/jonlabelle/SublimeJsPrettier
 # https://github.com/SublimeLinter/SublimeLinter-eslint
 # echo '{"extends": "eslint:recommended"}' 1> ~/.eslintrc
-# echo '{"extends": "plugin:prettier/recommended"}' 1> ~/.eslintrc
 # echo '{"printWidth": 120, "singleQuote": true, "tabWidth": 4}' 1> ~/.prettierrc
+# prettier --write /path/to/file.js
 # eslint /path/to/file.js --fix
 # eslint /path/to/file.js
 
