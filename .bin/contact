@@ -1,11 +1,21 @@
 #!/bin/bash
 
-echo -n "Full Name:   "; read -r FULLNAME;
+echo -n "Full Name: "; read -r FULLNAME;
 echo -n "Phone (1st): "; read -r PHONE_FIRST;
 echo -n "Phone (2nd): "; read -r PHONE_SECOND;
 echo -n "Phone (3rd): "; read -r PHONE_THIRD;
-echo -n "Picture:     "; read -r PICTURE;
-echo -n "Notes:       "; read -r NOTES;
+echo -n "Picture: "; read -r PICTURE;
+echo -n "Website: "; read -r WEBSITE;
+echo -n "Notes: "; read -r NOTES;
+echo -n "Address (y/n)? "; read -r HAVE_ADDRESS;
+
+if [[ "$HAVE_ADDRESS" == "y" ]]; then
+    echo -n "Address Street (123 Foobar St.):"; read -r ADDRESS_STREET;
+    echo -n "Address City (Vancouver): "; read -r ADDRESS_CITY;
+    echo -n "Address State (BC): "; read -r ADDRESS_STATE;
+    echo -n "Address Country (Canada): "; read -r ADDRESS_COUNTRY;
+    echo -n "Address Postal Code (V6Z 2Y1): "; read -r ADDRESS_POSTAL_CODE;
+fi
 
 FORMAT="${FULLNAME// /_}"
 STORAGE="${HOME}/Desktop/${FORMAT}.vcf"
@@ -24,6 +34,14 @@ fi
 
 if [[ "$PHONE_THIRD" != "" ]]; then
     echo "TEL;TYPE=HOME:${PHONE_THIRD}" 1>> "$STORAGE"
+fi
+
+if [[ "$ADDRESS_STREET" == "y" ]]; then
+    echo "ADR;TYPE=HOME:;;${ADDRESS_STREET};${ADDRESS_CITY};${ADDRESS_STATE};${ADDRESS_POSTAL_CODE};${ADDRESS_COUNTRY}" 1>> "$STORAGE"
+fi
+
+if [[ "$WEBSITE" != "" ]]; then
+    echo "URL:${WEBSITE}" 1>> "$STORAGE"
 fi
 
 if [[ "$NOTES" != "" ]]; then
