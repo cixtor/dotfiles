@@ -162,10 +162,12 @@ export CAROOT="$HOME/src"
 # ~/.aliases, instead of adding them here directly. See examples at
 # /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f "$HOME/.aliases" ]; then
+	# shellcheck disable=SC1090
     source "$HOME/.aliases"
 fi
 
 # Include private additional settings.
 if [ -f "$HOME/.private" ]; then
+	# shellcheck disable=SC1090
     source "$HOME/.private"
 fi
