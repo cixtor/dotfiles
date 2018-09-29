@@ -152,6 +152,10 @@ export PATH="$PATH:/usr/local/opt/python/bin"
 #     }
 # }
 
+# Root directory for the Certificate Authority (CA)
+# https://github.com/FiloSottile/mkcert
+# brew install mkcert
+export CAROOT="$HOME/src"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
