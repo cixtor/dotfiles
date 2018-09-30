@@ -4,13 +4,14 @@ echo -n "Full Name: "; read -r FULLNAME;
 echo -n "Phone (1st): "; read -r PHONE_FIRST;
 echo -n "Phone (2nd): "; read -r PHONE_SECOND;
 echo -n "Phone (3rd): "; read -r PHONE_THIRD;
+echo -n "E-mail: "; read -r EMAIL;
 echo -n "Picture: "; read -r PICTURE;
 echo -n "Website: "; read -r WEBSITE;
 echo -n "Notes: "; read -r NOTES;
 echo -n "Address (y/n)? "; read -r HAVE_ADDRESS;
 
 if [[ "$HAVE_ADDRESS" == "y" ]]; then
-    echo -n "Address Street (123 Foobar St.):"; read -r ADDRESS_STREET;
+    echo -n "Address Street (123 Foobar St.): "; read -r ADDRESS_STREET;
     echo -n "Address City (Vancouver): "; read -r ADDRESS_CITY;
     echo -n "Address State (BC): "; read -r ADDRESS_STATE;
     echo -n "Address Country (Canada): "; read -r ADDRESS_COUNTRY;
@@ -36,7 +37,11 @@ if [[ "$PHONE_THIRD" != "" ]]; then
     echo "TEL;TYPE=HOME:${PHONE_THIRD}" 1>> "$STORAGE"
 fi
 
-if [[ "$ADDRESS_STREET" == "y" ]]; then
+if [[ "$EMAIL" != "" ]]; then
+    echo "EMAIL:${EMAIL}" 1>> "$STORAGE"
+fi
+
+if [[ "$HAVE_ADDRESS" == "y" ]]; then
     echo "ADR;TYPE=HOME:;;${ADDRESS_STREET};${ADDRESS_CITY};${ADDRESS_STATE};${ADDRESS_POSTAL_CODE};${ADDRESS_COUNTRY}" 1>> "$STORAGE"
 fi
 
