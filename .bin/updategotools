@@ -1,0 +1,95 @@
+#!/bin/bash
+function update_go_tool() {
+	PACKAGE="$1"
+	BACKUP="${2:-false}"
+
+	if [[ "$1" == "" ]]; then
+		return
+	fi
+
+	FILENAME=$(echo "$PACKAGE" | rev | cut -d/ -f1 | rev)
+	FILEPATH="${HOME}/bin/${FILENAME}"
+
+	if [[ ! -e "$FILEPATH" ]]; then
+		echo "\`${FILEPATH}\` does not exists"
+		return
+	fi
+
+	echo -n "Updating ......... ${FILENAME}…"
+	OLDVERSION=$(shasum "$FILEPATH" | cut -c1-7)
+
+	if [[ "$BACKUP" == "true" ]]; then
+		cp -a "$FILEPATH" "${FILEPATH}.${OLDVERSION}"
+	fi
+
+	go get -u "$PACKAGE"
+	NEWVERSION=$(shasum "$FILEPATH" | cut -c1-7)
+	echo -e "\r${OLDVERSION} -> ${NEWVERSION} ${PACKAGE}"
+}
+
+PACKAGES=(
+	"github.com/cixtor/powergoline"
+	"github.com/cixtor/emailgetter"
+	"github.com/cixtor/fileserver"
+	"github.com/cixtor/refactor"
+	"github.com/cixtor/similardiff"
+	"github.com/cixtor/sitecheck"
+	"github.com/cixtor/slackcli"
+	"github.com/cixtor/sparkline"
+	"github.com/cixtor/strconv"
+	"github.com/cixtor/webttfb"
+	"github.com/cixtor/wptickets"
+)
+
+for PACKAGE in "${PACKAGES[@]}" ; do
+	update_go_tool "$PACKAGE" "false"
+done
+
+# backup and update 3rd-party packages.
+
+PACKAGES=(
+	"github.com/sourcegraph/go-langserver"
+	"github.com/nsf/gocode"
+	"golang.org/x/tools/cmd/goimports"
+	"github.com/alecthomas/gometalinter"
+)
+
+for PACKAGE in "${PACKAGES[@]}" ; do
+	update_go_tool "$PACKAGE" "true"
+done
+
+echo -n "Update gometalinter tools? (y/n) "
+read -r ANSWER
+if [[ "$ANSWER" != "y" ]]; then
+	exit
+fi
+
+gometalinter --install
+
+# gocyclo
+# errcheck
+# deadcode
+# goconst
+# golint
+# ineffassign
+# gotype
+# unconvert
+# maligned
+# megacheck
+# varcheck
+# structcheck
+# interfacer
+# ---
+# dupl
+# gochecknoglobals
+# gochecknoinits
+# gosec
+# gosimple
+# gotypex
+# lll
+# misspell
+# nakedret
+# safesql
+# staticcheck
+# unparam
+# unused
