@@ -45,10 +45,9 @@ function extractRepositories() {
 
         # Determine the number of commits to push upstream.
         if echo "$GITSTATUS" | grep -q "branch is ahead"; then
-            printf "\\x20\\x20" # column separator.
             HOWMANY=$(echo "$GITSTATUS" | grep "ahead" | cut -d "'" -f3)
             HOWMANY=$(echo "$HOWMANY" | rev | cut -c2-100 | rev)
-            printf " \\x1b[48;5;010m░░\\x1b[0m %s" "$DIRECTORY"
+            printf "\\x1b[48;5;010m░░\\x1b[0m %s" "$DIRECTORY"
             printf " \\x1b[0;92m(ahead%s)\\x1b[0m\\x0a" "$HOWMANY"
             continue
         fi
