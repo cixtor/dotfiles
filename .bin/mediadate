@@ -25,7 +25,7 @@ for FILEPATH in "$@"; do
 
     FILENAME=$(basename "$FILEPATH")
 
-    if echo "$FILENAME" | grep -qE "^..._[0-9]{8}_[0-9]{6}\.(jpg|mp4|opus)$"; then
+    if echo "$FILENAME" | grep -qE "^..._[0-9]{8}_[0-9]{6}\.(jpg|mp4|mov|opus)$"; then
         YEAR=$(echo "$FILENAME" | cut -c5-8)
         MONTH=$(echo "$FILENAME" | cut -c9-10)
         DAY=$(echo "$FILENAME" | cut -c11-12)
