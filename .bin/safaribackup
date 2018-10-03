@@ -1,6 +1,6 @@
 #!/bin/bash
-DATE=$(date +%Y%m%d)
-DIRECTORY="${HOME}/Safari.${DATE}"
+DATE=$(date "+%Y%m%d")
+DIRECTORY="${HOME}/Safari-${DATE}"
 
 mkdir -pv "${DIRECTORY}/Safari" || exit
 mkdir -pv "${DIRECTORY}/Preferences" || exit
@@ -12,8 +12,15 @@ cp -- "${HOME}/Library/Safari/TopSites.plist" "${DIRECTORY}/Safari/"
 cp -- "${HOME}/Library/Safari/Bookmarks.plist" "${DIRECTORY}/Safari/"
 cp -- "${HOME}/Library/Safari/LastSession.plist" "${DIRECTORY}/Safari/"
 cp -- "${HOME}/Library/Safari/Databases/Databases.db" "${DIRECTORY}/Safari/Databases/"
-cp -- "${HOME}/Library/Preferences/com.apple.Safari.plist" "${DIRECTORY}/Preferences/"
-cp -- "${HOME}/Library/Preferences/com.apple.Safari.Extensions.plist" "${DIRECTORY}/Preferences/"
+
+cp -- "${HOME}/Library/Preferences/com.apple.Safari.plist" "${DIRECTORY}/Preferences/" 2>/dev/null
+cp -- "${HOME}/Library/Preferences/com.apple.Safari.Extensions.plist" "${DIRECTORY}/Preferences/" 2>/dev/null
+cp -- "${HOME}/Library/Preferences/com.apple.Safari.SafeBrowsing.plist" "${DIRECTORY}/Preferences/" 2>/dev/null
+cp -- "${HOME}/Library/Preferences/com.apple.Safari.SandboxBroker.plist" "${DIRECTORY}/Preferences/" 2>/dev/null
+cp -- "${HOME}/Library/Preferences/com.apple.SafariBookmarksSyncAgent.plist" "${DIRECTORY}/Preferences/" 2>/dev/null
+cp -- "${HOME}/Library/Preferences/com.apple.SafariCloudHistoryPushAgent.plist" "${DIRECTORY}/Preferences/" 2>/dev/null
+cp -- "${HOME}/Library/Preferences/com.apple.SafariTechnologyPreview.plist" "${DIRECTORY}/Preferences/" 2>/dev/null
+cp -- "${HOME}/Library/Preferences/com.apple.commerce.safari.plist" "${DIRECTORY}/Preferences/" 2>/dev/null
 
 cp -r -- "${HOME}/Library/Safari/Extensions" "${DIRECTORY}/Safari/"
 
