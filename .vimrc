@@ -14,12 +14,11 @@ set number
 set nocompatible
 set numberwidth=3
 " set background=dark
-" colorscheme dracula
-colorscheme default
+colorscheme dracula
 
 " Highlight position of cursor
 " set cursorcolumn
-" set cursorline
+set cursorline
 
 " Height of the command bar
 set cmdheight=1
