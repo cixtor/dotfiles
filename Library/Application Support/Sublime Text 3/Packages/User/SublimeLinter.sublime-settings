@@ -1,5 +1,5 @@
 {
-    "debug": true,
+    "debug": false,
     "delay": 0.1,
     "gutter_theme": "Default",
     "highlights.demote_while_editing": "none",
