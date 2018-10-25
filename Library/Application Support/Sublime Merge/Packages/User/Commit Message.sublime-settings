@@ -1,4 +1,7 @@
-// Settings in here override those in "Default/Commit Message.sublime-settings"
 {
-
+	"rulers":
+	[
+		72
+	],
+	"spell_check": true
 }
