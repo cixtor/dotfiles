@@ -1,0 +1,214 @@
+/.BurpSuite/
+/.CFUserTextEncoding
+/.IdentityService/
+/.ServiceHub/
+/.aws/
+/.bash_history
+/.bash_sessions/
+/.bin/_kleigit
+/.bin/ssh-add-all
+/.cache/
+/.cargo/
+/.composer/
+/.config/
+/.cups/
+/.docker/
+/.gem/
+/.gitconfig
+/.gitflow_export
+/.gnupg/
+/.hgignore_global
+/.oracle_jre_usage/
+/.phpls/
+/.powergoline.json
+/.private
+/.psr99.xml
+/.python_history
+/.revstats.json
+/.rnd
+/.rstudio-desktop/
+/.sqlite_history
+/.ssh/
+/.stCommitMsg
+/.subversion/README.txt
+/.subversion/auth/
+/.vim/.netrwhist
+/.vim/autoload/
+/.vim/bundle/
+/.viminfo
+/.webttfb.cfg
+/Applications/
+/Creative Cloud Files/
+/Desktop/
+/Documents/
+/Downloads/
+/Library/.localized
+/Library/Accounts/
+/Library/Address Book Plug-Ins/
+/Library/Application Scripts/
+/Library/Application Support/.20238548*
+/Library/Application Support/.ACCC_Lock
+/Library/Application Support/.ADCS_Lock
+/Library/Application Support/.FB1A62E0*
+/Library/Application Support/1Password 4/
+/Library/Application Support/1Password 6/
+/Library/Application Support/1Password 7/
+/Library/Application Support/AddressBook/
+/Library/Application Support/Adobe/
+/Library/Application Support/App Store/
+/Library/Application Support/Bit Slicer/
+/Library/Application Support/Blur/
+/Library/Application Support/CallHistoryDB/
+/Library/Application Support/CallHistoryTransactions/
+/Library/Application Support/Charles/
+/Library/Application Support/Chromium/
+/Library/Application Support/CloudDocs/
+/Library/Application Support/CodeRunner/
+/Library/Application Support/CrashReporter/
+/Library/Application Support/Dash/
+/Library/Application Support/Deckset/
+/Library/Application Support/DiskImages/
+/Library/Application Support/Dock/
+/Library/Application Support/Google/
+/Library/Application Support/Grammarly/
+/Library/Application Support/Hopper/
+/Library/Application Support/Insomnia/
+/Library/Application Support/JetBrains/
+/Library/Application Support/Kaleidoscope/
+/Library/Application Support/Knowledge/
+/Library/Application Support/LICEcap/
+/Library/Application Support/Limbo/
+/Library/Application Support/Little Snitch/
+/Library/Application Support/MacPaw Hider 2/
+/Library/Application Support/MobileSync/
+/Library/Application Support/Mozilla/
+/Library/Application Support/OpenEmu/
+/Library/Application Support/Paparazzi!/
+/Library/Application Support/PhpStorm2018.3/
+/Library/Application Support/Pichi/
+/Library/Application Support/Poedit/
+/Library/Application Support/PopCap/
+/Library/Application Support/Popcorn-Time/
+/Library/Application Support/Qbserve/
+/Library/Application Support/Quick Look/
+/Library/Application Support/ScreenTray/
+/Library/Application Support/Sequel Pro/
+/Library/Application Support/Slack/
+/Library/Application Support/SourceTree/
+/Library/Application Support/Spectacle/
+/Library/Application Support/Steam/
+/Library/Application Support/Sublime Merge/Cache/
+/Library/Application Support/Sublime Merge/Index/
+/Library/Application Support/Sublime Merge/Local/Auto Save Session.sublime_session
+/Library/Application Support/Sublime Merge/Local/License.sublime_license
+/Library/Application Support/Sublime Text 3/Backup/
+/Library/Application Support/Sublime Text 3/Cache/
+/Library/Application Support/Sublime Text 3/Index/
+/Library/Application Support/Sublime Text 3/Local/Auto Save Session.sublime_session
+/Library/Application Support/Sublime Text 3/Local/License.sublime_license
+/Library/Application Support/Sublime Text 3/Packages/User/Monnokay.sublime-color-scheme
+/Library/Application Support/Sublime Text 3/Packages/User/Package Control.cache/
+/Library/Application Support/Sublime Text 3/Packages/User/Package Control.last-run
+/Library/Application Support/Sublime Text 3/Packages/User/Package Control.merged-ca-bundle
+/Library/Application Support/Sublime Text 3/Packages/User/Package Control.user-ca-bundle
+/Library/Application Support/Sublime Text 3/Packages/User/oscrypto-ca-bundle.crt
+/Library/Application Support/Sublime Text 3/Packages/dateutil/
+/Library/Application Support/Sublime Text 3/Packages/jsonschema/
+/Library/Application Support/Sublime Text 3/Packages/markupsafe/
+/Library/Application Support/Sublime Text 3/Packages/mdpopups/
+/Library/Application Support/Sublime Text 3/Packages/pygments/
+/Library/Application Support/Sublime Text 3/Packages/pymdownx/
+/Library/Application Support/Sublime Text 3/Packages/python-jinja2/
+/Library/Application Support/Sublime Text 3/Packages/python-markdown/
+/Library/Application Support/Sublime Text 3/Packages/pyyaml/
+/Library/Application Support/Sublime Text 3/Packages/shellenv/
+/Library/Application Support/Synalyze It! Pro/
+/Library/Application Support/SyncServices/
+/Library/Application Support/T/
+/Library/Application Support/Timepal Pro/
+/Library/Application Support/TorBrowser-Data/
+/Library/Application Support/Transmission/
+/Library/Application Support/WhatsApp/
+/Library/Application Support/com.QotoQot.Qbserve/
+/Library/Application Support/com.adobe.xd/
+/Library/Application Support/com.apple.AssistiveControl/
+/Library/Application Support/com.apple.ProtectedCloudStorage/
+/Library/Application Support/com.apple.TCC/
+/Library/Application Support/com.apple.appleseed.FeedbackAssistant/
+/Library/Application Support/com.apple.backgroundtaskmanagementagent/
+/Library/Application Support/com.apple.sbd/
+/Library/Application Support/com.apple.sharedfilelist/
+/Library/Application Support/com.apple.spotlight.Shortcuts
+/Library/Application Support/com.apple.spotlight/
+/Library/Application Support/com.apple.touristd/
+/Library/Application Support/com.blackpixel.kaleidoscope/
+/Library/Application Support/com.colliderli.iina/
+/Library/Application Support/com.kapeli.dashdoc/
+/Library/Application Support/com.nordvpn.osx/
+/Library/Application Support/com.ridiculousfish.HexFiend/
+/Library/Application Support/com.tinyapp.TablePlus/
+/Library/Application Support/com.torusknot.SourceTreeNotMAS/
+/Library/Application Support/iCloud/
+/Library/Application Support/iTerm2/
+/Library/Application Support/icdd/
+/Library/Application Support/videosubscriptionsd/
+/Library/Assistant/
+/Library/Caches/
+/Library/Calendars/
+/Library/Compositions/
+/Library/Containers/
+/Library/Cookies/
+/Library/CoreData/
+/Library/CoreFollowUp/
+/Library/Developer/
+/Library/Dictionaries/
+/Library/Family/
+/Library/Favorites/
+/Library/FileProvider/
+/Library/FontCollections/
+/Library/Fonts/
+/Library/Google/
+/Library/Group Containers/
+/Library/HomeKit/
+/Library/Icons/
+/Library/IdentityServices/
+/Library/Input Methods/
+/Library/Internet Plug-Ins/
+/Library/Keyboard/
+/Library/KeyboardServices/
+/Library/Keychains/
+/Library/LanguageModeling/
+/Library/LaunchAgents/
+/Library/Logs/
+/Library/Mail/
+/Library/Messages/
+/Library/Metadata/
+/Library/Mobile Documents/
+/Library/Passes/
+/Library/PersonalizationPortrait/
+/Library/Personas/
+/Library/Preferences/
+/Library/Printers/
+/Library/Processing/
+/Library/PubSub/
+/Library/Safari/
+/Library/Saved Application State/
+/Library/Sharing/
+/Library/Spelling/
+/Library/StickiesDatabase
+/Library/Suggestions/
+/Library/SyncedPreferences/
+/Library/TeXShop/
+/Library/WebKit/
+/Library/com.apple.internal.ck/
+/Movies/
+/Music/
+/Pictures/
+/Private/
+/Something/
+/bin/
+/composer.json
+/composer.lock
+/pkg/
+/src/
+/vendor/
