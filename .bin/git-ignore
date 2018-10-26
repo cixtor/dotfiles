@@ -1,0 +1,14 @@
+#!/bin/bash
+FILE="${1:-}"
+
+if [[ "$FILE" == "" ]] ; then
+	echo "Usage: git ignore [path]"
+	exit 2
+fi
+
+if [[ ! -e "$FILE" ]] ; then
+	echo "ignore: ${FILE}: No such file or directory"
+	exit 1
+fi
+
+echo "/${FILE}" 1>> $(pwd)/.gitignore
