@@ -48,3 +48,6 @@ alias diff='colordiff -u'
 
 # Stress test the responsiveness of a network node
 alias ddos='hping3 -c 10000 -d 120 -S -w 64 -p 21 --flood --rand-source'
+
+# Run PHP-CodeSniffer with the WordPress Coding Standards
+alias wpcs="phpcs --standard=WordPress"
