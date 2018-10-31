@@ -171,3 +171,9 @@ if [ -f "$HOME/.private" ]; then
 	# shellcheck disable=SC1090
     source "$HOME/.private"
 fi
+
+# Include all available bash completion instructions.
+if [ -f "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]; then
+	# shellcheck disable=SC1090
+	source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+fi
