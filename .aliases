@@ -3,8 +3,13 @@
 # Modern version of “ls”
 # https://github.com/ogham/exa
 alias ls='exa'
+
+# Search directories for a regex pattern
+# https://github.com/BurntSushi/ripgrep
+alias grep='rg --no-heading --no-ignore --hidden'
+
+# Display non-printing characters so they are visible
 alias cat='cat -v'
-alias grep='grep --extended-regexp --color=auto'
 
 # Simplify Caskroom calls.
 alias cask='brew cask'
