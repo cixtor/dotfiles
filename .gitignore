@@ -212,3 +212,4 @@
 /pkg/
 /src/
 /vendor/
+/.bin/reset*
