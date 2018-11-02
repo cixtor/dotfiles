@@ -1,0 +1,2 @@
+#!/bin/bash
+python -c "print(u'\u${1}')"
