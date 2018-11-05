@@ -96,6 +96,7 @@
 		"cache",
 		"uploads",
 		".golangci-*",
+		".golangcilint-*",
 		".gometalinter-*"
 	],
 	"font_face": "SF Mono",
