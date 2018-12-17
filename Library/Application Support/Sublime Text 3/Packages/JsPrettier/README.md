@@ -32,6 +32,7 @@
     - [Prettier Options](#prettier-options)
     - [Project-level Settings](#project-level-settings)
     - [Prettier Configuration Files](#prettier-configuration-files)
+- [Prettier PHP](#prettier-plug-in-support)
 - [Issues](#issues)
 - [Changes](#changes)
 - [Author](#author)
@@ -46,10 +47,10 @@ Operating Systems.
 
 ### Requirements
 
-- [Sublime Text] - Text editor for code
-- [node.js] - JavaScript runtime
-- [yarn] or [npm] - Package manager for JavaScript
-- [Prettier] - Opinionated JavaScript formatter
+- [Sublime Text] – Text editor for code
+- [node.js] – JavaScript runtime
+    - [yarn] or [npm] – Package manager for JavaScript
+        - [Prettier] – Opinionated code formatter (v1.16 or above)
 
 ### Install Prettier
 
@@ -137,6 +138,9 @@ file, accessible from the **Preferences** > **Package Settings** >
 - **debug** (default: ***false***)  
     When enabled (*true*), debug info will print to the console - useful for
     troubleshooting and inspecting generated commands passed to Prettier.
+    Enabling debug mode also sets Prettier's [`--loglevel`] option to `debug`
+    (when not overridden by `additional_cli_args`), for printing additional
+    debug information to the console.
 
 - **prettier_cli_path** (default: ***empty***)  
     If Sublime Text has problems automatically resolving a path to [Prettier],
@@ -153,18 +157,22 @@ file, accessible from the **Preferences** > **Package Settings** >
     **Examples:**
   
     ```
+    ...
     {
-        // macOS/Linux
-        "prettier_cli_path": "/path/to/node_modules/.bin/prettier"
+        // macOS/Linux:
+        "prettier_cli_path": "/usr/local/bin/prettier"
+        "prettier_cli_path": "/some/absolute/path/to/node_modules/.bin/prettier"
         "prettier_cli_path": "./node_modules/.bin/prettier"
         "prettier_cli_path": "~/bin/prettier"
+        "prettier_cli_path": "$HOME/bin/prettier"
         "prettier_cli_path": "${project_path}/bin/prettier"
         "prettier_cli_path": "$ENV/bin/prettier"
 
-        // Windows
+        // Windows:
         "prettier_cli_path": "C:/path/to/prettier.cmd"
-        "prettier_cli_path": "%USERPROFILE%\bin\prettier.cmd"
+        "prettier_cli_path": "%USERPROFILE%\\bin\\prettier.cmd"
     }
+    ...
     ```
 
 - **node_path** (default: ***empty***)  
@@ -174,17 +182,22 @@ file, accessible from the **Preferences** > **Package Settings** >
     **Examples:**
   
     ```
+    ...
     {
-        // macOS/Linux
-        "node_path": "/absolute/path/to/node"
+        // macOS/Linux:
+        "node_path": "/usr/local/bin/node"
+        "node_path": "/some/absolute/path/to/node"
+        "node_path": "./node"
         "node_path": "~/bin/node"
+        "node_path": "$HOME/bin/node"
         "node_path": "${project_path}/bin/node"
         "node_path": "$ENV/bin/node"
 
-        // Windows
+        // Windows:
         "node_path": "C:/path/to/node.exe"
-        "node_path": "%USERPROFILE%\bin\node.exe"
+        "node_path": "%USERPROFILE%\\bin\\node.exe"
     }
+    ...
     ```
 
 - **auto_format_on_save** (default: ***false***)  
@@ -247,10 +260,11 @@ file, accessible from the **Preferences** > **Package Settings** >
     ```json
     {
         "additional_cli_args": {
-            "--config": "path/to/my/custom/.prettierrc",
             "--config": "~/.prettierrc",
             "--config": "$HOME/.prettierrc",
             "--config": "${project_path}/.prettierrc",
+            "--config": "/some/absolute/path/to/.prettierrc",
+
             "--config-precedence": "prefer-file",
             "--ignore-path": "${file_path}/.prettierignore",
             "--with-node-modules": ""
@@ -417,8 +431,9 @@ key-value item to `additional_cli_args`. Here's an example:
 {
     "additional_cli_args":
     {
-        "--config": "path/to/my/custom/.prettierrc",
-        "--config-precedence": "prefer-file"
+        "--config": "~/some/path/from/my/home/.prettierrc",
+        "--config-precedence": "prefer-file",
+        "--ignore-path": "${project_path}/.prettierignore"
     }
 }
 ```
@@ -443,6 +458,10 @@ plug-in will attempt to discover and set `--ignore-path <file>` when a
 `.prettierignore` config exists in the same directory of the source file
 (first), or the active Sublime Text project root directory (second).
 
+## Prettier Plugin Support
+
+- [Prettier PHP](https://github.com/prettier/plugin-php)
+
 ## Issues
 
 To [report an issue], please follow the steps outlined in the [Issue Template].
@@ -460,7 +479,7 @@ Jon LaBelle
 [MIT License]
 
 [Watch a Quick Demo]: https://github.com/jonlabelle/SublimeJsPrettier/blob/master/screenshots/demo.gif
-[Prettier]: https://github.com/jlongster/prettier
+[Prettier]: https://prettier.io
 [Prettier API section]: https://github.com/prettier/prettier#api
 [Prettier CLI]: https://github.com/prettier/prettier#cli
 [Package Control]: https://packagecontrol.io/packages/JsPrettier
@@ -488,3 +507,4 @@ Jon LaBelle
 [`--ignore-path`]: https://prettier.io/docs/en/cli.html#ignore-path
 [whitespace-sensitive formatting]: https://prettier.io/blog/2018/11/07/1.15.0.html#whitespace-sensitive-formatting
 [`parser`]: https://prettier.io/docs/en/options.html#parser
+[`--loglevel`]: https://prettier.io/docs/en/cli.html#loglevel

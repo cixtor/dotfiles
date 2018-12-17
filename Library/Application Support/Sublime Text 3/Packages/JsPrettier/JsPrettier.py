@@ -321,14 +321,19 @@ class JsPrettierCommand(sublime_plugin.TextCommand):
 
             if source_modified:
                 view.sel().clear()
-                view.sel().add(sublime.Region(new_cursor))
+                if new_cursor:
+                    view.sel().add(sublime.Region(new_cursor))
+                # re-run indention detection
+                view.run_command('detect_indentation')
                 st_status_message('File formatted.')
             else:
                 st_status_message('File already formatted.')
+
             return
 
         #
         # Format each selection:
+        atleast_one_selection_formatted = False
         for region in view.sel():
             if region.empty():
                 continue
@@ -354,8 +359,13 @@ class JsPrettierCommand(sublime_plugin.TextCommand):
             if transformed and transformed == trim_trailing_ws_and_lines(source):
                 st_status_message('Selection(s) already formatted.')
             else:
+                atleast_one_selection_formatted = True
                 view.replace(edit, region, transformed)
-                st_status_message('Selection(s) formatted.')
+
+        # re-run indention detection
+        if atleast_one_selection_formatted:
+            view.run_command('detect_indentation')
+            st_status_message('Selection(s) formatted.')
 
     def format_code(self, source, node_path, prettier_cli_path, prettier_options, view, provide_cursor=False):
         self._error_message = None
@@ -420,7 +430,12 @@ class JsPrettierCommand(sublime_plugin.TextCommand):
             if provide_cursor:
                 if not new_cursor and cursor is not None:
                     new_cursor = cursor
-                return stdout.decode('utf-8'), int(new_cursor)
+                try:
+                    new_cursor = int(new_cursor)
+                except ValueError:
+                    log_warn('Adjusted cursor position could not be parsed (int).')
+                    return stdout.decode('utf-8'), None
+                return stdout.decode('utf-8'), new_cursor
 
             return stdout.decode('utf-8')
         except OSError as ex:
@@ -444,6 +459,8 @@ class JsPrettierCommand(sublime_plugin.TextCommand):
         if self.is_yaml(view) is True:
             return True
         if self.is_html(view) is True:
+            return True
+        if self.is_php(view) is True:
             return True
         if is_file_auto_formattable(view) is True:
             return True
@@ -550,6 +567,11 @@ class JsPrettierCommand(sublime_plugin.TextCommand):
                     prettier_options.append('html')
                     continue
 
+                if self.is_php(view):
+                    prettier_options.append(cli_option_name)
+                    prettier_options.append('php')
+                    continue
+
             if not prettier_config_exists and not has_custom_config_defined:
                 # add the cli args or the respective defaults:
                 if option_value is None or str(option_value) == '':
@@ -589,13 +611,19 @@ class JsPrettierCommand(sublime_plugin.TextCommand):
         prettier_options.append('--stdin-filepath')
         prettier_options.append(file_name)
 
+        if debug_enabled(view):
+            if not parsed_additional_cli_args.count('--loglevel') > 0:
+                # set prettier's log level to debug, when the plug-in's debug setting is enabled:
+                prettier_options.append('--loglevel')
+                prettier_options.append('debug')
+
         # Append any additional specified arguments:
         prettier_options.extend(parsed_additional_cli_args)
 
         return prettier_options
 
     def format_console_error(self):
-        print('\n------------------\n {0} ERROR \n------------------\n\n'
+        print('\n------------------\n {0} ERROR \n------------------\n'
               '{1}'.format(PLUGIN_NAME, self.error_message))
 
     @staticmethod
@@ -743,6 +771,16 @@ class JsPrettierCommand(sublime_plugin.TextCommand):
         if not filename:
             return False
         if filename.endswith('.component.html'):
+            return True
+        return False
+
+    @staticmethod
+    def is_php(view):
+        filename = view.file_name()
+        if not filename:
+            return False
+        scopename = view.scope_name(0)
+        if contains('source.php', scopename) or filename.endswith('.php'):
             return True
         return False
 
