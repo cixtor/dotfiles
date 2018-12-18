@@ -8,25 +8,24 @@
 func FileList(directory string) ([]string, error) {
 	files := []string{}
 
-	var visit = func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			return err
-		}
-
-		if info.IsDir() {
-			return nil
-		}
-
-		files = append(files, path)
-
-		return nil
-	}
-
-	if err := filepath.Walk(directory, visit); err != nil {
+	if err := filepath.Walk(directory, FileListVisit(&files)); err != nil {
 		return []string{}, err
 	}
 
 	return files, nil
+}
+
+// FileListVisit is a helper for FileList that implements filepath.WalkFunc.
+func FileListVisit(files *[]string) filepath.WalkFunc {
+	return func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		*files = append(*files, path)
+
+		return nil
+	}
 }
 ]]></content>
 	<tabTrigger>filelist</tabTrigger>
