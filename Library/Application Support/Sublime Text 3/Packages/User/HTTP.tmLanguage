@@ -12,7 +12,13 @@
 	<array>
 		<dict>
 			<key>match</key>
-			<string>POST</string>
+			<string>^#.*</string>
+			<key>name</key>
+			<string>comment.http</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH)</string>
 			<key>name</key>
 			<string>method.http</string>
 		</dict>
