@@ -6,7 +6,7 @@
 		{
 			"command":
 			[
-				"go-langserver"
+				"bingo"
 			],
 			"enabled": true,
 			"languageId": "go",
