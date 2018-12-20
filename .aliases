@@ -6,7 +6,8 @@ alias ls='exa'
 
 # Search directories for a regex pattern
 # https://github.com/BurntSushi/ripgrep
-alias grep='rg --no-heading --no-ignore --hidden'
+# alias grep='rg --no-heading --no-ignore --hidden'
+alias grep='grep --extended-regexp --color=auto'
 
 # Display non-printing characters so they are visible
 alias cat='cat -v'
