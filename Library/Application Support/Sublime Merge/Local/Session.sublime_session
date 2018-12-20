@@ -1,5 +1,5 @@
 {
-	"last_version": 1102,
+	"last_version": 1106,
 	"project_dir": "/Users/yorman/src/",
 	"recent":
 	[
@@ -15,5 +15,8 @@
 	},
 	"windows":
 	[
+		{
+			"position": "0 240 138 960 622 0 0 1440 877 "
+		}
 	]
 }
