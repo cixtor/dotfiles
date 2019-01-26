@@ -41,230 +41,6 @@
 	},
 	"complete_all_chars": true,
 	"completion_hint_type": "auto",
-	"default_clients":
-	{
-		"clangd":
-		{
-			"command":
-			[
-				"clangd"
-			],
-			"languageId": "objc++",
-			"scopes":
-			[
-				"source.c",
-				"source.c++",
-				"source.objc",
-				"source.objc++"
-			],
-			"syntaxes":
-			[
-				"Packages/C++/C.sublime-syntax",
-				"Packages/C++/C++.sublime-syntax",
-				"Packages/Objective-C/Objective-C.sublime-syntax",
-				"Packages/Objective-C/Objective-C++.sublime-syntax"
-			]
-		},
-		"eslint":
-		{
-			"command":
-			[
-				"node",
-				"/Users/tomv/Projects/tomv564/vscode-eslint/eslint-server/src/server"
-			],
-			"initializationOptions":
-			{
-				"nodePath": "/usr/local/bin/node"
-			},
-			"languageId": "javascript",
-			"scopes":
-			[
-				"source.js"
-			],
-			"syntaxes":
-			[
-				"Packages/Babel/JavaScript (Babel).sublime-syntax",
-				"Packages/JavaScript/JavaScript.sublime-syntax"
-			]
-		},
-		"golsp":
-		{
-			"command":
-			[
-				"go-langserver"
-			],
-			"languageId": "go",
-			"scopes":
-			[
-				"source.go"
-			],
-			"syntaxes":
-			[
-				"Packages/Go/Go.sublime-syntax"
-			]
-		},
-		"jdtls":
-		{
-			"command":
-			[
-				"java",
-				"-jar",
-				"PATH_TO_JDT_SERVER/plugins/org.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar",
-				"-configuration",
-				"PATH_TO_CONFIG_DIR"
-			],
-			"languageId": "java",
-			"scopes":
-			[
-				"source.java"
-			],
-			"syntaxes":
-			[
-				"Packages/Java/Java.sublime-syntax"
-			]
-		},
-		"ocaml":
-		{
-			"command":
-			[
-				"ocaml-language-server",
-				"--stdio"
-			],
-			"languageId": "ocaml",
-			"scopes":
-			[
-				"source.ocaml"
-			],
-			"syntaxes":
-			[
-				"Packages/OCaml/OCaml.sublime-syntax"
-			]
-		},
-		"phpls":
-		{
-			"command":
-			[
-				"php",
-				"~/vendor/felixfbecker/language-server/bin/php-language-server.php"
-			],
-			"languageId": "php",
-			"scopes":
-			[
-				"source.php",
-				"embedding.php"
-			],
-			"syntaxes":
-			[
-				"Packages/PHP/PHP.sublime-syntax"
-			]
-		},
-		"polymer-ide":
-		{
-			"command":
-			[
-				"polymer-editor-service"
-			],
-			"languageId": "javascript",
-			"scopes":
-			[
-				"text.html.basic",
-				"text.html",
-				"source.html",
-				"source.js",
-				"source.css",
-				"source.json"
-			],
-			"settings":
-			{
-				"polymer-ide":
-				{
-					"analyzeWholePackage": false,
-					"fixOnSave": false
-				}
-			},
-			"syntaxes":
-			[
-				"Packages/HTML/HTML.sublime-syntax",
-				"Packages/CSS/CSS.sublime-syntax",
-				"Packages/JavaScript/JavaScript.sublime-syntax",
-				"Packages/JavaScript/JSON.sublime-syntax"
-			]
-		},
-		"pyls":
-		{
-			"command":
-			[
-				"pyls"
-			],
-			"languageId": "python",
-			"scopes":
-			[
-				"source.python"
-			],
-			"syntaxes":
-			[
-				"Packages/Python/Python.sublime-syntax"
-			]
-		},
-		"reason":
-		{
-			"command":
-			[
-				"ocaml-language-server",
-				"--stdio"
-			],
-			"languageId": "reason",
-			"scopes":
-			[
-				"source.reason"
-			],
-			"syntaxes":
-			[
-				"Packages/sublime-reason/Reason.tmLanguage"
-			]
-		},
-		"rlang":
-		{
-			"command":
-			[
-				"R",
-				"--quiet",
-				"--slave",
-				"-e",
-				"languageserver::run()"
-			],
-			"languageId": "r",
-			"scopes":
-			[
-				"source.r"
-			],
-			"syntaxes":
-			[
-				"Packages/R/R.sublime-syntax",
-				"Packages/R-Box/syntax/R Extended.sublime-syntax"
-			]
-		},
-		"rls":
-		{
-			"command":
-			[
-				"rustup",
-				"run",
-				"nightly",
-				"rls"
-			],
-			"languageId": "rust",
-			"scopes":
-			[
-				"source.rust"
-			],
-			"syntaxes":
-			[
-				"Packages/Rust/Rust.sublime-syntax",
-				"Packages/Rust Enhanced/RustEnhanced.sublime-syntax"
-			]
-		}
-	},
 	"diagnostics_gutter_marker": "dot",
 	"diagnostics_highlight_style": "underline",
 	"document_highlight_scopes":
@@ -275,17 +51,18 @@
 		"write": "markup.changed"
 	},
 	"document_highlight_style": "squiggly",
-	"highlight_active_signature_parameter": true,
 	"log_debug": false,
 	"log_payloads": false,
 	"log_server": true,
 	"log_stderr": false,
 	"only_show_lsp_completions": false,
-	"resolve_completion_for_snippets": false,
+	"prefer_label_over_filter_text": false,
+	"quick_panel_monospace_font": false,
 	"show_code_actions_bulb": false,
 	"show_diagnostics_count_in_view_status": false,
 	"show_diagnostics_in_view_status": true,
 	"show_diagnostics_phantoms": false,
 	"show_diagnostics_severity_level": 3,
+	"show_references_in_quick_panel": false,
 	"show_view_status": true
 }
