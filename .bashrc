@@ -86,10 +86,6 @@ export PATH="$PATH:$GOPATH/bin"
 # brew install rust && mkdir ~/.cargo
 export PATH="$PATH:$HOME/.cargo/bin"
 
-# LLVM Compiler Infrastructure
-# http://llvm.org/releases/download.html
-export PATH="$PATH:/opt/llvm/bin"
-
 # Java Development Kit
 #export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 #export ANDROID_HOME="/usr/local/share/android-sdk"
