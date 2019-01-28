@@ -11,4 +11,4 @@ if [[ ! -e "$FILE" ]] ; then
 	exit 1
 fi
 
-echo "/${FILE}" 1>> $(pwd)/.gitignore
+echo "/${FILE}" 1>> "$(pwd)/.gitignore"
