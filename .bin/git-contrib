@@ -21,11 +21,13 @@ function extractRepositories() {
     for REPOSITORY in $(echo "$RESPONSE" | grep "codeRepository" | cut -d '"' -f2); do
         PROJECT=$(echo "$REPOSITORY" | cut -d "/" -f3)
         DIRECTORY="${HOME}/src/github.com/${USERNAME}/${PROJECT}"
+        GITFOLDER="${DIRECTORY}/.git"
         TOTAL=$((TOTAL + 1))
 
         # Dot.files are usually in the home directory.
         if [[ "$PROJECT" == "dotfiles" ]]; then
             DIRECTORY="$HOME"
+            GITFOLDER="${HOME}/.git"
         fi
 
         if [[ ! -e "$DIRECTORY" ]]; then
@@ -35,7 +37,7 @@ function extractRepositories() {
 
         # Check if the repository has no changes.
         CHECKED=$((CHECKED + 1))
-        GITSTATUS=$(git -C "$DIRECTORY" status)
+        GITSTATUS=$(git --git-dir "$GITFOLDER" --work-tree "$DIRECTORY" status)
         CHECKSUM=$(echo "$GITSTATUS" | /sbin/md5)
 
         if [[ "$CHECKSUM" == "$NOCHANGES" ]]; then
