@@ -6,7 +6,8 @@ if [[ "$1" == "" ]] || [[ "$1" =~ help ]]; then
     echo "Usage:"
     echo "  $SCRIPT [host]       Displays SSL certificate information"
     echo "  $SCRIPT [host] -new  Creates a new self-signed certificate"
-    echo "  $SCRIPT [host] -exp  Displays the expiration of a certificate"
+    echo "  $SCRIPT [host] -exp  Prints the expiration of a certificate"
+    echo "  $SCRIPT [host] -sans Prints the Subject Alternative Names (SAN)"
     exit 2
 fi
 
@@ -47,7 +48,19 @@ fi
 if [[ "$ACTION" == "-exp" ]]; then
     echo "domain=${DOMAIN}"; echo \
     | openssl s_client -connect "${DOMAIN}:443" 2> /dev/null \
-    | openssl x509 -dates -noout
+    | openssl x509 -noout -dates
+    exit
+fi
+
+if [[ "$ACTION" == "-sans" ]]; then
+    echo \
+    | openssl s_client -connect "${DOMAIN}:443" 2> /dev/null \
+    | openssl x509 -noout -text \
+    | grep "DNS:" \
+    | tr "," "\n" \
+    | while read -r LINE ; do
+        echo "$LINE" | cut -d: -f2
+    done
     exit
 fi
 
