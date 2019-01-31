@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# Modern version of “ls”
-# https://github.com/ogham/exa
-alias ls='exa'
+# Generic aliases
+alias ls='ls -G'
 
 # Search directories for a regex pattern
 # https://github.com/BurntSushi/ripgrep
