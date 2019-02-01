@@ -14,7 +14,9 @@ set number
 set nocompatible
 set numberwidth=3
 " set background=dark
-colorscheme dracula
+" colorscheme dracula
+set background=light
+colorscheme solarized
 
 " Highlight position of cursor
 " set cursorcolumn
