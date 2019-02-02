@@ -6,7 +6,7 @@
     "highlights.demote_scope": "",
     "highlights.time_to_idle": 1.5,
     "kill_old_processes": true,
-    "lint_mode": "background",
+    "lint_mode": "load_save",
     "linters": {
         "eslint": {
             "disable": false,
