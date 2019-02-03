@@ -213,3 +213,13 @@
 /src/
 /vendor/
 /.bin/reset*
+/Library/Application Support/Gifox/
+/Library/Application Support/com.gifox.gifox/
+/Library/Application Support/Dropshare 5/
+/Library/Application Support/net.mkswap.Dropshare5/
+/Library/Application Support/com.gifox.gifox.agent/
+/Library/Application Support/com.gifox.gifox.xpc.media/
+/Library/News/
+/Library/FrontBoard/
+/Library/Application Support/Ripcord/
+/Library/studentd/
