@@ -1,29 +1,24 @@
 #!/bin/bash
 function update_go_tool() {
 	PACKAGE="$1"
-	BACKUP="${2:-false}"
 
 	if [[ "$1" == "" ]]; then
 		return
 	fi
 
 	FILENAME=$(echo "$PACKAGE" | rev | cut -d/ -f1 | rev)
-	FILEPATH="${HOME}/bin/${FILENAME}"
+	FILEPATH=$(command -v "$FILENAME")
 
 	if [[ ! -e "$FILEPATH" ]]; then
 		echo "\`${FILEPATH}\` does not exists"
 		return
 	fi
 
-	echo -n "Updating ......... ${FILENAME}…"
-	OLDVERSION=$(shasum "$FILEPATH" | cut -c1-7)
-
-	if [[ "$BACKUP" == "true" ]]; then
-		cp -a "$FILEPATH" "${FILEPATH}.${OLDVERSION}"
-	fi
+	echo -n "Updating ........... ${FILENAME}…"
+	OLDVERSION=$(shasum "$FILEPATH" | cut -c1-8)
 
 	go get -u "$PACKAGE"
-	NEWVERSION=$(shasum "$FILEPATH" | cut -c1-7)
+	NEWVERSION=$(shasum "$FILEPATH" | cut -c1-8)
 	echo -e "\r${OLDVERSION} -> ${NEWVERSION} ${PACKAGE}"
 }
 
@@ -33,63 +28,34 @@ PACKAGES=(
 	"github.com/cixtor/fileserver"
 	"github.com/cixtor/refactor"
 	"github.com/cixtor/similardiff"
-	"github.com/cixtor/sitecheck"
 	"github.com/cixtor/slackcli"
 	"github.com/cixtor/sparkline"
 	"github.com/cixtor/strconv"
 	"github.com/cixtor/webttfb"
 	"github.com/cixtor/wptickets"
-)
-
-for PACKAGE in "${PACKAGES[@]}" ; do
-	update_go_tool "$PACKAGE" "false"
-done
-
-# backup and update 3rd-party packages.
-
-PACKAGES=(
-	"github.com/sourcegraph/go-langserver"
-	"github.com/nsf/gocode"
+	"golang.org/x/tools/cmd/gopls"
+	"github.com/tsenart/deadcode"
+	"github.com/mibk/dupl"
+	"github.com/kisielk/errcheck"
+	"github.com/jgautheron/goconst/cmd/goconst"
+	"github.com/alecthomas/gocyclo"
 	"golang.org/x/tools/cmd/goimports"
-	"github.com/alecthomas/gometalinter"
+	"golang.org/x/lint/golint"
+	"github.com/securego/gosec/cmd/gosec"
+	"golang.org/x/tools/cmd/gotype"
+	"github.com/gordonklaus/ineffassign"
+	"github.com/walle/lll"
+	"github.com/mdempsky/maligned"
+	"github.com/client9/misspell/cmd/misspell"
+	"github.com/alexkohler/nakedret"
+	"github.com/stripe/safesql"
+	"honnef.co/go/tools/cmd/staticcheck"
+	"gitlab.com/opennota/check/cmd/structcheck"
+	"github.com/mdempsky/unconvert"
+	"github.com/mvdan/unparam"
+	"gitlab.com/opennota/check/cmd/varcheck"
 )
 
 for PACKAGE in "${PACKAGES[@]}" ; do
-	update_go_tool "$PACKAGE" "true"
+	update_go_tool "$PACKAGE"
 done
-
-echo -n "Update gometalinter tools? (y/n) "
-read -r ANSWER
-if [[ "$ANSWER" != "y" ]]; then
-	exit
-fi
-
-gometalinter --install
-
-# gocyclo
-# errcheck
-# deadcode
-# goconst
-# golint
-# ineffassign
-# gotype
-# unconvert
-# maligned
-# megacheck
-# varcheck
-# structcheck
-# interfacer
-# ---
-# dupl
-# gochecknoglobals
-# gochecknoinits
-# gosec
-# gosimple
-# gotypex
-# lll
-# misspell
-# nakedret
-# safesql
-# staticcheck
-# unparam
-# unused
