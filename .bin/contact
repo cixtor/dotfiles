@@ -19,7 +19,7 @@ if [[ "$HAVE_ADDRESS" == "y" ]]; then
 fi
 
 FORMAT="${FULLNAME// /_}"
-STORAGE="${HOME}/Desktop/${FORMAT}.vcf"
+STORAGE="${HOME}/Downloads/${FORMAT}.vcf"
 
 echo "BEGIN:VCARD" 1> "$STORAGE"
 echo "VERSION:3.0" 1>> "$STORAGE"
