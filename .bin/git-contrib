@@ -15,48 +15,51 @@ PAGEURL="https://github.com/${USERNAME}/repositories"
 # 00000060  65 20 63 6c 65 61 6e 0a                           |e clean.|
 # 00000068
 
-function extractRepositories() {
-    RESPONSE="$1" # cURL response.
+printRepoStatus() {
+    PROJECT=$(echo "$1" | cut -d "/" -f3)
+    DIRECTORY="${HOME}/Projects/${USERNAME}/${PROJECT}"
+    GITFOLDER="${DIRECTORY}/.git"
+    TOTAL=$((TOTAL + 1))
 
-    for REPOSITORY in $(echo "$RESPONSE" | grep "codeRepository" | cut -d '"' -f2); do
-        PROJECT=$(echo "$REPOSITORY" | cut -d "/" -f3)
-        DIRECTORY="${HOME}/src/github.com/${USERNAME}/${PROJECT}"
-        GITFOLDER="${DIRECTORY}/.git"
-        TOTAL=$((TOTAL + 1))
+    # Dot.files are usually in the home directory.
+    if [[ "$PROJECT" == "dotfiles" ]]; then
+        DIRECTORY="$HOME"
+        GITFOLDER="${HOME}/.git"
+    fi
 
-        # Dot.files are usually in the home directory.
-        if [[ "$PROJECT" == "dotfiles" ]]; then
-            DIRECTORY="$HOME"
-            GITFOLDER="${HOME}/.git"
-        fi
+    if [[ ! -e "$DIRECTORY" ]]; then
+        printf "\\x1b[48;5;009m░░\\x1b[0m %s\\x0a" "$DIRECTORY"
+        return
+    fi
 
-        if [[ ! -e "$DIRECTORY" ]]; then
-            printf "\\x1b[48;5;009m░░\\x1b[0m %s\\x0a" "$DIRECTORY"
-            continue
-        fi
+    # Check if the repository has no changes.
+    CHECKED=$((CHECKED + 1))
+    GITSTATUS=$(git --git-dir "$GITFOLDER" --work-tree "$DIRECTORY" status)
+    LASTCOMMIT=$(git --git-dir "$GITFOLDER" log -n1 "master" --pretty="format:%aI" 2>/dev/null )
+    CHECKSUM=$(echo "$GITSTATUS" | /sbin/md5)
 
-        # Check if the repository has no changes.
-        CHECKED=$((CHECKED + 1))
-        GITSTATUS=$(git --git-dir "$GITFOLDER" --work-tree "$DIRECTORY" status)
-        CHECKSUM=$(echo "$GITSTATUS" | /sbin/md5)
+    if [[ "$LASTCOMMIT" == "" ]] ; then
+        LASTDATE="1970-01-01"
+    else
+        LASTDATE=$(echo "$LASTCOMMIT" | cut -c1-10)
+    fi
 
-        if [[ "$CHECKSUM" == "$NOCHANGES" ]]; then
-            printf "\\x1b[0;90m░░\\x1b[0m %s\\x0a" "$DIRECTORY"
-            continue
-        fi
+    if [[ "$CHECKSUM" == "$NOCHANGES" ]]; then
+        printf "\\x1b[0;90m░░\\x1b[0m %s %s\\x0a" "$LASTDATE" "$DIRECTORY"
+        return
+    fi
 
-        # Determine the number of commits to push upstream.
-        if echo "$GITSTATUS" | grep -q "branch is ahead"; then
-            HOWMANY=$(echo "$GITSTATUS" | grep "ahead" | cut -d "'" -f3)
-            HOWMANY=$(echo "$HOWMANY" | rev | cut -c2-100 | rev)
-            printf "\\x1b[48;5;010m░░\\x1b[0m %s" "$DIRECTORY"
-            printf " \\x1b[0;92m(ahead%s)\\x1b[0m\\x0a" "$HOWMANY"
-            continue
-        fi
+    # Determine the number of commits to push upstream.
+    if echo "$GITSTATUS" | grep -q "branch is ahead"; then
+        HOWMANY=$(echo "$GITSTATUS" | grep "ahead" | cut -d "'" -f3)
+        HOWMANY=$(echo "$HOWMANY" | rev | cut -c2-100 | rev)
+        printf "\\x1b[48;5;010m░░\\x1b[0m %s %s" "$LASTDATE" "$DIRECTORY"
+        printf " \\x1b[0;92m(ahead%s)\\x1b[0m\\x0a" "$HOWMANY"
+        return
+    fi
 
-        # Report additional changes including added, modified, and untracked files.
-        printf "\\x1b[48;5;075m░░\\x1b[0m %s\\x0a" "$DIRECTORY"
-    done
+    # Report additional changes including added, modified, and untracked files.
+    printf "\\x1b[48;5;075m░░\\x1b[0m %s %s\\x0a" "$LASTDATE" "$DIRECTORY"
 }
 
 while [[ "$CONTINUE_FETCHING" == "true" ]]; do
@@ -70,7 +73,9 @@ while [[ "$CONTINUE_FETCHING" == "true" ]]; do
         "$PAGEURL"
     )
 
-    extractRepositories "$RESPONSE"
+    for REPOSITORY in $(echo "$RESPONSE" | grep "codeRepository" | cut -d '"' -f2); do
+        printRepoStatus "$REPOSITORY"
+    done
 
     if echo "$RESPONSE" | grep -q "next_page disabled"; then
         CONTINUE_FETCHING="false"
