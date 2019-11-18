@@ -1,6 +1,0 @@
-<snippet>
-	<content><![CDATA[
-Mozilla/5.0 (KHTML, like Gecko) Safari/537.36
-]]></content>
-	<tabTrigger>useragent</tabTrigger>
-</snippet>

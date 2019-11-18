@@ -1,0 +1,143 @@
+{
+	// Open and close the diagnostics panel automatically,
+	// depending on available diagnostics.
+	// Valid values are "never", "always" and "saved"
+	"auto_show_diagnostics_panel": "saved",
+
+	// Open the diagnostics panel automatically
+	// when diagnostics level is equal to or less than:
+	// error: 1
+	// warning: 2
+	// info: 3
+	// hint: 4
+	"auto_show_diagnostics_panel_level": 2,
+
+	"clients":
+	{
+		"gopls":
+		{
+			"command": ["gopls"],
+			"enabled": true,
+			"languageId": "go",
+			"settings": {
+				"gopls": {
+					// https://github.com/golang/tools/blob/master/gopls/doc/settings.md
+					"hoverKind": "FullDocumentation",
+					"usePlaceholders": false,
+					"linkTarget": "pkg.go.dev",
+					"local": "",
+					"completionDocumentation": false,
+					"completeUnimported": false,
+					"deepCompletion": true,
+					"staticcheck": false,
+					"matcher": "fuzzy",
+					"symbolMatcher": "caseInsensitive"
+				}
+			},
+		}
+	},
+
+	// The amount of time the code actions on save are allowed to run for.
+	"code_action_on_save_timeout_ms": 2000,
+
+	// Gutter marker for code diagnostics.
+	// Valid values are "dot", "circle", "bookmark", "sign" or ""
+	"diagnostics_gutter_marker": "dot",
+
+	// Highlighting style of code diagnostics.
+	// Valid values are "underline" or "box"
+	"diagnostics_highlight_style": "underline",
+
+	// Disable language client capabilities. Supported values:
+	// "hover", "completion", "colorProvider", "documentHighlight", "signatureHelp"
+	"disabled_capabilities": [],
+
+	"document_highlight_scopes": {
+		"read": "markup.inserted",
+		"text": "text",
+		"unknown": "text",
+		"write": "markup.changed"
+	},
+
+	// Highlighting style of "highlights": accentuating nearby text entities that
+	// are related to the one under your cursor.
+	// Valid values are "fill", "box", "underline", "stippled", "squiggly" or "".
+	// When set to the empty string (""), no document highlighting is requested.
+	"document_highlight_style": "squiggly",
+
+	// Show verbose debug messages in the sublime console.
+	"log_debug": false,
+
+	// When logging to the "panel" (see "log_server"), if the params of the request or
+	// response or notification exceed this many characters, then print a <snip> to
+	// the panel instead. If you don't want a limit, set this to zero.
+	"log_max_size": 8192,
+
+	// Log communication from and to language servers.
+	// Set to an array of values:
+	// - "panel" - log to the LSP Language Servers output panel
+	// - "remote" - start a local websocket server on port 9981. Can be connected to with
+	//              a websocket client to receive the log messages in real time.
+	// For backward-compatibility, when set to "true", enables the "panel" logger and when
+	// set to "false" disables logging.
+	// This output panel can be toggled from the command palette with the
+	// command "LSP: Toggle Panel: Language Servers".
+	"log_server": [
+		// "panel",
+		// "remote",
+	],
+
+	// Show language server stderr output in the Language Servers output panel.
+	// This output panel can be toggled from the command palette with the
+	// command "LSP: Toggle Panel: Language Servers".
+	"log_stderr": false,
+
+	// A dictionary of code action identifiers that should be triggered on save.
+	//
+	// Code action identifiers are not officially standardized so refer to specific
+	// server's documentation on what is supported but `source.fixAll` is commonly
+	// used to apply fix-on-save code actions.
+	//
+	// This option is also supported in syntax-specific settings and/or in the
+	// "settings" section of project files. Settings from all those places will be
+	// merged and more specific (syntax and project) settings will override less
+	// specific (from LSP or Sublime settings).
+	//
+	// Only "source.*" actions are supported.
+	"lsp_code_actions_on_save": {
+		"source.fixAll": true,
+		"source.organizeImports": true,
+	},
+
+	// Run the server's formatProvider (if supported) on a document before saving.
+	// This option is also supported in syntax-specific settings and/or in the
+	// "settings" section of project files.
+	"lsp_format_on_save": true,
+
+	// Disable Sublime Text's explicit and word completion.
+	"only_show_lsp_completions": false,
+
+	// Show errors and warnings count in the status bar
+	"show_diagnostics_count_in_view_status": false,
+
+	// Show the diagnostics description of the code
+	// under the cursor in status bar if available.
+	"show_diagnostics_in_view_status": true,
+
+	// Show the diagnostics with level less than or equal to
+	// the given value.
+	// error: 1
+	// warning: 2
+	// info: 3
+	// hint: 4
+	"show_diagnostics_severity_level": 4,
+
+	// Show symbol references in Sublime's quick panel instead of the bottom panel.
+	"show_references_in_quick_panel": false,
+
+	// Show symbol action links in hover popup if available
+	"show_symbol_action_links": false,
+
+	// Show permanent language server status in the status bar.
+	"show_view_status": true,
+}

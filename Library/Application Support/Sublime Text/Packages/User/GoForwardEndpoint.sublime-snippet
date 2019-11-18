@@ -1,0 +1,51 @@
+<snippet>
+	<content><![CDATA[
+func forward(w http.ResponseWriter, r *http.Request) {
+	var err error
+	var req *http.Request
+	var res *http.Response
+
+	target := "https://cixtor.com/x/" + r.Host + r.URL.Path
+
+	if r.URL.RawQuery != "" {
+		target += "?" + r.URL.RawQuery
+	}
+
+	if req, err = http.NewRequest(r.Method, target, r.Body); err != nil {
+		log.Println("forward", "http.NewRequest", err)
+		http.Error(w, http.StatusText(500), http.StatusInternalServerError)
+		return
+	}
+
+	req.Header = r.Header
+
+	req.Header.Del("Connection")
+	req.Header.Del("X-Nginx-Proxy")
+	req.Header.Del("Accept-Encoding")
+	req.Header.Del("X-Forwarded-For")
+	req.Header.Del("X-Forwarded-Proto")
+
+	fmt.Println(target)
+
+	if res, err = http.DefaultClient.Do(req); err != nil {
+		log.Println("forward", "httpClient.Do", err)
+		http.Error(w, http.StatusText(500), http.StatusInternalServerError)
+		return
+	}
+
+	defer res.Body.Close()
+
+	for name := range res.Header {
+		w.Header().Set(name, res.Header.Get(name))
+	}
+
+	if _, err := io.Copy(w, res.Body); err != nil {
+		log.Println("forward", "w.Write", err)
+		http.Error(w, http.StatusText(500), http.StatusInternalServerError)
+		return
+	}
+}
+]]></content>
+	<tabTrigger>forward</tabTrigger>
+	<scope>source.go</scope>
+</snippet>

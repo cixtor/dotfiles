@@ -1,0 +1,7 @@
+[
+	{ "keys": ["ctrl+super+\\"], "command": "alignment" },
+	{ "keys": ["ctrl+super+/"], "command": "lsp_hover" },
+	{ "keys": ["ctrl+super+,"], "command": "lsp_symbol_rename" },
+	{ "keys": ["ctrl+super+j"], "command": "lsp_symbol_definition" },
+	{ "keys": ["ctrl+super+;"], "command": "lsp_symbol_references" }
+]

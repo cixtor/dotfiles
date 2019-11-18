@@ -15,24 +15,17 @@
 	[
 		"Alignment",
 		"Case Conversion",
-		"Clang Format",
 		"Codec",
 		"DocBlockr",
 		"FileIcons",
-		"Gocode",
-		"INI",
-		"LESS",
 		"LSP",
-		"nginx",
 		"Package Control",
-		"Rust Enhanced",
 		"SublimeLinter",
 		"SublimeLinter-golangcilint",
 		"SublimeLinter-php",
 		"SublimeLinter-phpcs",
 		"SublimeLinter-shellcheck",
-		"Swift"
 	],
 	"submit_url": "https://cixtor.com/packagecontrol",
-	"submit_usage": false
+	"submit_usage": false,
 }

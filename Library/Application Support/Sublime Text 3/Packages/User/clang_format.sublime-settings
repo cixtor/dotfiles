@@ -1,6 +1,0 @@
-{
-    "style": "Custom",
-    "format_on_save": true,
-    "binary": "/usr/local/bin/clang-format",
-    "languages": ["C", "C++", "C++11", "Objective-C", "Objective-C++"]
-}

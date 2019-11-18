@@ -22,6 +22,10 @@ func FileListVisit(files *[]string) filepath.WalkFunc {
 			return err
 		}
 
+		if info.IsDir() {
+			return nil
+		}
+
 		*files = append(*files, path)
 
 		return nil

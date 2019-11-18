@@ -2,7 +2,7 @@
 	"folder_history":
 	[
 	],
-	"last_version": 3208,
+	"last_version": 4077,
 	"last_window_id": 1,
 	"log_indexing": false,
 	"settings":
@@ -36,7 +36,7 @@
 			},
 			"console":
 			{
-				"height": 0.0,
+				"height": 112.0,
 				"history":
 				[
 				]
@@ -80,6 +80,7 @@
 				"reverse": false,
 				"show_context": true,
 				"use_buffer2": true,
+				"use_gitignore": true,
 				"whole_word": false,
 				"wrap": true
 			},
@@ -126,6 +127,10 @@
 			{
 				"height": 0.0
 			},
+			"output.diagnostics":
+			{
+				"height": 0.0
+			},
 			"output.exec":
 			{
 				"height": 0.0
@@ -135,11 +140,11 @@
 				"height": 0.0
 			},
 			"pinned_build_system": "",
-			"position": "0 400 171 640 534 0 0 1440 877 ",
+			"position": "0 400 198 640 502 0 0 1440 877 ",
 			"project": "",
 			"replace":
 			{
-				"height": 44.0
+				"height": 70.0
 			},
 			"save_all_on_build": true,
 			"select_file":

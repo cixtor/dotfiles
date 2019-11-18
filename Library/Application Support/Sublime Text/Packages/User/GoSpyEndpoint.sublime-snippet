@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[
+func spy(w http.ResponseWriter, r *http.Request) {
+	out, err := httputil.DumpRequest(r, true)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("%s\n", out)
+}
+]]></content>
+	<tabTrigger>spy</tabTrigger>
+	<scope>source.go</scope>
+</snippet>

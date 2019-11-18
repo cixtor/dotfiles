@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+var _ = func() bool {
+	testing.Init()
+	return true
+}()
+]]></content>
+	<tabTrigger>testinit</tabTrigger>
+	<scope>source.go</scope>
+</snippet>
