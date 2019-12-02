@@ -20,6 +20,12 @@ shopt -s histappend
 HISTFILESIZE=2000
 HISTSIZE=1000
 
+# Silence this warning:
+#   The default interactive shell is now zsh.
+#   To update your account to use zsh, please run `chsh -s /bin/zsh`.
+#   For more details, please visit https://support.apple.com/kb/HT208050.
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
