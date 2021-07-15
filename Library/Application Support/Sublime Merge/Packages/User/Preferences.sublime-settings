@@ -4,5 +4,9 @@
 	"font_size": 12,
 	"time_format": "system",
 	"translate_tabs_to_spaces": false,
-	"word_wrap": false
+	"word_wrap": false,
+	"theme": "auto",
+	"side_bar_layout": "tabs",
+	"update_check": false,
+	"diff_style": "auto",
 }
