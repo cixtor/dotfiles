@@ -1,12 +1,165 @@
 {
+	"file_history":
+	[
+	],
 	"folder_history":
 	[
 	],
-	"last_version": 4077,
+	"last_version": 4131,
 	"last_window_id": 1,
 	"log_indexing": false,
+	"next_update_check": 0,
 	"settings":
 	{
+		"new_window_full_screen": false,
+		"new_window_height": 416.0,
+		"new_window_maximized": false,
+		"new_window_position":
+		[
+			480.0,
+			-636.0
+		],
+		"new_window_settings":
+		{
+			"auto_complete":
+			{
+				"selected_items":
+				[
+				]
+			},
+			"build_system_choices":
+			[
+			],
+			"build_varint": "",
+			"command_palette":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"console":
+			{
+				"height": 112.0,
+				"history":
+				[
+				]
+			},
+			"distraction_free":
+			{
+				"menu_visible": true,
+				"show_minimap": false,
+				"show_open_files": false,
+				"show_tabs": false,
+				"side_bar_visible": false,
+				"status_bar_visible": false
+			},
+			"file_history":
+			[
+			],
+			"find":
+			{
+				"height": 24.0
+			},
+			"find_in_files":
+			{
+				"height": 102.0,
+				"where_history":
+				[
+				]
+			},
+			"find_state":
+			{
+				"case_sensitive": true,
+				"find_history":
+				[
+				],
+				"highlight": true,
+				"in_selection": false,
+				"preserve_case": false,
+				"regex": true,
+				"replace_history":
+				[
+				],
+				"reverse": false,
+				"scrollbar_highlights": true,
+				"show_context": true,
+				"use_buffer2": true,
+				"use_gitignore": true,
+				"whole_word": false,
+				"wrap": true
+			},
+			"incremental_find":
+			{
+				"height": 24.0
+			},
+			"input":
+			{
+				"height": 0.0
+			},
+			"menu_visible": true,
+			"output.SublimeLinter":
+			{
+				"height": 0.0
+			},
+			"output.diagnostics":
+			{
+				"height": 0.0
+			},
+			"output.exec":
+			{
+				"height": 0.0
+			},
+			"output.find_results":
+			{
+				"height": 0.0
+			},
+			"pinned_build_system": "",
+			"replace":
+			{
+				"height": 68.0
+			},
+			"save_all_on_build": true,
+			"select_file":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_project":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_symbol":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"show_minimap": false,
+			"show_open_files": false,
+			"show_tabs": true,
+			"side_bar_visible": false,
+			"side_bar_width": 150.0,
+			"status_bar_visible": true,
+			"template_settings":
+			{
+			}
+		},
+		"new_window_width": 480.0
 	},
 	"windows":
 	[
@@ -78,6 +231,7 @@
 				[
 				],
 				"reverse": false,
+				"scrollbar_highlights": true,
 				"show_context": true,
 				"use_buffer2": true,
 				"use_gitignore": true,
@@ -140,11 +294,11 @@
 				"height": 0.0
 			},
 			"pinned_build_system": "",
-			"position": "0 400 198 640 502 0 0 1440 877 ",
+			"position": "YnBsaXN0MDDUAQIDBAUGBxxYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctoICQoLDA0ODxAREhMUFRYVGBkaG18QEF9OU1dpbmRvd0xheW91dHNbTlNDbGFzc05hbWVbTlNTdHlsZU1hc2tXTlNJc0tleV5OU1dpbmRvd051bWJlclhOU0lzTWFpbl1OU1dpbmRvd0ZyYW1lXxAQTlNGaXJzdFJlc3BvbmRlcldOU1RpdGxlXxATTlNXaW5kb3dXb3Jrc3BhY2VJRIAFgAMQDwkRa6YJgAGAAIACgASvEA8dHh8gISIrMTIzOT9AQURVJG51bGxfEB00ODAgMjIwIDQ4MCA0MzggMCAwIDE0NDAgODc3IFh1bnRpdGxlZFhQWFdpbmRvd1DTIyQlJigqV05TLmtleXNaTlMub2JqZWN0c1YkY2xhc3OhJ4AGoSmACoAO0ywtJS4vMF8QGE5TU2NyZWVuTGF5b3V0VVVJRFN0cmluZ18QEk5TU2NyZWVuTGF5b3V0U2l6ZYAHgAiACV8QJEU3NkY1OTEzLTUwOTItMjA4Qi0yOUY3LTRGRTNDODdEMDY2NVt7MTQ0MCwgOTAwfdI0NTY3WiRjbGFzc25hbWVYJGNsYXNzZXNeTlNTY3JlZW5MYXlvdXSiNjhYTlNPYmplY3TTOjslPD0+XxAZTlNXaW5kb3dMYXlvdXRXaW5kb3dGcmFtZV8QH05TV2luZG93TGF5b3V0U2NyZWVuTGF5b3V0RnJhbWWAC4AMgA1fEBh7ezQ4MCwgMjIwfSwgezQ4MCwgNDM4fX1fEBV7ezAsIDB9LCB7MTQ0MCwgODc3fX3SNDVCQ15OU1dpbmRvd0xheW91dKJCONI0NUVGXE5TRGljdGlvbmFyeaJFOAAIABEAGgAkACkAMgA3AEkAXgBxAH0AiQCRAKAAqQC3AMoA0gDoAOoA7ADuAO8A8gDzAPUA9wD5APsBDQETATMBPAFFAUYBTQFVAWABZwFpAWsBbQFvAXEBeAGTAagBqgGsAa4B1QHhAeYB8QH6AgkCDAIVAhwCOAJaAlwCXgJgAnsCkwKYAqcCqgKvArwAAAAAAAACAQAAAAAAAABHAAAAAAAAAAAAAAAAAAACvw",
 			"project": "",
 			"replace":
 			{
-				"height": 70.0
+				"height": 68.0
 			},
 			"save_all_on_build": true,
 			"select_file":
