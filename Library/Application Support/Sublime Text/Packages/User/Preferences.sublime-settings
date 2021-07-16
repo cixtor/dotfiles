@@ -143,7 +143,11 @@
 	"close_windows_when_empty": false,
 
 	// Sets the colors used within the text area
-	"color_scheme": "Packages/User/Monnokay.sublime-color-scheme",
+	"color_scheme": "auto",
+	"dark_theme": "Default Dark.sublime-theme",
+	"light_theme": "Default.sublime-theme",
+	"dark_color_scheme": "MonnokayDark.sublime-color-scheme",
+	"light_color_scheme": "MonnokayLight.sublime-color-scheme",
 
 	// If true, the copy and cut commands will operate on the current line
 	// when the selection is empty, rather than doing nothing.
@@ -232,6 +236,14 @@
 
 	"file_exclude_patterns": ["*.pyc","*.pyo","*.exe","*.dll","*.obj","*.o","*.a","*.lib","*.so","*.dylib","*.ncb","*.sdf","*.suo","*.pdb","*.idb",".DS_Store",".directory","desktop.ini","*.class","*.psd","*.db","*.sublime-workspace"],
 
+	// Controls the style of file tabs for the Default, Default Dark, and
+	// Adaptive themes.
+	// Options: "rounded", "square"
+	//   The value "angled" provides the tab style from Sublime Text 3, but is
+	//   only compatible with the Default and Adaptive themes, and will not
+	//   support new features like inactive pane dimming.
+	"file_tab_style": "square",
+
 	// The maximum output size for find-in-files. Prevents searches with a large
 	// number of results from using too much memory. Use 0 to remove this limit.
 	"find_in_files_max_result_size": 16777216,
@@ -253,7 +265,7 @@
 	// specific settings file, for example, "Preferences (Linux).sublime-settings".
 	// Because of this, setting them here will have no effect: you must set them
 	// in your User File Preferences.
-	"font_face": "SF Mono",
+	"font_face": "SFMono Nerd Font",
 
 	// Valid options on all platforms are:
 	//  - "no_bold": Disables bold text
@@ -472,7 +484,7 @@
 	"reveal_tabs_with_timeout": false,
 
 	// Columns in which to display vertical rulers
-	"rulers": [80,120],
+	"rulers": [60, 80, 120],
 
 	// Set to true to automatically save files when switching to a different file
 	// or application
@@ -653,5 +665,8 @@
 
 	// Set to a value other than 0 to force wrapping at that column rather than the
 	// window width
-	"wrap_width": 80,
+	"wrap_width": 0,
+	"added_words":
+	[
+	],
 }
