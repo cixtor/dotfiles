@@ -1,23 +1,8 @@
 <snippet>
 	<content><![CDATA[
-// FileList walks the file tree rooted at root, calling walkFn for each file or
-// directory in the tree, including root. All errors that arise visiting files
-// and directories are filtered by walkFn. The files are walked in lexical
-// order, which makes the output deterministic but means that for very large
-// directories Walk can be inefficient. Walk does not follow symbolic links.
-func FileList(directory string) ([]string, error) {
 	files := []string{}
 
-	if err := filepath.Walk(directory, FileListVisit(&files)); err != nil {
-		return []string{}, err
-	}
-
-	return files, nil
-}
-
-// FileListVisit is a helper for FileList that implements filepath.WalkFunc.
-func FileListVisit(files *[]string) filepath.WalkFunc {
-	return func(path string, info os.FileInfo, err error) error {
+	err := filepath.Walk("FOLDER", func(s string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
@@ -26,11 +11,17 @@ func FileListVisit(files *[]string) filepath.WalkFunc {
 			return nil
 		}
 
-		*files = append(*files, path)
+		files = append(files, s)
 
 		return nil
+	})
+
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
-}
+
+	fmt.Println(files)
 ]]></content>
 	<tabTrigger>filelist</tabTrigger>
 	<scope>source.go</scope>
