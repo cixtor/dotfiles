@@ -12,6 +12,6 @@
  * @link     https://${6:example.com}
  */
 ]]></content>
-	<tabTrigger>classdoc</tabTrigger>
+	<tabTrigger>phphead</tabTrigger>
 	<scope>source.php</scope>
 </snippet>
