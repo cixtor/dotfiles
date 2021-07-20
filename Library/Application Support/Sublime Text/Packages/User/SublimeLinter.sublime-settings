@@ -55,80 +55,6 @@
     // - save: only when a file is saved
     "lint_mode": "background",
 
-    // Linter specific settings.
-    // More info: http://www.sublimelinter.com/en/stable/linter_settings.html
-    // Linter specific settings except for 'styles' can also be changed
-    // in sublime-project settings.
-    // What settings are available is documented in the readme of the
-    // specific linter plugin.
-    // Example:
-    "linters": {
-        // The name of the linter you installed
-        "linter_name": {
-            // Disables the linter. The default here is 'not set'
-            "disable": false,
-
-            // Additional arguments for the command line. Either a string
-            // or an array. If set to a string, we 'shlex.split' it*.
-            // E.g. '--ignore D112' or ['--config', './.config/foo.ini']
-            //
-            // * Note: Use proper quoting around paths esp. on Windows!
-            "args": [],
-
-            // Path to the executable to be used. Either a string or an
-            // array. E.g. ['nvm', 'exec', '8.6', 'eslint']
-            "executable": "<automatically set>",
-
-            // A modified runtime environment for the lint job. Settings here
-            // override the default, inherited ENV.
-            "env": {},
-
-            // Exclude files that match the given pattern(s).
-            "excludes": [],
-
-            // Suppress errors that match the the given pattern(s).
-            // Either a 'string' or an 'array'. Each input string is handled as
-            // a case-insensitive regex pattern and matched against the
-            // error_type, code, and message. If it matches, the error will be
-            // thrown away.
-            // E.g. ["warning: ", "W3\d\d: ", "missing <!DOCTYPE> declaration"]
-            "filter_errors": [],
-
-            // Lint mode determines when the linter is run. The linter setting
-            // will take precedence over the global setting.
-            "lint_mode": "manual",
-
-            // Determines for which views this linter will run.
-            "selector": "",
-
-            // A list of additional style definition blocks.
-            "styles": [
-                {
-                    // Instead of 'types' you can specify error 'codes' for
-                    // a style definition block
-                    "codes": [""]
-                }
-            ],
-
-            // The current working dir the lint job will run in.
-            "working_dir": "",
-
-            // **Only valid for PythonLinter**
-            // Specify which python to use. Either a number or full path
-            // to a python binary. SL will then basically use 'python -m'
-            // to run the linter.
-            "python": 3,
-
-            // **Only valid for NodeLinter**
-            // If true, will *not* use a globally installed binary
-            "disable_if_not_dependency": false
-        },
-
-        "phpcs": {
-            "args": ["--standard=~/.psr99.xml"]
-        },
-    },
-
     // Determines what happens when a linter reports a problem without column.
     // By default, a mark is put in the gutter and the first character is highlighted.
     // If this setting is true, the entire line is also highlighted.
@@ -186,9 +112,9 @@
             // redish, orangish, yellowish, greenish, bluish, purplish, pinkish.
             "scope": "region.yellowish markup.warning.sublime_linter",
 
-            // The error type this style definition will match for.
-            // An array which can contain "warning" and/or "error".
-            // If omitted will match both.
+            // The error types this style definition will match for.
+            // E.g. "warning" and/or "error". If omitted will match for all
+            // types.
             "types": ["warning"]
         },
         {
@@ -210,9 +136,10 @@
             // - "none"
             // - "fill", "outline",
             // - "solid_underline", "squiggly_underline", "stippled_underline"
-            // The underline styles are replaced with outlines when there is
-            // whitespace in the problem region, because underlines aren't drawn
-            // on whitespace (ST issue #137).
+            // In ST < 4074 the underline styles are replaced with outlines when
+            // there is whitespace in the problem region (ST issue #137).
+            // In newer versions underlines are replaced with outlines when
+            // there are newlines in the problem region for readability.
             "mark_style": "outline",
 
             "scope": "region.redish markup.error.sublime_linter"
