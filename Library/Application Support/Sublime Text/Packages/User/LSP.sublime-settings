@@ -1,69 +1,118 @@
 {
-	// Open and close the diagnostics panel automatically,
-	// depending on available diagnostics.
-	// Valid values are "never", "always" and "saved"
-	"auto_show_diagnostics_panel": "saved",
-
-	// Open the diagnostics panel automatically
-	// when diagnostics level is equal to or less than:
-	// error: 1
-	// warning: 2
-	// info: 3
-	// hint: 4
-	"auto_show_diagnostics_panel_level": 2,
-
 	"clients":
 	{
 		"gopls":
 		{
 			"command": ["gopls"],
 			"enabled": true,
-			"languageId": "go",
+			"selector": "source.go",
 			"settings": {
 				"gopls": {
 					// https://github.com/golang/tools/blob/master/gopls/doc/settings.md
+					"completeUnimported": false,
+					"deepCompletion": true,
+					"buildFlags": [],
+					"env": {},
 					"hoverKind": "FullDocumentation",
 					"usePlaceholders": false,
 					"linkTarget": "pkg.go.dev",
 					"local": "",
-					"completionDocumentation": false,
-					"completeUnimported": false,
-					"deepCompletion": true,
+					"gofumpt": false,
+					"analyses": {
+						"unreachable": true,
+						"unusedparams": false,
+						"fieldalignment": false,
+					},
+					"codelenses": {
+						"gc_details": false,
+						"generate": true,
+						"regenerate_cgo": true,
+						"tidy": true,
+						"upgrade_dependency": true,
+						"vendor": true,
+					},
+					"linksInHover": true,
+					"importShortcut": "Both",
+					"matcher": "Fuzzy",
+					"symbolMatcher": "CaseInsensitive",
+					"symbolStyle": "Dynamic",
+					"directoryFilters": [],
+					"templateExtensions": ["gotmpl"],
+					"annotations": {},
 					"staticcheck": false,
-					"matcher": "fuzzy",
-					"symbolMatcher": "caseInsensitive"
-				}
+					"semanticTokens": false,
+					"expandWorkspaceToModule": true,
+					"experimentalWorkspaceModule": false,
+					"diagnosticsDelay": "250ms",
+					"experimentalPackageCacheKey": true,
+					"allowModfileModifications": false,
+					"allowImplicitNetworkAccess": false,
+				},
 			},
-		}
+		},
+		"rust-analyzer":
+		{
+			"enabled": true,
+		},
 	},
 
-	// The amount of time the code actions on save are allowed to run for.
-	"code_action_on_save_timeout_ms": 2000,
+	// Add an additional delay when the auto-complete widget is currently visible.
+	// Just like the above "diagnostics_delay_ms", the unit is milliseconds.
+	// The total amount of delay would be
+	//
+	//    diagnostics_delay_ms + diagnostics_additional_delay_auto_complete_ms
+	//
+	// See also: "diagnostics_delay_ms".
+	"diagnostics_additional_delay_auto_complete_ms": 0,
+
+	// Delay showing diagnostics by this many milliseconds.
+	// The delay will only kick into action when previously there were
+	// no diagnostics in the view. If there were previous diagnostics in the view,
+	// then the delay setting here is ignored and diagnostics are updated
+	// immediately.
+	"diagnostics_delay_ms": 0,
 
 	// Gutter marker for code diagnostics.
 	// Valid values are "dot", "circle", "bookmark", "sign" or ""
 	"diagnostics_gutter_marker": "dot",
 
-	// Highlighting style of code diagnostics.
-	// Valid values are "underline" or "box"
-	"diagnostics_highlight_style": "underline",
 
-	// Disable language client capabilities. Supported values:
-	// "hover", "completion", "colorProvider", "documentHighlight", "signatureHelp"
-	"disabled_capabilities": [],
-
-	"document_highlight_scopes": {
-		"read": "markup.inserted",
-		"text": "text",
-		"unknown": "text",
-		"write": "markup.changed"
+	// Highlight style of code diagnostics.
+	// Can be a string, or a mapping of string->string for severity-based styling.
+	// Valid string values are "box", "underline", "stippled", "squiggly" or "".
+	// When set to a valid string value, all severities will use that style.
+	// When set to the empty string (""), no diagnostics are drawn.
+	// When disabled, gutter markers are still drawn, unless "diagnostics_gutter_marker"
+	// is set to "".
+	// Diagnostics which span multiple lines are always drawn with the "box" style.
+	// See also: "show_multiline_diagnostics_highlights".
+	"diagnostics_highlight_style": {
+		"error": "squiggly",
+		"warning": "squiggly",
+		"info": "stippled",
+		"hint": "stippled"
 	},
+
+	// Only show diagnostics in the panel with level equal to or less than:
+	// error: 1
+	// warning: 2
+	// info: 3
+	// hint: 4
+	"diagnostics_panel_include_severity_level": 4,
 
 	// Highlighting style of "highlights": accentuating nearby text entities that
 	// are related to the one under your cursor.
 	// Valid values are "fill", "box", "underline", "stippled", "squiggly" or "".
 	// When set to the empty string (""), no document highlighting is requested.
 	"document_highlight_style": "squiggly",
+
+	// Disable Sublime Text's snippet completions.
+	"inhibit_snippet_completions": false,
+
+	// Disable Sublime Text's word completions. When set to `true`, this also
+	// disables Sublime Text's internal completion sorting algorithm and instead
+	// uses the sorting defined by the relevant language server.
+	"inhibit_word_completions": true,
 
 	// Show verbose debug messages in the sublime console.
 	"log_debug": false,
@@ -87,11 +136,6 @@
 		// "remote",
 	],
 
-	// Show language server stderr output in the Language Servers output panel.
-	// This output panel can be toggled from the command palette with the
-	// command "LSP: Toggle Panel: Language Servers".
-	"log_stderr": false,
-
 	// A dictionary of code action identifiers that should be triggered on save.
 	//
 	// Code action identifiers are not officially standardized so refer to specific
@@ -114,8 +158,36 @@
 	// "settings" section of project files.
 	"lsp_format_on_save": true,
 
-	// Disable Sublime Text's explicit and word completion.
-	"only_show_lsp_completions": false,
+	// The amount of time the code actions on save are allowed to run for.
+	"on_save_task_timeout_ms": 2000,
+
+	// The maximum number of characters (approximately) before wrapping in the popup.
+	"popup_max_characters_width": 120,
+
+	// The maximum number of characters (approximately) before a scrollbar appears.
+	"popup_max_characters_height": 1000,
+
+	// Enable semantic highlighting in addition to standard syntax highlighting (experimental!).
+	// Note: Must be supported by the language server and also requires a special rule in the
+	// color scheme to work. If you use none of the built-in color schemes from Sublime Text,
+	// please see the documentation under
+	//   https://lsp.sublimetext.io/customization/#semantic-highlighting
+	// for a description about how to configure your color scheme for semantic highlighting.
+	"semantic_highlighting": false,
+
+	// Show code actions:
+	// "annotation" - show an annotation on the right when code actions are available.
+	// "bulb" - show a bulb in the gutter when code actions are available.
+	// "" - don't show code actions.
+	"show_code_actions": "annotation",
+
+	// Show code actions in hover popup if available
+	"show_code_actions_in_hover": true,
+
+	// Show code lens:
+	// "annotation" - show an annotation on the right when code actions are available
+	// "phantom" - show a phantom on the top when code actions are available
+	"show_code_lens": "annotation",
 
 	// Show errors and warnings count in the status bar
 	"show_diagnostics_count_in_view_status": false,
@@ -124,6 +196,14 @@
 	// under the cursor in status bar if available.
 	"show_diagnostics_in_view_status": true,
 
+	// Open the diagnostics panel automatically
+	// when diagnostics level is equal to or less than:
+	// error: 1
+	// warning: 2
+	// info: 3
+	// hint: 4
+	"show_diagnostics_panel_on_save": 1,
+
 	// Show the diagnostics with level less than or equal to
 	// the given value.
 	// error: 1
@@ -131,6 +211,10 @@
 	// info: 3
 	// hint: 4
 	"show_diagnostics_severity_level": 4,
+
+	// Show diagnostics spanning multiple lines in the view (as outlines).
+	// See also: "diagnostics_highlight_style".
+	"show_multiline_diagnostics_highlights": true,
 
 	// Show symbol references in Sublime's quick panel instead of the bottom panel.
 	"show_references_in_quick_panel": false,
