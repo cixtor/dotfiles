@@ -74,8 +74,12 @@ export GIT_EDITOR=vim
 
 # Homebrew - https://brew.sh
 # The missing package manager for macOS
-export HOMEBREW_NO_EMOJI=1     # Remove Homebrew's stupid emoji
-export HOMEBREW_NO_ANALYTICS=1 # Disable Homebrew analytics
+export HOMEBREW_NO_EMOJI=1
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+export HOMEBREW_NO_INSTALL_UPGRADE=1
+export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
 
 # GoLang - http://golang.org/
 # https://golang.org/doc/install
