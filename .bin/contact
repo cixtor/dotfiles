@@ -18,54 +18,46 @@ if [[ "$HAVE_ADDRESS" == "y" ]]; then
     echo -n "Address Postal Code (V6Z 2Y1): "; read -r ADDRESS_POSTAL_CODE;
 fi
 
-FORMAT="${FULLNAME// /_}"
-STORAGE="${HOME}/Downloads/${FORMAT}.vcf"
-
-echo "BEGIN:VCARD" 1> "$STORAGE"
-echo "VERSION:3.0" 1>> "$STORAGE"
-echo "FN:${FULLNAME}" 1>> "$STORAGE"
+STORAGE=$(printf "BEGIN:VCARD")
+STORAGE+=$(printf "\nVERSION:3.0")
+STORAGE+=$(printf "\nFN:%s" "$FULLNAME")
 
 if [[ "$PHONE_FIRST" != "" ]]; then
-    echo "TEL;TYPE=CELL:${PHONE_FIRST}" 1>> "$STORAGE"
+    STORAGE+=$(printf "\nTEL;TYPE=CELL:%s" "$PHONE_FIRST")
 fi
 
 if [[ "$PHONE_SECOND" != "" ]]; then
-    echo "TEL;TYPE=WORK:${PHONE_SECOND}" 1>> "$STORAGE"
+    STORAGE+=$(printf "\nTEL;TYPE=WORK:%s" "$PHONE_SECOND")
 fi
 
 if [[ "$PHONE_THIRD" != "" ]]; then
-    echo "TEL;TYPE=HOME:${PHONE_THIRD}" 1>> "$STORAGE"
+    STORAGE+=$(printf "\nTEL;TYPE=HOME:%s" "$PHONE_THIRD")
 fi
 
 if [[ "$EMAIL" != "" ]]; then
-    echo "EMAIL:${EMAIL}" 1>> "$STORAGE"
+    STORAGE+=$(printf "\nEMAIL:%s" "$EMAIL")
 fi
 
 if [[ "$HAVE_ADDRESS" == "y" ]]; then
-    echo "ADR;TYPE=HOME:;;${ADDRESS_STREET};${ADDRESS_CITY};${ADDRESS_STATE};${ADDRESS_POSTAL_CODE};${ADDRESS_COUNTRY}" 1>> "$STORAGE"
+    STORAGE+=$(printf "\nADR;TYPE=HOME:;;%s;%s;%s;%s;%s" "$ADDRESS_STREET" "$ADDRESS_CITY" "$ADDRESS_STATE" "$ADDRESS_POSTAL_CODE" "$ADDRESS_COUNTRY")
 fi
 
 if [[ "$WEBSITE" != "" ]]; then
-    echo "URL:${WEBSITE}" 1>> "$STORAGE"
+    STORAGE+=$(printf "\nURL:%s" "$WEBSITE")
 fi
 
 if [[ "$NOTES" != "" ]]; then
     NOTES=${NOTES//,/\,}
-    echo "NOTE:${NOTES}" 1>> "$STORAGE"
+    STORAGE+=$(printf "\nNOTE:%s" "$NOTES")
 fi
 
 if [[ "$PICTURE" != "" ]]; then
-    FILENAME=$(basename "$PICTURE")
-    FILEPATH="${HOME}/Downloads/${FILENAME}"
-    wget -q "$PICTURE" -O "$FILEPATH"
-    echo -n "HOTO;ENCODING=BASE64;TYPE=JPEG:" 1>> "${FILEPATH}.txt"
-    base64 -- "$FILEPATH" 1>> "${FILEPATH}.txt"
-    (strconv chunk 74 < "${FILEPATH}.txt") | while read -r LINE; do
-        echo " ${LINE}" 1>> "$STORAGE"
-    done
-    rm -- "${FILEPATH}.txt" 2>/dev/null
-    rm -- "$FILEPATH" 2>/dev/null
+    STORAGE+=$(printf "\nPHOTO;ENCODING=BASE64;TYPE=JPEG:")
+    STORAGE+=$(curl "$PICTURE" -s | base64 -b 74 | sed "s/^/ /")
 fi
 
-echo "END:VCARD" 1>> "$STORAGE"
-sed -i "" "s/ HOTO;/PHOTO;/" "$STORAGE"
+STORAGE+=$(printf "\nEND:VCARD")
+
+FORMAT="${FULLNAME// /_}"
+
+echo "$STORAGE" 1> "${HOME}/Downloads/${FORMAT}.vcf"
