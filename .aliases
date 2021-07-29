@@ -3,6 +3,10 @@
 # Generic aliases
 alias ls='ls -G'
 
+# Generate random password via Yubikey.
+# https://github.com/cixtor/passotp
+alias p='passotp'
+
 # Search directories for a regex pattern
 # https://github.com/BurntSushi/ripgrep
 # alias grep='rg --no-heading --no-ignore --hidden'
