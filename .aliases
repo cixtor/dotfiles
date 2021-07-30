@@ -12,7 +12,7 @@ alias p='passotp'
 # alias grep='rg --no-heading --no-ignore --hidden'
 alias grep='grep --extended-regexp --color=auto'
 
-alias rg='rg --no-heading --no-ignore'
+alias rg='rg --no-heading --no-ignore -uuu'
 
 # Display non-printing characters so they are visible
 alias cat='cat -v'
