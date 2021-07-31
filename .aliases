@@ -63,3 +63,7 @@ alias ddos='hping3 -c 10000 -d 120 -S -w 64 -p 21 --flood --rand-source'
 
 # Run PHP-CodeSniffer with the WordPress Coding Standards
 alias wpcs="phpcs --standard=WordPress"
+
+# Shorter version of the tidy-viewer command line tool
+# https://github.com/alexhallam/tv
+alias tv='tidy-viewer'
