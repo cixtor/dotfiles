@@ -39,11 +39,27 @@ export PATH="$PATH:/usr/local/sbin"
 
 # https://github.com/cixtor/powergoline
 # go get -u github.com/cixtor/powergoline
-export PROMPT_COMMAND="set_prompt_command; $PROMPT_COMMAND"
 # PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[1;33m\]\u@\h: \[\033[1;34m\]\w\[\033[00m\] \$ '
 function set_prompt_command() {
-    export PS1="$(powergoline $? 2> /dev/null)"
+	RESULT=$(
+		powergoline \
+		-home.bg=241 \
+		-rodir.bg=124 \
+		-cwd.bg=244 \
+		-cwd.n=2 \
+		-plugin="gpgcheck" \
+		-status.code="$?" \
+		-status.success=249 \
+		-status.error=1 \
+		-status.misuse=3 \
+		-status.cantexec=4 \
+		-status.notfound=14 \
+		-status.invalid=202 \
+		-status.terminated=13
+	)
+	export PS1="$RESULT"
 }
+export PROMPT_COMMAND="set_prompt_command; $PROMPT_COMMAND"
 
 # LS-Colors
 LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01'
