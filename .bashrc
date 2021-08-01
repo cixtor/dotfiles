@@ -81,6 +81,11 @@ export HOMEBREW_NO_INSTALL_CLEANUP=1
 export HOMEBREW_NO_INSTALL_UPGRADE=1
 export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
 
+# Minikube - brew install minikube
+export MINIKUBE_IN_STYLE=false
+export MINIKUBE_WANTUPDATENOTIFICATION=false
+export MINIKUBE_REMINDERWAITPERIODINHOURS=8760
+
 # GoLang - http://golang.org/
 # https://golang.org/doc/install
 # https://golang.org/pkg/#stdlib
