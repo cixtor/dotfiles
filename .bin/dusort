@@ -1,67 +1,106 @@
 #!/usr/bin/env python3
-from sys import argv
-from sys import exit
-from os import path
-from os import popen
-from os import getcwd
-from os import listdir
-from subprocess import PIPE
-from subprocess import STDOUT
-from subprocess import Popen
+import os
+import sys
+import argparse
+import subprocess
 
-count = 0
-table = {}
-folder = getcwd()
+parser = argparse.ArgumentParser()
+
+parser.add_argument("-d", "--folder", help="(optional) Path to the directory to scan")
+parser.add_argument("-n", "--head", type=int, help="(optional) Print N heaviest files from the list")
+parser.add_argument("-t", "--tail", type=int, help="(optional) Print N lightest files from the list")
+
+args = parser.parse_args()
+
+WORKDIR = os.getcwd() if not args.folder else args.folder
+
+def human_bytes(num, suffix='B'):
+    for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
+        if abs(num) < 1024.0:
+            return "%3.1f%s%s" % (num, unit, suffix)
+        num /= 1024.0
+    return "%.1f%s%s" % (num, 'Yi', suffix)
+
+def get_file_size(filename):
+	filename = os.path.join(WORKDIR, filename)
+	if os.path.isfile(filename):
+		return os.path.getsize(filename)
+
+	# In macOS, the -b argument is not available.
+	#
+	# Instead, if the environment variable BLOCKSIZE is set, and the -k option
+	# is not specified, the block counts will be displayed in units of that
+	# size block. If BLOCKSIZE is not set, and the -k option is not specified,
+	# the block counts will be displayed in 512-byte blocks.
+	#
+	# -P No symbolic links are followed.  This is the default.
+	#
+	# -r Generate messages about directories that cannot be read, files that
+	#    cannot be opened, and so on. This is the default case. This option
+	#    exists solely for conformance with X/Open Portability Guide Issue 4.
+	#
+	# -s Display an entry for each specified file. Equivalent to -d=0.
+	proc = subprocess.Popen(
+		["du", "-P", "-r", "-s", filename],
+		stdout=subprocess.PIPE,
+		stderr=subprocess.STDOUT
+	)
+	stdout, stderr = proc.communicate()
+	line = stdout.decode("UTF-8").strip()
+	if "Permission denied" in line:
+		return -1
+	size, _ = line.split("\t")
+	return int(size) * 512
+
+def sort_by_size(item):
+	return item["size"]
+
+rawFileList = os.listdir(WORKDIR)
+metaFileList = [{"file": x, "size": get_file_size(x)} for x in rawFileList]
+sortedFiles = sorted(metaFileList, key=sort_by_size, reverse=True)
+
+if args.head != None:
+	sortedFiles = sortedFiles[0:args.head]
+
+if args.tail != None:
+	sortedFiles = sortedFiles[len(sortedFiles) - args.tail:]
+
+table = {
+	"P": [],
+	"T": [],
+	"G": [],
+	"M": [],
+	"K": [],
+	"B": [],
+}
+
 sizes = [
-    "Petabytes",
-    "Terabytes",
-    "Gigabytes",
-    "Megabytes",
-    "Kylobytes",
-    "Bytes",
+	"Petabytes",
+	"Terabytes",
+	"Gigabytes",
+	"Megabytes",
+	"Kylobytes",
+	"Bytes",
 ]
 
-if len(argv) > 1:
-    folder = argv[1]
+for item in sortedFiles:
+	if   item["size"] >= 1e+15: table["P"].append(item)
+	elif item["size"] >= 1e+12: table["T"].append(item)
+	elif item["size"] >= 1e+9:  table["G"].append(item)
+	elif item["size"] >= 1e+6:  table["M"].append(item)
+	elif item["size"] >= 1e+3:  table["K"].append(item)
+	else:                       table["B"].append(item)
 
-for resource in listdir(folder):
-    count += 1
-    fpath = path.join(folder, resource)
-    proc = Popen(["du", "-s", "-h", fpath], stdout=PIPE, stderr=STDOUT)
-    stdout, stderr = proc.communicate()
-    size, fpath = stdout.decode("UTF-8").strip().split("\t")
-    sizet = size[len(size) - 1]
-    sizeq = size[0:len(size)-1]
-    if sizet not in table:
-        table[sizet] = []
-    table[sizet].append({
-        "size": float(sizeq),
-        "type": sizet,
-        "file": fpath,
-    })
+for sizeGroup in sizes:
+	letter = sizeGroup[0]
 
-for filesize in sizes:
-    stype = filesize[0]
-    if stype not in table: continue
-    lsize = 0 # Longest size
-    lline = 0 # Longest line
-    ordered = sorted(table[stype],
-        key=lambda x: x["size"],
-        reverse=True)
-    for data in ordered:
-        length = len(data["file"].replace(folder + "/", ""))
-        if length > lline: lline = length
-    lsize = len(str(ordered[0]["size"]))
-    lline += lsize + 2 # Add longest size and separator
-    title = ("-" * (lsize+1)) # Left separator
-    title += "\x20" + filesize + "\x20"
-    title += "-" * (lline - len(title))
-    print(title) # Print title per group
-    for data in ordered:
-        tamano = str(data["size"]).rjust(lsize)
-        shortFilename = data["file"].replace(folder + "/", "")
-        print("{0}{1} {2}".format(tamano,
-            data["type"],
-            shortFilename))
+	if len(table[letter]) == 0:
+		continue
 
-exit(0)
+	for item in table[letter]:
+		sizeText = human_bytes(item["size"])
+		sizeSpaces = sizeText.rjust(9)
+		shortFilename = item["file"].replace(WORKDIR + "/", "")
+		print("{0}\t{1}".format(sizeSpaces, shortFilename))
+
+sys.exit(0)
