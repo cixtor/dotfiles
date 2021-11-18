@@ -1,0 +1,44 @@
+{
+	"command": ["gopls"],
+	"selector": "source.go | source.gomod",
+	"settings": {
+		"gopls.buildFlags": [],
+		"gopls.env": {},
+		"gopls.directoryFilters": [
+			"-**/node_modules"
+		],
+		"gopls.templateExtensions": ["gotmpl"],
+		"gopls.expandWorkspaceToModule": true,
+		"gopls.experimentalPackageCacheKey": true,
+		"gopls.standaloneTags": ["ignore"],
+		"gopls.hoverKind": "FullDocumentation",
+		"gopls.linkTarget": "pkg.go.dev",
+		"gopls.linksInHover": true,
+		"gopls.usePlaceholders": false,
+		"gopls.matcher": "Fuzzy",
+		"gopls.importShortcut": "Both",
+		// "gopls.symbolMatcher": "CaseInsensitive",
+		"gopls.symbolMatcher": "FastFuzzy",
+		"gopls.symbolStyle": "Dynamic",
+		"gopls.analyses": {
+			"unreachable": true,
+			"unusedparams": false,
+			"fieldalignment": false,
+		},
+		"gopls.staticcheck": false,
+		"gopls.vulncheck": "Off",
+		"gopls.diagnosticsDelay": "250ms",
+		"gopls.codelenses": {
+			"gc_details": false,
+			"generate": true,
+			"regenerate_cgo": true,
+			"tidy": true,
+			"upgrade_dependency": true,
+			"vendor": true
+		},
+		"gopls.semanticTokens": false,
+		"gopls.local": "",
+		"gopls.gofumpt": false,
+		"gopls.verboseOutput": false
+	}
+}

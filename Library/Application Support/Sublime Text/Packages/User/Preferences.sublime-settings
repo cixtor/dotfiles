@@ -353,7 +353,9 @@
 
 	// List any packages to ignore here. When removing entries from this list,
 	// a restart may be required if the package contains plugins.
-	"ignored_packages": ["Vintage"],
+	"ignored_packages": [
+		"Vintage",
+	],
 
 	// A list of wildcard patterns specifying which snippet files to ignore.
 	// For example, to ignore all the default C++ snippets, set this to

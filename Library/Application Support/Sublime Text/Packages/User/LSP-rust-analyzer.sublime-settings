@@ -1,0 +1,4 @@
+{
+	"selector": "source.rust",
+	"command": ["rust-analyzer"],
+}
